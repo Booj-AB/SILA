@@ -1,159 +1,151 @@
-import {View, Text, Image, Platform} from 'react-native';
-import React from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {
-  Presse,
- 
-} from './Presse';
-import {colors, icons} from './src/g';
-import {NavigationContainer} from '@react-navigation/native';
+import React, { useState } from 'react';
+import Header from '../../header';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {View, Text, Image, ScrollView, TouchableOpacity,Linking} from 'react-native';
+import {NativeBaseProvider} from 'native-base';
+import {colors, icons, images} from '../../constants';
+import {Dimensions, StyleSheet} from 'react-native';
+const {width} = Dimensions.get('window');
+const scale = width / 420;
+import { Fab } from 'native-base';
+import Menu from "./menu";
 
 
-const Tab = createBottomTabNavigator();
-const screenOptions = {
-  tabBarShowLabel: false,
-  tabBarStyle: {
-    position: 'absolute',
-    bottom: 10,
-    right: 10,
-    left: 10,
-    elevation: 0,
-    height: Platform.OS === 'ios' ? 90 : 60,
-    borderRadius: 20,
-    backgroundColor: colors.Quaternary,
-   
-  },
-   headerShown: false,
-};
 
-const BottomNavigation = () => {
+
+export default function Exposant() {
+  
+
+  const [items, setItems] = useState(Menu);
+  const filterItem =(categoryItem) =>{
+    const updatedItems = Menu.filter((curElem) => {
+return curElem.category === categoryItem;
+
+    });
+setItems(updatedItems);    
+  }
+
+  
+
+
   return (
-
-
-    <NavigationContainer>
-
-    <Tab.Navigator
-    initialRouteName="Main"
-    screenOptions={screenOptions}>
-      <Tab.Screen
-        name="Presse"
-        component={Presse}
+    <SafeAreaView style={{flex: 1, backgroundColor: colors.Quaternary}}>
+      <View style={{flex: 1, backgroundColor: colors.Quaternary}}>
+        <Header title="Exposants" />
         
-        options={{
-          tabBarIcon: ({focused}) => {
-            return (
-              <Image
-                source={icons.apparailes}
-                resizeMode="contain"
-                style={{
-                  height: 24,
-                  width: 24,
-                  tintColor: focused ? colors.primary : colors.secondary,
-                }}
-              />
-            );
-          },
-        }}
-      />
+  
+        <ScrollView>
 
-      <Tab.Screen
-        name="Ouvrage"
-        component={Presse}
-        options={{
-          tabBarIcon: ({focused}) => {
-            return (
-              <Image
-                source={icons.recherche}
-                resizeMode="contain"
-                style={{
-                  height: 24,
-                  width: 24,
-                  tintColor: focused ? colors.primary : colors.secondary,
-                }}
-              />
-            );
-          },
-        }}
-      />
-      <Tab.Screen
-        name="Home"
-        component={Presse}
-        options={{
-          tabBarIcon: ({focused}) => {
-            return (
+
+          <View
+            style={{
+              width: '100%', // adjust the width to your needs
+              // adjust the height to your needs
+              backgroundColor: colors.tertiary,
+              borderRadius: 70 * scale,
+              
+              position: 'fixed',
+              top: 0 * scale,
+              left: 0 * scale,
+            }}>
+            <NativeBaseProvider>
+             
+
+{/* //kjyuguyg
+            */}
               <View
                 style={{
+                  backgroundColor: colors.Quaternary,
+                  height: 50 * scale,
+                  marginHorizontal: 50 * scale,
+                  borderRadius: 20 * scale,
+                  marginTop: 40 * scale,
+                  marginBottom: 0 * scale,
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
                   alignItems: 'center',
-                  justifyContent: 'center',
-
-                  backgroundColor: focused ? colors.primary : colors.secondary,
-
-                  height: Platform.OS === 'ios' ? 70 : 60,
-                  width: Platform.OS === 'ios' ? 70 : 60,
-                  top: Platform.OS === 'ios' ? -30 : -20,
-                  borderRadius: Platform.OS === 'ios' ? 35 : 30,
-                  borderWidth: 2,
-                  borderColor: focused ? colors.secondary : colors.Quaternary,
+                  padding: 15 * scale,
+                  fontWeight: 'bold',
                 }}>
-                <Image
-                  source={icons.Home1}
-                  resizeMode="contain"
-                  style={{
-                    height: 24,
-                    width: 24,
-                    tintColor: focused ? colors.Quaternary : colors.Quaternary,
-                  }}
-                />
+
+
+                <TouchableOpacity  onPress={() => setItems(Menu)}>
+                  <Text
+                  
+                    style={{
+                      fontWeight: 'bold',
+                      color: colors.white,
+                    }}>
+                    Infos
+                  </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={() => filterItem("Guide")}>
+                  <Text
+                 
+                    style={{
+                      fontWeight: 'bold',
+                      color: colors.white,
+                    }}>
+                    Guide
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => filterItem("Plan")}>
+                  <Text
+                 
+                    style={{
+                      fontWeight: 'bold',
+                      color: colors.white,
+                    }}>
+                    Plan
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => filterItem("Reglements")}>
+                  <Text
+                  
+                    style={{
+                      fontWeight: 'bold',
+                      color: colors.white,
+                    }}>
+                    Reglements
+                  </Text>
+                </TouchableOpacity>
+
+             é
               </View>
-            );
-          },
-        }}
-      />
 
-      <Tab.Screen
-        name="Exposants"
-        component={Presse}
-        options={{
-          tabBarIcon: ({focused}) => {
-            return (
-              <Image
-                source={icons.statistiques}
-                resizeMode="contain"
-                style={{
-                  height: 24,
-                  width: 24,
-                  tintColor: focused ? colors.primary : colors.secondary,
-                }}
-              />
-            );
-          },
-        }}
-      />
+              <TouchableOpacity onPress={() => Linking.openURL('https://drive.google.com/file/d/1xDYSlgLnZr2rd-6xKplMcyeBGl8uniLz/view')}>
+  <Text style={{color: 'blue'}}>
+    Google
+  </Text>
+</TouchableOpacity>
 
-      <Tab.Screen
-        name="Programmes"
-        component={Presse}
-        options={{
-          tabBarIcon: ({focused}) => {
-            return (
-              <Image
-                source={icons.parametres}
-                resizeMode="contain"
-                style={{
-                  height: 24,
-                  width: 24,
-                  tintColor: focused ? colors.primary : colors.secondary,
-                }}
-              />
-            );
-          },
-        }}
-        
-      />
-    </Tab.Navigator>
-    </NavigationContainer>
+          
 
+         
+            
+            </NativeBaseProvider>
+          </View>  
+        </ScrollView>
+
+
+       
+      </View>
+     
+    </SafeAreaView>  
+      
   );
-};
-
-export default BottomNavigation;
+}
+const styles = StyleSheet.create({
+  container: {
+      flex: 1,
+      justifyContent: 'flex-start',
+      alignItems: 'center',
+      marginTop: 25,
+  },
+  pdf: {
+      flex:1,
+      width:Dimensions.get('window').width,
+      height:Dimensions.get('window').height,
+  }
+});

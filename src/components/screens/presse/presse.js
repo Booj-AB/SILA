@@ -13,8 +13,6 @@ import Menu from "./menu";
 
 
 
-
-
 export default function Presse() {
  
   const [items, setItems] = useState(Menu);
@@ -114,10 +112,6 @@ setItems(updatedItems);
 
 
 
-
-
-
-
               <View
                 style={{
                   marginTop: 50* scale,
@@ -129,15 +123,11 @@ setItems(updatedItems);
                 }}>hna ndirou des filtres -- kayan --</Text>
                 </View>
 
-
-{/* 
-{items.map((elem) => {
-          const {  } = elem;
+                {/* {items.map((elem) => {
+          const {id,titre,description,image} = elem;
           return (
-              
-
-);
-})} */}
+            
+          ); })} */}
 
          
             

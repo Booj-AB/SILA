@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
 import Header from '../../header';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {View, Text, Image, ScrollView, TouchableOpacity} from 'react-native';
+import {View, Text, Image, ScrollView, TouchableOpacity,Linking} from 'react-native';
 import {NativeBaseProvider} from 'native-base';
 import {colors, icons, images} from '../../constants';
 import {Dimensions, StyleSheet} from 'react-native';
 const {width} = Dimensions.get('window');
 const scale = width / 420;
-import { Fab } from 'native-base';
 import Menu from "./menu";
+import Menu2 from "./menu2";
+import sila from '../../../assets/bottomBarIcon/sila.png'
 
 
 
 
 export default function Exposant() {
   
-
+  const [items2, setItems2] = useState(Menu2);
   const [items, setItems] = useState(Menu);
   const filterItem =(categoryItem) =>{
     const updatedItems = Menu.filter((curElem) => {
@@ -24,7 +25,11 @@ return curElem.category === categoryItem;
     });
 setItems(updatedItems);    
   }
+  const [isBoolean, setBoolean] = useState(false);
 
+  const showComponent = () => {
+    setBoolean(true);
+  };
   
 
 
@@ -39,11 +44,9 @@ setItems(updatedItems);
 
           <View
             style={{
-              width: '100%', // adjust the width to your needs
-              // adjust the height to your needs
+              width: '100%',
               backgroundColor: colors.tertiary,
               borderRadius: 70 * scale,
-              
               position: 'fixed',
               top: 0 * scale,
               left: 0 * scale,
@@ -51,15 +54,18 @@ setItems(updatedItems);
             <NativeBaseProvider>
              
 
-{/* //kjyuguyg
-            */}
-              <View
+
+
+
+
+               <View
                 style={{
                   backgroundColor: colors.Quaternary,
                   height: 50 * scale,
                   marginHorizontal: 50 * scale,
                   borderRadius: 20 * scale,
-                  marginTop: 40 * scale,
+                  marginTop: 30 * scale,
+                  marginBottom: 40 * scale,
                   marginBottom: 0 * scale,
                   flexDirection: 'row',
                   justifyContent: 'space-between',
@@ -69,7 +75,11 @@ setItems(updatedItems);
                 }}>
 
 
-                <TouchableOpacity  onPress={() => setItems(Menu)}>
+
+
+
+
+                <TouchableOpacity  onPress={() => setItems(Menu) && setBoolean(true)}>
                   <Text
                   
                     style={{
@@ -80,7 +90,7 @@ setItems(updatedItems);
                   </Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => filterItem("Guide")}>
+                <TouchableOpacity onPress={() => filterItem("Guide") &&  setBoolean(false)}>
                   <Text
                  
                     style={{
@@ -109,65 +119,102 @@ setItems(updatedItems);
                     }}>
                     Reglements
                   </Text>
-                </TouchableOpacity>
+                </TouchableOpacity> 
 
              
-              </View>
+              </View> 
 
-
-
-              {/* <View style={styles.container}>
-                <Pdf
-                    source={{ uri: "http://samples.leanpub.com/thereactnativebook-sample.pdf"}}
-                    onLoadComplete={(numberOfPages,filePath) => {
-                        console.log(`Number of pages: ${numberOfPages}`);
-                    }}
-                    onPageChanged={(page,numberOfPages) => {
-                        console.log(`Current page: ${page}`);
-                    }}
-                    onError={(error) => {
-                        console.log(error);
-                    }}
-                    onPressLink={(uri) => {
-                        console.log(`Link pressed: ${uri}`);
-                    }}
-                    style={styles.pdf}/>
-            </View> */}
-
-             
-              {/* <View
-                style={{
-                  marginTop: 50* scale,
-                  textAlign:'center'
+{/* infos */}
+<View isBoolean={isBoolean} style={{
+                  
+                  marginTop:30,
+                  
                 }}>
-
-
-
-
-<Pdf trustAllCerts={false} source={{uri: "https://drive.google.com/drive/u/1/folders/1P8-0q8XifQyg17GjkYEhsKiale8F2kYS"}} style={{flex:1,width:Dimensions.get('window').width}}/>
-
-
-                  <Text  style={{
-                  marginTop: 50* scale,
-                  textAlign:'center'
-                }}>hna ndirou des filtres(kaynin)</Text>
-
-
-
-
-
-                </View> */}
-
-
-
-{/* 
-{items.map((elem) => {
-          const {  } = elem;
+{items2.map((elem) => {
+          const {id,titre,description} = elem;
           return (
-              
+<View isBoolean={isBoolean} key={id} style={{
+                  
+                    marginTop:4,
+                    
+                  }}>
 
+<Text
+                  
+                  style={{
+                    fontWeight: 'bold',
+                    color: colors.primary,
+                    
+                    marginTop:10,
+                    marginLeft:40,
+                    marginRight:40,
+                  }}>
+                  {titre}
+                </Text>
+                <Text
+                  
+                  style={{
+                    color: colors.fifthly,
+                    marginLeft:40,
+                    marginRight:40,
+                  }}>
+                {description}
+                </Text>
+
+</View>
 );
-})} */}
+})}
+
+</View>
+{/* card of guide-plan-reglements */}
+
+
+
+<View style={{marginBottom:50}}>
+
+
+
+{items.map((elem) => {
+          const {id,titre,description,image} = elem;
+          return (
+            
+            
+            <TouchableOpacity key={id} style={{marginTop:30,
+              alignItems:'center'}}onPress={() => Linking.openURL('https://drive.google.com/file/d/1xDYSlgLnZr2rd-6xKplMcyeBGl8uniLz/view')}>
+              <Image
+            resizeMode="contain"
+            style={{
+              
+              width: 300,
+              height: 200,
+            }}
+            source={sila}
+          />
+           <Text
+                  
+                  style={{
+                    fontWeight: 'bold',
+                    color: colors.primary,
+                    marginBottom:10
+                  }}>
+                  {titre}
+                </Text>
+
+                <Text
+                  
+                  style={{
+                   padding:30,
+                   paddingTop:0,
+                    color: colors.primary,
+                  }}>
+            {description}
+                </Text>
+</TouchableOpacity> );
+})}
+
+</View>
+
+           
 
          
             
@@ -183,16 +230,53 @@ setItems(updatedItems);
       
   );
 }
+
+
+  
 const styles = StyleSheet.create({
   container: {
-      flex: 1,
-      justifyContent: 'flex-start',
-      alignItems: 'center',
-      marginTop: 25,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    paddingVertical: 16* scale,
+    paddingHorizontal: 20* scale,
+    backgroundColor: colors.Quaternary,
   },
-  pdf: {
-      flex:1,
-      width:Dimensions.get('window').width,
-      height:Dimensions.get('window').height,
-  }
+  iconContainer: {
+    height: 45* scale,
+    width: 45* scale,
+    borderRadius: 50* scale,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.secondary,
+  },
+  exitContainer: {
+    
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 0* scale,
+  },
+  icon: {
+    height: 24* scale,
+    width: 24* scale,
+    tintColor: colors.Quaternary,
+    
+  },
+  exit: {
+    height: 24* scale,
+    width: 24* scale,
+    tintColor: colors.tertiary,
+    marginLeft:-30,
+    marginRight:20
+  },
+  deleteButton: {
+    position: 'absolute',
+    right: 10* scale,
+    top: 10* scale,
+  },
+  deleteIcon: {
+    height: 20* scale,
+    width: 20* scale,
+    tintColor: colors.error,
+  },
 });

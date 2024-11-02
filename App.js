@@ -4,7 +4,9 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Presse,Exposants, Ouvrage,Home,Programmes} from './src/components/screens';
 import {colors, icons} from './src/components/constants';
 import {NavigationContainer} from '@react-navigation/native';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
+const TopTab = createMaterialTopTabNavigator();
 
 const Tab = createBottomTabNavigator();
 const screenOptions = {
@@ -48,6 +50,7 @@ const BottomNavigation = () => {
                   tintColor: focused ? colors.primary : colors.secondary,
                 }}
               />
+              
             );
           },
         }}
@@ -152,5 +155,6 @@ const BottomNavigation = () => {
 
   );
 };
+
 
 export default BottomNavigation;

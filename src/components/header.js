@@ -167,7 +167,7 @@ const header = ({title, onPress}) => {
 
                           flex: 1,
                           marginBottom: 10* scale,
-                          color: colors.tertiary,
+                          color: colors.fifthly,
                         }}>
                         {item.description}
                       </Text>
@@ -178,7 +178,7 @@ const header = ({title, onPress}) => {
 
                           flex: 1,
                           marginBottom: 10* scale,
-                          color: colors.tertiary,
+                          color: colors.fifthly,
                         }}>
                         {item.description2}
                       </Text>
