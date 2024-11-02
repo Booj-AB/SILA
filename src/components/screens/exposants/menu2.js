@@ -39,38 +39,7 @@ const menu2 =[
         titre:"Impact Culturel",
         description:"Le SILA 2023 a été un succès retentissant, attirant des milliers de visiteurs de tous horizons. Il a non seulement renforcé le rôle d’Alger comme un carrefour culturel en Afrique du Nord, mais a aussi souligné l’importance continue de la littérature comme un moyen de défense des libertés et de promotion des valeurs humaines universelles.",
     },
-    // {
-    //     id: 8,
-    //     image: work6,
-    //     title:" carte visite",
-    //     category:"design",
-    //     path:'https://www.figma.com/design/kckXnLX5zL0gBBHjVquZQU/II?t=DtCEzQtVs0AkPdAv-1'
-
-    // },
-    // {
-    //     id: 9,
-    //     image: work6,
-    //     title:"application mobile pour algerie telecom",
-    //     category:"design",
-    //     path:'https://www.figma.com/design/t806FyuWFnJKOB3joHsUy3/telehack?node-id=0-1&t=uyJb5tMxhwiyuXm3-1'
-
-    // },
-    // {
-    //     id: 10,
-    //     image: work6,
-    //     title:"site pour algerie telecom",
-    //     category:"design",
-    //     path:'https://www.figma.com/design/zMhZq53et8prCRyEZxnXdv/Untitled?node-id=0-1&t=Nnc2riH4pCFWF2VC-1'
-
-    // },
-    // {
-    //     id: 11,
-    //     image: work2,
-    //     title:"HOUSE TRUST.DZ",
-    //     category:"electronics",
-    //     path:'https://github.com/Sidodido/projects/tree/main/projets%20electronique'
-
-    // },
+   
 ];
 
 export default menu2
