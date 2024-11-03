@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
   },
   scrollButton: {
     position: 'absolute',
-    bottom: scale(20), // Scale for positioning
+    bottom: scale(80), // Scale for positioning
     right: scale(20), // Scale for positioning
     backgroundColor: '#3b5998',
     padding: scale(10), // Scale for padding
