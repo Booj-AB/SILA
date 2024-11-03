@@ -9,7 +9,10 @@ const {width} = Dimensions.get('window');
 const scale = width / 420;
 import {Fab} from 'native-base';
 import Menu from './menu';
+//import { SwiperFlatList } from 'react-native-swiper-flatlist';
 
+
+const colorss = ['tomato', 'thistle', 'skyblue', 'teal'];
 export default function Presse() {
   const [items, setItems] = useState(Menu);
   const filterItem = categoryItem => {
@@ -89,24 +92,15 @@ export default function Presse() {
                 </TouchableOpacity>
               </View>
 
-              <View
-                style={{
-                  marginTop: 50 * scale,
-                  textAlign: 'center',
-                }}>
-                <Text
-                  style={{
-                    marginTop: 50 * scale,
-                    textAlign: 'center',
-                  }}>
-                  hna ndirou des filtres -- kayan --
-                </Text>
-              </View>
+           
 
               {/* {items.map((elem) => {
           const {id,titre,description,image} = elem;
           return (
             
+
+
+
           ); })} */}
             </NativeBaseProvider>
           </View>

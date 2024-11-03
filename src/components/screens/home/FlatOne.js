@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, FlatList, Animated } from 'react-native';
 import React, { useRef, useEffect } from 'react';
 import image from '../../../assets/Images/ImageMain.jpg';
 import Card from './Card';
+import {colors, icons, images} from '../../constants';
 
 export default function FlatOne() {
     const sections = [
@@ -77,7 +78,7 @@ const styles = StyleSheet.create({
     sectionHeader: {
         fontSize: 30,
         fontWeight: 'bold',
-        color: 'rgb(1, 175, 234)',
+        color:colors.primary,
         textAlign: 'center',
         marginVertical: 10,
     },
@@ -87,7 +88,7 @@ const styles = StyleSheet.create({
     },
     title: {
         marginBottom: 25,
-        color: 'rgb(1, 175, 234)',
+        color:colors.primary,
         fontSize: 30,
         fontWeight: 'bold',
         textAlign: 'center',

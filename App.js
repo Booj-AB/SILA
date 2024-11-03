@@ -33,7 +33,7 @@ const screenOptions = {
 const BottomNavigation = () => {
   return (
     <NavigationContainer>
-      <Tab.Navigator initialRouteName="Main" screenOptions={screenOptions}>
+      <Tab.Navigator initialRouteName="Home" screenOptions={screenOptions}>
         <Tab.Screen
           name="Exposants"
           component={Exposants}
