@@ -6,10 +6,11 @@ import {
   StyleSheet,
   ScrollView,
 } from 'react-native';
+
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {colors, icons, images} from './constants';
-import {Actionsheet, Box, NativeBaseProvider} from 'native-base';
+import {Actionsheet, Box, Icon, NativeBaseProvider} from 'native-base';
 import {useDisclose} from 'native-base';
 
 import {Dimensions} from 'react-native';
@@ -112,6 +113,13 @@ const header = ({title, onPress}) => {
       <NativeBaseProvider>
         <Actionsheet isOpen={isOpen} onClose={onClose}>
           <Actionsheet.Content>
+
+              <View style={{width:'100%', display:'flex', justifyContent:'center'}}>
+                 <TouchableOpacity  onPress={() => navigation.navigate('ContacUs')}  style={{width:'99%', backgroundColor: colors.Quaternary, padding:10  , marginBottom:10 , borderRadius:5}}>
+                    <Text style={styles.buttonText}>  Send A message</Text>
+                   </TouchableOpacity>
+              </View>
+
             <ScrollView>
               {items.map((item, index) => (
                 <React.Fragment key={index}>
@@ -165,6 +173,10 @@ const header = ({title, onPress}) => {
                   </Box>
                 </React.Fragment>
               ))}
+
+                
+
+
             </ScrollView>
           </Actionsheet.Content>
         </Actionsheet>
@@ -216,6 +228,44 @@ const styles = StyleSheet.create({
     height: 20 * scale,
     width: 20 * scale,
     tintColor: colors.error,
+  },
+   fixedContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    position: 'absolute',
+    bottom: 20,
+    left: 20,
+    right: 20,
+    backgroundColor: 'white',
+    borderRadius: 15,
+    elevation: 5, 
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+  },
+  button: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 15,
+    backgroundColor: 'rgba(0, 136, 255, 0.8)', 
+    borderRadius: 10,
+    flex: 1, 
+    marginHorizontal: 5, 
+  },
+  // icon: {
+  //   width: 24,  // Adjust the width as needed
+  //   height: 24, // Adjust the height as needed
+  //   marginRight: 10, // Space between icon and text
+  // },
+  buttonText: {
+    color: 'white', 
+    fontWeight: 'bold',
+    textAlign:'center'
   },
 });
 

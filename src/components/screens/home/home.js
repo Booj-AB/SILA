@@ -12,7 +12,6 @@ import imageMain from '../../../assets/Images/ImageMain.jpg'
 import Header from '../../header';
 import {colors, icons, images} from '../../constants';
 
-
 // Get screen dimensions
 const { width, height } = Dimensions.get('window');
 
@@ -61,7 +60,7 @@ export default function Main() {
                 <Text style={{ color: 'orange' }}>S</Text>
                 <Text style={{ color: 'red' }}>I</Text>
                 <Text style={{ color: 'green' }}>L</Text>
-                <Text style={{ color:colors.primary }}>A</Text>
+                <Text style={{ color: colors.primary }}>A</Text>
                 <Text style={{ color: 'white' }}> 2024</Text>
               </Text>
               <Text style={styles.subtitle}>La 27ème Edition du Salon International du Livre d’Alger</Text>
@@ -80,19 +79,18 @@ export default function Main() {
         </ImageBackground>
       ),
     },
-   
     { key: '3', renderItem: () => <PartyPro /> },
     { key: '4', renderItem: () => <FlatOne /> },
     { key: '5', renderItem: () => <Qatar /> },
     { key: '6', renderItem: () => <FlatTwo /> },
-    { key: '7', renderItem: () => <Parnt/> },
+    { key: '7', renderItem: () => <Parnt /> },
     { key: '8', renderItem: () => <SponsorOne /> },
     { key: '9', renderItem: () => <SponsorTwo /> },
   ];
 
   return (
     <View style={styles.container}>
-       <Header title="accuil" />
+      <Header title="accuil" />
       <FlatList
         ref={scrollViewRef}
         data={data}
@@ -118,7 +116,7 @@ const styles = StyleSheet.create({
   },
   main: {
     width: '100%',
-    height: scale(545), // Use scaling for height
+    height: scale(545), 
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -138,64 +136,64 @@ const styles = StyleSheet.create({
   headerText: {
     justifyContent: 'center',
     alignItems: 'center',
-    gap: scale(16), // Scale for gap
+    gap: scale(16), 
   },
   title: {
-    fontSize: scale(40), // Scale for font size
+    fontSize: scale(40), 
     fontWeight: 'bold',
     textAlign: 'center',
   },
   subtitle: {
     color: 'white',
-    fontSize: scale(20), // Scale for font size
+    fontSize: scale(20), 
     textAlign: 'center',
   },
   date: {
-    fontSize: scale(30), // Scale for font size
+    fontSize: scale(30),
     color: 'white',
     textAlign: 'center',
   },
   location: {
     color: 'white',
-    fontSize: scale(16), // Scale for font size
+    fontSize: scale(16), 
     textAlign: 'center',
   },
   buttonContainer: {
-    marginTop: scale(30), // Scale for margin
+    marginTop: scale(30),
     flexDirection: 'row',
     justifyContent: 'center',
-    gap: scale(40), // Scale for gap
+    gap: scale(40),
     width: '100%',
   },
   buPro: {
     backgroundColor: colors.primary,
-    paddingVertical: scale(10), // Scale for padding
-    paddingHorizontal: scale(20), // Scale for padding
-    borderRadius: scale(10), // Scale for border radius
+    paddingVertical: scale(10), 
+    paddingHorizontal: scale(20), 
+    borderRadius: scale(10),
     width: '35%',
     alignItems: 'center',
   },
   buNov: {
-    borderWidth: scale(3), // Scale for border width
+    borderWidth: scale(3), 
     borderColor: colors.primary,
     backgroundColor: 'transparent',
-    paddingVertical: scale(10), // Scale for padding
-    paddingHorizontal: scale(20), // Scale for padding
-    borderRadius: scale(10), // Scale for border radius
+    paddingVertical: scale(10),
+    paddingHorizontal: scale(20), 
+    borderRadius: scale(10), 
     width: '35%',
     alignItems: 'center',
   },
   buttonText: {
     color: 'white',
     fontWeight: 'bold',
-    fontSize: scale(12), // Scale for font size
+    fontSize: scale(12), 
   },
   scrollButton: {
     position: 'absolute',
-    bottom: scale(20), // Scale for positioning
-    right: scale(20), // Scale for positioning
+    bottom: scale(80), 
+    right: scale(20), 
     backgroundColor: '#3b5998',
-    padding: scale(10), // Scale for padding
-    borderRadius: scale(30), // Scale for border radius
+    padding: scale(10), 
+    borderRadius: scale(30), 
   },
 });

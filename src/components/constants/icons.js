@@ -13,9 +13,6 @@ const casbah = require('../../assets/bottomBarIcon/casbah.png');
 const concorde = require('../../assets/bottomBarIcon/concorde.png');
 const recherche = require('../../assets/bottomBarIcon/recherche.png');
 
-
-
-
 export default {
   programme,
   contact,
@@ -30,6 +27,5 @@ export default {
   mezannine,
   casbah,
   concorde,
-  recherche
+  recherche,
 };
-
