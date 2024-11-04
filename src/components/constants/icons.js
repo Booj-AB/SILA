@@ -11,26 +11,11 @@ const ahhagar = require('../../assets/bottomBarIcon/ahhagar.png');
 const mezannine = require('../../assets/bottomBarIcon/mezannine.png');
 const casbah = require('../../assets/bottomBarIcon/casbah.png');
 const concorde = require('../../assets/bottomBarIcon/concorde.png');
-<<<<<<< HEAD
-// const shareIcon = require('../../assets/bottomBarIcon/share.png');
-
-
-
-
-
-
-
-=======
 const recherche = require('../../assets/bottomBarIcon/recherche.png');
->>>>>>> 9df021d6439cdfd86c8730d497d4847d8444560f
-
-
-
 
 export default {
   programme,
   contact,
-
   ouvrage,
   exposants,
   presse,
@@ -42,10 +27,5 @@ export default {
   mezannine,
   casbah,
   concorde,
-<<<<<<< HEAD
-
-=======
-  recherche
->>>>>>> 9df021d6439cdfd86c8730d497d4847d8444560f
+  recherche,
 };
-

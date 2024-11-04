@@ -16,8 +16,6 @@ import Deatils from './src/components/screens/home/Deatils';
 import ContacUs from './src/components/screens/ContactUs/ContacUs';
 import Ajouter from './src/components/screens/Ajouter/Ajouter';
 
-
-
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -144,40 +142,15 @@ const BottomTabs = () => (
 export default function App() {
   return (
     <NavigationContainer>
-<<<<<<< HEAD
       <Stack.Navigator>
-
         <Stack.Screen
           name="MainTabs"
           component={BottomTabs}
           options={{ headerShown: false }}
-=======
-      <Tab.Navigator initialRouteName="Home" screenOptions={screenOptions}>
-        <Tab.Screen
-          name="Exposants"
-          component={Exposants}
-          options={{
-            tabBarIcon: ({focused}) => {
-              return (
-                <Image
-                  source={icons.exposants}
-                  resizeMode="contain"
-                  style={{
-                    height: 24,
-                    width: 24,
-                    tintColor: focused ? colors.primary : colors.secondary,
-                  }}
-                />
-              );
-            },
-          }}
->>>>>>> 9df021d6439cdfd86c8730d497d4847d8444560f
         />
-
-  
-        <Stack.Screen name="ContacUs" component={ContacUs} options={{ headerShown: false }}/>
+        <Stack.Screen name="ContacUs" component={ContacUs} options={{ headerShown: false }} />
         <Stack.Screen name="Details" component={Deatils} options={{ headerShown: false }} />
-          <Stack.Screen name="Ajouter" component={Ajouter} options={{ headerShown: false }} />
+        <Stack.Screen name="Ajouter" component={Ajouter} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

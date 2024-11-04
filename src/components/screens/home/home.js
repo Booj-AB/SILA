@@ -12,7 +12,6 @@ import imageMain from '../../../assets/Images/ImageMain.jpg'
 import Header from '../../header';
 import {colors, icons, images} from '../../constants';
 
-
 // Get screen dimensions
 const { width, height } = Dimensions.get('window');
 
@@ -61,7 +60,7 @@ export default function Main() {
                 <Text style={{ color: 'orange' }}>S</Text>
                 <Text style={{ color: 'red' }}>I</Text>
                 <Text style={{ color: 'green' }}>L</Text>
-                <Text style={{ color:colors.primary }}>A</Text>
+                <Text style={{ color: colors.primary }}>A</Text>
                 <Text style={{ color: 'white' }}> 2024</Text>
               </Text>
               <Text style={styles.subtitle}>La 27ème Edition du Salon International du Livre d’Alger</Text>
@@ -80,19 +79,18 @@ export default function Main() {
         </ImageBackground>
       ),
     },
-   
     { key: '3', renderItem: () => <PartyPro /> },
     { key: '4', renderItem: () => <FlatOne /> },
     { key: '5', renderItem: () => <Qatar /> },
     { key: '6', renderItem: () => <FlatTwo /> },
-    { key: '7', renderItem: () => <Parnt/> },
+    { key: '7', renderItem: () => <Parnt /> },
     { key: '8', renderItem: () => <SponsorOne /> },
     { key: '9', renderItem: () => <SponsorTwo /> },
   ];
 
   return (
     <View style={styles.container}>
-       <Header title="accuil" />
+      <Header title="accuil" />
       <FlatList
         ref={scrollViewRef}
         data={data}
@@ -168,28 +166,16 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   buPro: {
-<<<<<<< HEAD
-    backgroundColor: 'rgb(0, 136, 255)',
+    backgroundColor: colors.primary,
     paddingVertical: scale(10), 
     paddingHorizontal: scale(20), 
     borderRadius: scale(10),
-=======
-    backgroundColor: colors.primary,
-    paddingVertical: scale(10), // Scale for padding
-    paddingHorizontal: scale(20), // Scale for padding
-    borderRadius: scale(10), // Scale for border radius
->>>>>>> 9df021d6439cdfd86c8730d497d4847d8444560f
     width: '35%',
     alignItems: 'center',
   },
   buNov: {
-<<<<<<< HEAD
     borderWidth: scale(3), 
-    borderColor: 'rgb(0, 136, 255)',
-=======
-    borderWidth: scale(3), // Scale for border width
     borderColor: colors.primary,
->>>>>>> 9df021d6439cdfd86c8730d497d4847d8444560f
     backgroundColor: 'transparent',
     paddingVertical: scale(10),
     paddingHorizontal: scale(20), 
