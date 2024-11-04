@@ -1,96 +1,70 @@
 
 
+
 const menu =[
     {
         id: 1,
-        acces:"admin",
-        title:"site web + application pour le departement informatique",
-         category:"mobile",
-         adresseIP:"192:188:433:776",
-         adresseMAC:"01:80:C2:00:00:00	",       
+        titre:"photos",
+        description:"Le lorem ipsum (également appelé faux-texte, lipsum, ou bolo bolo1) est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès qu'il est prêt ou que la mise en page est achevée.",
+        image:require('../../../assets/bottomBarIcon/guide.png'),
+        category:"photos",
+        link:"https://drive.google.com/file/d/1_jJT4JNAQYlp16Du9ydz6HSeWbIQR8ID/view?usp=sharing",
+
+        
     },
 
     {
         id: 2,
-        acces:"admin",
-        title:"site web + application pour le departement informatique",
-         category:"mobile",
-         adresseIP:"192:188:433:776",
-         adresseMAC:"01:80:C2:00:00:00	",
+        titre:"videos",
+        description:"Le lorem ipsum (également appelé faux-texte, lipsum, ou bolo bolo1) est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès qu'il est prêt ou que la mise en page est achevée.",
+         image:require('../../../assets/bottomBarIcon/ahhagar.png'),
+         category:"videos",
+         link:"https://drive.google.com/file/d/1_jJT4JNAQYlp16Du9ydz6HSeWbIQR8ID/view?usp=sharing",
+        
     },
-
     {
         id: 3,
-        acces:"admin",
-        title:"site web + application pour le departement informatique",
-         category:"mobile",
-         adresseIP:"192:188:433:776",
-         adresseMAC:"01:80:C2:00:00:00	",
-    },
+        titre:"podcast",
+        description:"Le lorem ipsum (également appelé faux-texte, lipsum, ou bolo bolo1) est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès qu'il est prêt ou que la mise en page est achevée.",
+        image:require('../../../assets/bottomBarIcon/mezannine.png'),
+        category:"podcast",
+        link:"https://drive.google.com/file/d/1_jJT4JNAQYlp16Du9ydz6HSeWbIQR8ID/view?usp=sharing",
 
+        
+    },
     {
         id: 4,
-        acces:"user",
-        title:"site web + application pour le departement informatique",
-         category:"tablette",
-         adresseIP:"192:188:433:776",
-         adresseMAC:"01:80:C2:00:00:00	",    },
-
+        titre:"Plan d'éxposition - CASBAH -",
+        description:"Le lorem ipsum (également appelé faux-texte, lipsum, ou bolo bolo1) est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès qu'il est prêt ou que la mise en page est achevée.",
+        image:require('../../../assets/bottomBarIcon/casbah.png'),
+        category:"photos",
+        link:"https://drive.google.com/file/d/1_jJT4JNAQYlp16Du9ydz6HSeWbIQR8ID/view?usp=sharing",
+        
+    },
     {
         id: 5,
-        acces:"user",
-        title:"site web + application pour le departement informatique",
-         category:"tablette",
-         adresseIP:"192:188:433:776",
-         adresseMAC:"01:80:C2:00:00:00	",    },
+        titre:"Plan d'éxposition - CONCOREDE -",
+        description:"Le lorem ipsum (également appelé faux-texte, lipsum, ou bolo bolo1) est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès qu'il est prêt ou que la mise en page est achevée.",
+        image:require('../../../assets/bottomBarIcon/concorde.png'),
+        category:"photos",
+        link:"https://drive.google.com/file/d/1_jJT4JNAQYlp16Du9ydz6HSeWbIQR8ID/view?usp=sharing",
+
+        
+    },
 
     {
         id: 6,
-        acces:"produit",
-        title:"site web + application pour le departement informatique",
-         category:"produit",
-         adresseIP:"192:188:433:776",
-         adresseMAC:"01:80:C2:00:00:00	",    },
-    {
-        id: 7,
-        acces:"produit",
-        title:"site web + application pour le departement informatique",
-         category:"produit",
-         adresseIP:"192:188:433:776",
-         adresseMAC:"01:80:C2:00:00:00	",
+        titre:"Réglements interieurs",
+        description:"Le lorem ipsum (également appelé faux-texte, lipsum, ou bolo bolo1) est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès qu'il est prêt ou que la mise en page est achevée.",
+        image:require('../../../assets/bottomBarIcon/reglements.png'),
+        category:"Reglements",
+        link:"https://drive.google.com/file/d/1_jJT4JNAQYlp16Du9ydz6HSeWbIQR8ID/view?usp=sharing",
+
+
+        
     },
-    // {
-    //     id: 8,
-    //     image: work6,
-    //     title:" carte visite",
-    //     category:"design",
-    //     path:'https://www.figma.com/design/kckXnLX5zL0gBBHjVquZQU/II?t=DtCEzQtVs0AkPdAv-1'
 
-    // },
-    // {
-    //     id: 9,
-    //     image: work6,
-    //     title:"application mobile pour algerie telecom",
-    //     category:"design",
-    //     path:'https://www.figma.com/design/t806FyuWFnJKOB3joHsUy3/telehack?node-id=0-1&t=uyJb5tMxhwiyuXm3-1'
-
-    // },
-    // {
-    //     id: 10,
-    //     image: work6,
-    //     title:"site pour algerie telecom",
-    //     category:"design",
-    //     path:'https://www.figma.com/design/zMhZq53et8prCRyEZxnXdv/Untitled?node-id=0-1&t=Nnc2riH4pCFWF2VC-1'
-
-    // },
-    // {
-    //     id: 11,
-    //     image: work2,
-    //     title:"HOUSE TRUST.DZ",
-    //     category:"electronics",
-    //     path:'https://github.com/Sidodido/projects/tree/main/projets%20electronique'
-
-    // },
+    
 ];
 
 export default menu
