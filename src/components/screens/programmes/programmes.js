@@ -18,6 +18,7 @@ import plans from '../../../assets/bottomBarIcon/plan.jpg';
 import programme from '../../../assets/bottomBarIcon/programmes.png';
 import Menu from './menu';
 
+
 export default function Programmes() {
   const [isBoolean, setBoolean] = useState(false);
   const [isBoolean2, setBoolean2] = useState(false);
@@ -65,8 +66,7 @@ export default function Programmes() {
         <ScrollView>
           <View
             style={{
-              width: '100%', // adjust the width to your needs
-              // adjust the height to your needs
+              width: '100%',
               backgroundColor: colors.tertiary,
               borderRadius: 70 * scale,
               height: '100%', 
@@ -94,9 +94,10 @@ export default function Programmes() {
 
 
 
-                <TouchableOpacity onPress={()=> {setItems(Menu); setBoolean(true);
-      setBoolean2(false);
-      setBoolean3(false);}}>
+                <TouchableOpacity onPress={()=> {
+                  setItems(Menu); setBoolean(true);
+                  setBoolean2(false);
+                  setBoolean3(false);}}>
                   <Text
                     style={{
                       fontWeight: 'bold',
@@ -132,7 +133,7 @@ export default function Programmes() {
                   style={{marginTop: 30, alignItems: 'center'}}
                   onPress={() =>
                     Linking.openURL(
-                      'https://drive.google.com/file/d/1xDYSlgLnZr2rd-6xKplMcyeBGl8uniLz/view',
+                      'https://drive.google.com/file/d/1_jJT4JNAQYlp16Du9ydz6HSeWbIQR8ID/view?usp=sharing',
                     )
                   }>
                   <Image
@@ -160,7 +161,8 @@ export default function Programmes() {
                       marginBottom:500,
                       color: colors.primary,
                     }}>
-                    ici une description pour un programme culturel
+                           Le lorem ipsum également appelé faux-texte, lipsum, ou bolo bolo1) est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès qu'il est prêt ou que la mise en page est achevée.
+
                   </Text>
                 </TouchableOpacity>
 
@@ -169,7 +171,7 @@ export default function Programmes() {
               : null}
 
               {isBoolean2 ? (
-                <View >
+                <View>
                   <Image
                     resizeMode="contain"
                     style={{
@@ -183,7 +185,7 @@ export default function Programmes() {
                  
                 </View>
                 
-              ) : null}
+              ) :null}
 
               {isBoolean3 ?
               //ici on met flex direction row et 2 dates par ligne
@@ -226,7 +228,9 @@ export default function Programmes() {
  );
 })}
               </View>
-              : null}
+              :  null}
+
+             
             </NativeBaseProvider>
           </View>
         </ScrollView>

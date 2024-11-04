@@ -1,151 +1,139 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Header from '../../header';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {View, Text, Image, ScrollView, TouchableOpacity,Linking} from 'react-native';
+import {View, Text, Image, ScrollView, TouchableOpacity} from 'react-native';
 import {NativeBaseProvider} from 'native-base';
 import {colors, icons, images} from '../../constants';
 import {Dimensions, StyleSheet} from 'react-native';
 const {width} = Dimensions.get('window');
 const scale = width / 420;
-import { Fab } from 'native-base';
-import Menu from "./menu";
+import {Fab} from 'native-base';
+import Menu from './menu';
 
-
-
-
-export default function Exposant() {
-  
+const colorss = ['tomato', 'thistle', 'skyblue', 'teal'];
+export default function Presse() {
+  const [isBoolean, setBoolean] = useState(false);
 
   const [items, setItems] = useState(Menu);
-  const filterItem =(categoryItem) =>{
-    const updatedItems = Menu.filter((curElem) => {
-return curElem.category === categoryItem;
-
+  const filterItem = categoryItem => {
+    const updatedItems = Menu.filter(curElem => {
+      return curElem.category === categoryItem;
     });
-setItems(updatedItems);    
-  }
-
-  
-
+    setItems(updatedItems);
+  };
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.Quaternary}}>
-      <View style={{flex: 1, backgroundColor: colors.Quaternary}}>
-        <Header title="Exposants" />
-        
-  
-        <ScrollView>
+
+<View style={{flex: 1, height:400, backgroundColor: colors.Quaternary,}}>
+        <Header title="Presse" />
+        <ScrollView >
 
 
-          <View
-            style={{
-              width: '100%', // adjust the width to your needs
-              // adjust the height to your needs
-              backgroundColor: colors.tertiary,
-              borderRadius: 70 * scale,
-              
-              position: 'fixed',
-              top: 0 * scale,
-              left: 0 * scale,
-            }}>
-            <NativeBaseProvider>
-             
 
-{/* //kjyuguyg
-            */}
-              <View
-                style={{
-                  backgroundColor: colors.Quaternary,
-                  height: 50 * scale,
-                  marginHorizontal: 50 * scale,
-                  borderRadius: 20 * scale,
-                  marginTop: 40 * scale,
-                  marginBottom: 0 * scale,
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  padding: 15 * scale,
-                  fontWeight: 'bold',
-                }}>
+        <View
+          style={{
+            width: '100%',
+            backgroundColor: colors.tertiary,
+            borderRadius: 70 * scale,
+            position: 'fixed',
+           
+          }}>
+          <NativeBaseProvider>
+            <View
+              style={{
+                backgroundColor: colors.Quaternary,
+                height: 50 * scale,
 
+                marginHorizontal: 50 * scale,
+                borderRadius: 20 * scale,
+                marginTop: 40 * scale,
+                marginBottom: 0 * scale,
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                padding: 15 * scale,
+                fontWeight: 'bold',
+              }}>
+              <TouchableOpacity onPress={() => setItems(Menu)}>
+                <Text
+                  style={{
+                    fontWeight: 'bold',
+                    color: colors.white,
+                  }}>
+                  Tout
+                </Text>
+              </TouchableOpacity>
 
-                <TouchableOpacity  onPress={() => setItems(Menu)}>
-                  <Text
-                  
-                    style={{
-                      fontWeight: 'bold',
-                      color: colors.white,
-                    }}>
-                    Infos
-                  </Text>
-                </TouchableOpacity>
+              <TouchableOpacity onPress={() => filterItem('podcast')}>
+                <Text
+                  style={{
+                    fontWeight: 'bold',
+                    color: colors.white,
+                  }}>
+                  Podcast
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => filterItem('videos')}>
+                <Text
+                  style={{
+                    fontWeight: 'bold',
+                    color: colors.white,
+                  }}>
+                  Videos
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => filterItem('photos')}>
+                <Text
+                  style={{
+                    fontWeight: 'bold',
+                    color: colors.white,
+                  }}>
+                  Photos
+                </Text>
+              </TouchableOpacity>
+            </View>
+ <View>
 
-                <TouchableOpacity onPress={() => filterItem("Guide")}>
-                  <Text
-                 
-                    style={{
-                      fontWeight: 'bold',
-                      color: colors.white,
-                    }}>
-                    Guide
-                  </Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => filterItem("Plan")}>
-                  <Text
-                 
-                    style={{
-                      fontWeight: 'bold',
-                      color: colors.white,
-                    }}>
-                    Plan
-                  </Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => filterItem("Reglements")}>
-                  <Text
-                  
-                    style={{
-                      fontWeight: 'bold',
-                      color: colors.white,
-                    }}>
-                    Reglements
-                  </Text>
-                </TouchableOpacity>
+ {items === 'photos' ? (
+  <View>
+    <Text>This is an image</Text>
+    <Image 
+      source={images.sila} 
+      style={{ width: 100, height: 100 }} // Add appropriate styles
+      resizeMode="cover" // Optional: specify how the image should be resized
+    />
+  </View>
+) : null}
 
-             é
+            {(items=='videos') ? (
+              <View style={{height:200}}>
+                <Text>this is video</Text>
+                <Image source={images.sila} />
               </View>
+            ) : null}
+            {/* {items('podcast') ? (
+              <View>
+                <Text>this is podcast</Text>
+                <Image source={images.sila} />
+              </View>
+            ) : null}
 
-              <TouchableOpacity onPress={() => Linking.openURL('https://drive.google.com/file/d/1xDYSlgLnZr2rd-6xKplMcyeBGl8uniLz/view')}>
-  <Text style={{color: 'blue'}}>
-    Google
-  </Text>
-</TouchableOpacity>
+            {items(Menu) ? (
+              <View>
+                <Text>this is tout</Text>
+                <Image source={images.sila} />
+              </View>
+            ) : null} */}
+
+</View> 
 
           
-
-         
-            
-            </NativeBaseProvider>
-          </View>  
+          </NativeBaseProvider>
+        </View>
         </ScrollView>
 
-
-       
       </View>
-     
-    </SafeAreaView>  
-      
+    </SafeAreaView>
   );
 }
-const styles = StyleSheet.create({
-  container: {
-      flex: 1,
-      justifyContent: 'flex-start',
-      alignItems: 'center',
-      marginTop: 25,
-  },
-  pdf: {
-      flex:1,
-      width:Dimensions.get('window').width,
-      height:Dimensions.get('window').height,
-  }
-});

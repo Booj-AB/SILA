@@ -144,12 +144,34 @@ const BottomTabs = () => (
 export default function App() {
   return (
     <NavigationContainer>
+<<<<<<< HEAD
       <Stack.Navigator>
 
         <Stack.Screen
           name="MainTabs"
           component={BottomTabs}
           options={{ headerShown: false }}
+=======
+      <Tab.Navigator initialRouteName="Home" screenOptions={screenOptions}>
+        <Tab.Screen
+          name="Exposants"
+          component={Exposants}
+          options={{
+            tabBarIcon: ({focused}) => {
+              return (
+                <Image
+                  source={icons.exposants}
+                  resizeMode="contain"
+                  style={{
+                    height: 24,
+                    width: 24,
+                    tintColor: focused ? colors.primary : colors.secondary,
+                  }}
+                />
+              );
+            },
+          }}
+>>>>>>> 9df021d6439cdfd86c8730d497d4847d8444560f
         />
 
   

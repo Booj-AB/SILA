@@ -10,6 +10,7 @@ import Qatar from './Qatar';
 import FlatOne from './FlatOne';
 import imageMain from '../../../assets/Images/ImageMain.jpg'
 import Header from '../../header';
+import {colors, icons, images} from '../../constants';
 
 
 // Get screen dimensions
@@ -19,8 +20,8 @@ const { width, height } = Dimensions.get('window');
 const scale = size => (width / 375) * size; // Assuming 375 is the base width for your design
 
 export default function Main() {
-  const fadeAnim = useRef(new Animated.Value(0)).current; 
-  const slideAnim = useRef(new Animated.Value(100)).current; 
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+  const slideAnim = useRef(new Animated.Value(100)).current;
   const [showButton, setShowButton] = useState(false);
   const scrollViewRef = useRef(null);
 
@@ -60,7 +61,7 @@ export default function Main() {
                 <Text style={{ color: 'orange' }}>S</Text>
                 <Text style={{ color: 'red' }}>I</Text>
                 <Text style={{ color: 'green' }}>L</Text>
-                <Text style={{ color: 'rgb(0, 119, 255)' }}>A</Text>
+                <Text style={{ color:colors.primary }}>A</Text>
                 <Text style={{ color: 'white' }}> 2024</Text>
               </Text>
               <Text style={styles.subtitle}>La 27ème Edition du Salon International du Livre d’Alger</Text>
@@ -79,7 +80,7 @@ export default function Main() {
         </ImageBackground>
       ),
     },
-    { key: '2', renderItem: () => <Circel /> },
+   
     { key: '3', renderItem: () => <PartyPro /> },
     { key: '4', renderItem: () => <FlatOne /> },
     { key: '5', renderItem: () => <Qatar /> },
@@ -167,16 +168,28 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   buPro: {
+<<<<<<< HEAD
     backgroundColor: 'rgb(0, 136, 255)',
     paddingVertical: scale(10), 
     paddingHorizontal: scale(20), 
     borderRadius: scale(10),
+=======
+    backgroundColor: colors.primary,
+    paddingVertical: scale(10), // Scale for padding
+    paddingHorizontal: scale(20), // Scale for padding
+    borderRadius: scale(10), // Scale for border radius
+>>>>>>> 9df021d6439cdfd86c8730d497d4847d8444560f
     width: '35%',
     alignItems: 'center',
   },
   buNov: {
+<<<<<<< HEAD
     borderWidth: scale(3), 
     borderColor: 'rgb(0, 136, 255)',
+=======
+    borderWidth: scale(3), // Scale for border width
+    borderColor: colors.primary,
+>>>>>>> 9df021d6439cdfd86c8730d497d4847d8444560f
     backgroundColor: 'transparent',
     paddingVertical: scale(10),
     paddingHorizontal: scale(20), 

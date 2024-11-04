@@ -6,7 +6,7 @@ const colors ={
     Quaternary: '#0396A6',
     fifthly: '#01161e',
 white:'#FFFFFD',
-
+gris:'#cbd5e1'
 }
 
 
