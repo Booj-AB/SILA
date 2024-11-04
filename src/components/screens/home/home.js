@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
   },
   main: {
     width: '100%',
-    height: scale(545), // Use scaling for height
+    height: scale(545), 
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -137,64 +137,64 @@ const styles = StyleSheet.create({
   headerText: {
     justifyContent: 'center',
     alignItems: 'center',
-    gap: scale(16), // Scale for gap
+    gap: scale(16), 
   },
   title: {
-    fontSize: scale(40), // Scale for font size
+    fontSize: scale(40), 
     fontWeight: 'bold',
     textAlign: 'center',
   },
   subtitle: {
     color: 'white',
-    fontSize: scale(20), // Scale for font size
+    fontSize: scale(20), 
     textAlign: 'center',
   },
   date: {
-    fontSize: scale(30), // Scale for font size
+    fontSize: scale(30),
     color: 'white',
     textAlign: 'center',
   },
   location: {
     color: 'white',
-    fontSize: scale(16), // Scale for font size
+    fontSize: scale(16), 
     textAlign: 'center',
   },
   buttonContainer: {
-    marginTop: scale(30), // Scale for margin
+    marginTop: scale(30),
     flexDirection: 'row',
     justifyContent: 'center',
-    gap: scale(40), // Scale for gap
+    gap: scale(40),
     width: '100%',
   },
   buPro: {
     backgroundColor: 'rgb(0, 136, 255)',
-    paddingVertical: scale(10), // Scale for padding
-    paddingHorizontal: scale(20), // Scale for padding
-    borderRadius: scale(10), // Scale for border radius
+    paddingVertical: scale(10), 
+    paddingHorizontal: scale(20), 
+    borderRadius: scale(10),
     width: '35%',
     alignItems: 'center',
   },
   buNov: {
-    borderWidth: scale(3), // Scale for border width
+    borderWidth: scale(3), 
     borderColor: 'rgb(0, 136, 255)',
     backgroundColor: 'transparent',
-    paddingVertical: scale(10), // Scale for padding
-    paddingHorizontal: scale(20), // Scale for padding
-    borderRadius: scale(10), // Scale for border radius
+    paddingVertical: scale(10),
+    paddingHorizontal: scale(20), 
+    borderRadius: scale(10), 
     width: '35%',
     alignItems: 'center',
   },
   buttonText: {
     color: 'white',
     fontWeight: 'bold',
-    fontSize: scale(12), // Scale for font size
+    fontSize: scale(12), 
   },
   scrollButton: {
     position: 'absolute',
-    bottom: scale(80), // Scale for positioning
-    right: scale(20), // Scale for positioning
+    bottom: scale(80), 
+    right: scale(20), 
     backgroundColor: '#3b5998',
-    padding: scale(10), // Scale for padding
-    borderRadius: scale(30), // Scale for border radius
+    padding: scale(10), 
+    borderRadius: scale(30), 
   },
 });

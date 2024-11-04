@@ -14,7 +14,8 @@ import {colors, icons, images} from '../../constants';
 import {Dimensions, StyleSheet} from 'react-native';
 const {width} = Dimensions.get('window');
 const scale = width / 420;
-import sila from '../../../assets/bottomBarIcon/sila.png';
+import plans from '../../../assets/bottomBarIcon/plan.jpg';
+import programme from '../../../assets/bottomBarIcon/programmes.png';
 import Menu from './menu';
 
 export default function Programmes() {
@@ -139,8 +140,9 @@ export default function Programmes() {
                     style={{
                       width: 300,
                       height: 200,
+                      tintColor:colors.primary
                     }}
-                    source={sila}
+                    source={programme}
                   />
                   <Text
                     style={{
@@ -167,18 +169,18 @@ export default function Programmes() {
               : null}
 
               {isBoolean2 ? (
-                <View style={{alignItems:'center'}}>
+                <View >
                   <Image
                     resizeMode="contain"
                     style={{
                       width: '100%',
+                      marginTop:-700,
+                     
                      
                     }}
-                    source={sila}
+                    source={plans}
                   />
-                  <View style={{height:300}}>
-                  
-                </View>
+                 
                 </View>
                 
               ) : null}

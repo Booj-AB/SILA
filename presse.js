@@ -4,7 +4,7 @@ import { View,Text } from 'react-native'
 export default function Presse() {
   return (
     <View>
-<Text>jkgjygyjgyg</Text>
+      <Text>jkgjygyjgyg</Text>
     </View>
   )
 }

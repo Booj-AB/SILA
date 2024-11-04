@@ -17,6 +17,7 @@ const scale = width / 420;
 import Menu from './menu';
 import Menu2 from './menu2';
 import sila from '../../../assets/bottomBarIcon/sila.png';
+import programme from '../../../assets/bottomBarIcon/reglements.png'
 
 export default function Exposant() {
   const [items2, setItems2] = useState(Menu2);
@@ -144,23 +145,24 @@ export default function Exposant() {
                     );
                   })}
                    {items.map(elem => {
-                    const {id, titre, description, image} = elem;
+                    const {id, titre, description, image,link} = elem;
                     return (
                       <TouchableOpacity
                         key={id}
                         style={{marginTop: 30, alignItems: 'center'}}
                         onPress={() =>
-                          Linking.openURL(
-                            'https://drive.google.com/file/d/1xDYSlgLnZr2rd-6xKplMcyeBGl8uniLz/view',
+                          Linking.openURL(link,
                           )
                         }>
                         <Image
                           resizeMode="contain"
                           style={{
-                            width: 300,
+                            width: '100%',
                             height: 200,
+                        borderRadius:10,
+
                           }}
-                          source={sila}
+                          source={image}
                         />
                         <Text
                           style={{
@@ -186,28 +188,29 @@ export default function Exposant() {
                
               ) : <View style={{marginBottom: 50}}>
               {items.map(elem => {
-                const {id, titre, description, image} = elem;
+                const {id, titre, description, image,link} = elem;
                 return (
                   <TouchableOpacity
                     key={id}
                     style={{marginTop: 30, alignItems: 'center'}}
                     onPress={() =>
-                      Linking.openURL(
-                        'https://drive.google.com/file/d/1xDYSlgLnZr2rd-6xKplMcyeBGl8uniLz/view',
+                      Linking.openURL(link,
                       )
                     }>
                     <Image
                       resizeMode="contain"
                       style={{
-                        width: 300,
+                        width: '100%',
                         height: 200,
+                        borderRadius:10,
                       }}
-                      source={sila}
+                      source={image}
                     />
                     <Text
                       style={{
                         fontWeight: 'bold',
                         color: colors.primary,
+                        marginTop:10,
                         marginBottom: 10,
                       }}>
                       {titre}
