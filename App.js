@@ -1,5 +1,5 @@
 import {View, Text, Image, Platform} from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {
   Presse,
@@ -11,7 +11,7 @@ import {
 import {colors, icons} from './src/components/constants';
 import {NavigationContainer} from '@react-navigation/native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-
+import SplashScreen from 'react-native-splash-screen'
 const TopTab = createMaterialTopTabNavigator();
 
 const Tab = createBottomTabNavigator();
@@ -31,6 +31,13 @@ const screenOptions = {
 };
 
 const BottomNavigation = () => {
+
+// useEffect(()=> {
+//   if(Platform.OS === 'android')
+//     {SplashScreen.hide();}
+// },[] )
+
+
   return (
     <NavigationContainer>
       <Tab.Navigator initialRouteName="Home" screenOptions={screenOptions}>
