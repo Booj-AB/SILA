@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useRef } from 'react';
 import Header from '../../header';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { View, Text, Image, ScrollView, TextInput, FlatList } from 'react-native';
@@ -32,6 +32,7 @@ export default function Ouvrage() {
 
 
 
+  const scrollViewRef = useRef(null);
 
   const [search, setSearch] = React.useState(null);
   const [list, setList] = React.useState(data);
@@ -83,6 +84,7 @@ export default function Ouvrage() {
 
                 <FlatList
                   data={list}
+                  scrollEnabled={true}
                   key={({item}) => item.sbn}
                   renderItem={({ item }) => {
                     return (

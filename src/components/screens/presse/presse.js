@@ -9,11 +9,17 @@ const {width} = Dimensions.get('window');
 const scale = width / 420;
 import {Fab} from 'native-base';
 import Menu from './menu';
-//import { SwiperFlatList } from 'react-native-swiper-flatlist';
 
 
 const colorss = ['tomato', 'thistle', 'skyblue', 'teal'];
 export default function Presse() {
+
+
+
+
+
+  const [isBoolean, setBoolean] = useState(false);
+
   const [items, setItems] = useState(Menu);
   const filterItem = categoryItem => {
     const updatedItems = Menu.filter(curElem => {
@@ -27,7 +33,7 @@ export default function Presse() {
       <View style={{flex: 1, backgroundColor: colors.Quaternary}}>
         <Header title="Presse" />
 
-        <ScrollView>
+       
           <View
             style={{
               width: '100%',
@@ -39,6 +45,8 @@ export default function Presse() {
               left: 0 * scale,
             }}>
             <NativeBaseProvider>
+
+
               <View
                 style={{
                   backgroundColor: colors.Quaternary,
@@ -93,18 +101,17 @@ export default function Presse() {
               </View>
 
            
+              
 
-              {/* {items.map((elem) => {
-          const {id,titre,description,image} = elem;
-          return (
+
+
+
             
-
-
-
-          ); })} */}
+            
+            
             </NativeBaseProvider>
           </View>
-        </ScrollView>
+        
       </View>
     </SafeAreaView>
   );

@@ -49,7 +49,7 @@ const FlatTwo = () => {
             <Text style={styles.cardTitle}>{item.title}</Text>
             <Text style={styles.description}>{item.description}</Text>
                 <TouchableOpacity style={styles.button}>
-                        <Text style={styles.buttonText}>Lire Plus +</Text>
+                        <Text style={styles.buttonText}>Lire Plus</Text>
                     </TouchableOpacity>
           </View>
         )}
