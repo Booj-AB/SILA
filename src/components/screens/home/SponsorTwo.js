@@ -9,26 +9,21 @@ export default function SponsorTwo() {
      <Text style={styles.title}>Sponsors</Text>
       <View style={styles.partnersContainer}>
         <View style={styles.partnerImageWrapper}>
-          <Image source={images.sponsor} style={styles.partnerImage} />
+          <Image source={images.sponsors1} style={styles.partnerImage} />
         </View>
         <View style={styles.partnerImageWrapper}>
-          <Image source={images.sponsor} style={styles.partnerImage} />
+          <Image source={images.sponsors2} style={styles.partnerImage} />
         </View>
         <View style={styles.partnerImageWrapper}>
-          <Image source={images.sponsor} style={styles.partnerImage} />
+          <Image source={images.sponsors3} style={styles.partnerImage} />
         </View>
         <View style={styles.partnerImageWrapper}>
-          <Image source={images.sponsor} style={styles.partnerImage} />
+          <Image source={images.sponsors4} style={styles.partnerImage} />
         </View>
         <View style={styles.partnerImageWrapper}>
-          <Image source={images.sponsor} style={styles.partnerImage} />
+          <Image source={images.sponsors5} style={styles.partnerImage} />
         </View>
-        <View style={styles.partnerImageWrapper}>
-          <Image source={images.sponsor} style={styles.partnerImage} />
-        </View>
-        <View style={styles.partnerImageWrapper}>
-          <Image source={images.sponsor} style={styles.partnerImage} />
-        </View>
+       
       </View>
     </View>
   );

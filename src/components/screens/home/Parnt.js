@@ -9,16 +9,12 @@ export default function Parnt() {
      <Text style={styles.title}>Nos Partenaires</Text>
       <View style={styles.partnersContainer}>
         <View style={styles.partnerImageWrapper}>
-          <Image source={images.partenaire} style={styles.partnerImage} />
+          <Image source={images.partenaire1} style={styles.partnerImage} />
         </View>
         <View style={styles.partnerImageWrapper}>
-          <Image source={images.partenaire} style={styles.partnerImage} />
+          <Image source={images.partenaire2} style={styles.partnerImage} />
         </View>
-        <View style={styles.partnerImageWrapper}>
-          <Image source={images.partenaire} style={styles.partnerImage} />
-        </View>
-        <View style={styles.partnerImageWrapper}>
-          <Image source={images.partenaire} style={styles.partnerImage} />
+
         </View>
       </View>
     </View>
