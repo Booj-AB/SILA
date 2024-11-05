@@ -37,14 +37,14 @@ export default function Qatar() {
 
                 <View style={styles.textContainer}>
                     <Text style={styles.countryTitle}>Qatar</Text>
-                    <Text style={styles.subtitle}>Lorem ipsum dolor, sit amet consectetur</Text>
+                    <Text style={styles.subtitle}>Le Qatar, Pays à l’honneur</Text>
                     <Text style={styles.description}>
                         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis voluptatem illum
                         molestiae amet? Voluptates quaerat quidem architecto aut dignissimos pariatur nulla
                         porro quo consequuntur sunt? Id corrupti adipisci consequuntur vitae!
                     </Text>
                     <TouchableOpacity style={styles.button}>
-                        <Text style={styles.buttonText}>Lire Plus +</Text>
+                        <Text style={styles.buttonText}>Lire Plus</Text>
                     </TouchableOpacity>
                 </View>
             </View>

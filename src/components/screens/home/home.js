@@ -8,7 +8,7 @@ import SponsorOne from './SponsorOne';
 import SponsorTwo from './SponsorTwo';
 import Qatar from './Qatar';
 import FlatOne from './FlatOne';
-import imageMain from '../../../assets/Images/ImageMain.jpg'
+import imageMain from '../../../assets/Images/ImageMain.png'
 import Header from '../../header';
 import {colors, icons, images} from '../../constants';
 import axios from 'axios'
@@ -104,15 +104,16 @@ export default function Main() {
               <Text style={styles.subtitle}>La 27ème Edition du Salon International du Livre d’Alger</Text>
               <Text style={styles.date}>Du 06 au 16 Novembre 2024</Text>
               <Text style={styles.location}>Au Palais des Expositions des Pins Maritimes</Text>
+              <Text style={styles.slogan}>اقرأ للننتصر</Text>
             </Animated.View>
-            <Animated.View style={[styles.buttonContainer, { transform: [{ translateY: slideAnim }] }]}>
+            {/* <Animated.View style={[styles.buttonContainer, { transform: [{ translateY: slideAnim }] }]}>
               <TouchableOpacity style={styles.buNov}>
                 <Text style={styles.buttonText}>Nouvelles</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.buPro}>
                 <Text style={styles.buttonText}>Programmes</Text>
               </TouchableOpacity>
-            </Animated.View>
+            </Animated.View> */}
           </View>
         </ImageBackground>
       ),
@@ -183,11 +184,11 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     color: 'white',
-    fontSize: scale(20), 
+    fontSize: scale(16), 
     textAlign: 'center',
   },
   date: {
-    fontSize: scale(30),
+    fontSize: scale(20),
     color: 'white',
     textAlign: 'center',
   },
@@ -195,6 +196,12 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: scale(16), 
     textAlign: 'center',
+  },
+  slogan: {
+    color: 'white',
+    fontSize: scale(46), 
+    textAlign: 'center',
+    fontWeight: 'bold',
   },
   buttonContainer: {
     marginTop: scale(30),
