@@ -50,9 +50,13 @@ const header = ({title, onPress}) => {
     {
       label: 'Adresse',
       description: 'ENAG Zone Industrielle, Réghaïa, Alger',
-      description2: '............',
+      description2: '',
     },
-
+    {
+      label: '',
+      description: '',
+      description2: '               © SILA 2024 / Powered By Techforger.',
+    },
     // Add more items here
   ]);
 
