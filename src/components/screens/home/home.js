@@ -230,7 +230,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: scale(80), 
     right: scale(20), 
-    backgroundColor: '#3b5998',
+    backgroundColor: colors.primary,
     padding: scale(10), 
     borderRadius: scale(30), 
   },

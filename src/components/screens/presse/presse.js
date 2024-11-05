@@ -93,15 +93,14 @@ export default function Presse() {
                     <View key={_id} style={{ marginTop: 30 }}>
                       <View
                         style={{
-                          flexDirection: 'row',
-                          flexWrap: 'wrap',
-                          justifyContent: 'space-between',
+                          
+                          alignItems:'center',
                           marginHorizontal: 20,
                         }}>
                         <View>
                           <Image
                             style={{
-                              width: 320,
+                              width: 300,
                               height: 200,
                               borderRadius: 10,
                             }}

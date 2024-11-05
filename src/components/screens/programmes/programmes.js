@@ -186,6 +186,6 @@ const styles = StyleSheet.create({
   },
   planImage: {
     width: '100%',
-    marginTop: -700,
+    top:0,height:700
   },
 });
