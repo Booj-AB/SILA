@@ -1,9 +1,15 @@
+<<<<<<< HEAD
+import {View, Text, Image, Platform} from 'react-native';
+import React, { useEffect } from 'react';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+=======
 import * as React from 'react';
 import { View, Text, Image, Platform } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+>>>>>>> 2e8d7b868ee9d059ca1b057d5f31680c7a9246e8
 import {
   Presse,
   Exposants,
@@ -11,10 +17,18 @@ import {
   Home,
   Programmes,
 } from './src/components/screens';
+<<<<<<< HEAD
+import {colors, icons} from './src/components/constants';
+import {NavigationContainer} from '@react-navigation/native';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import SplashScreen from 'react-native-splash-screen'
+const TopTab = createMaterialTopTabNavigator();
+=======
 import { colors, icons } from './src/components/constants';
 import Deatils from './src/components/screens/home/Deatils';
 import ContacUs from './src/components/screens/ContactUs/ContacUs';
 import Ajouter from './src/components/screens/Ajouter/Ajouter';
+>>>>>>> 2e8d7b868ee9d059ca1b057d5f31680c7a9246e8
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -34,6 +48,16 @@ const screenOptions = {
   headerShown: false,
 };
 
+<<<<<<< HEAD
+const BottomNavigation = () => {
+
+// useEffect(()=> {
+//   if(Platform.OS === 'android')
+//     {SplashScreen.hide();}
+// },[] )
+
+
+=======
 // Bottom Tab Navigator with tab icons and stack screens
 const BottomTabs = () => (
   <Tab.Navigator initialRouteName="Home" screenOptions={screenOptions}>
@@ -140,6 +164,7 @@ const BottomTabs = () => (
 
 // Main App component with stack navigator
 export default function App() {
+>>>>>>> 2e8d7b868ee9d059ca1b057d5f31680c7a9246e8
   return (
     <NavigationContainer>
       <Stack.Navigator>
