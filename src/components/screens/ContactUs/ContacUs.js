@@ -16,6 +16,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const INPUT_WIDTH = SCREEN_WIDTH * 0.8;
 
@@ -57,10 +58,12 @@ const ContactUs = () => {
     };
 
     console.log('Dta' , data);
-    
+    // return
 
     try {
-      const res= await axios.post(`http://localhost:9100/addMessage` , {data})
+      const res =  await axios.post(`http://10.0.2.2:9400/api/addMessage` , data)
+      console.log(res);
+      
       if (res.data.code == '001') {
          navigation.navigate('Ajouter')
       } else {

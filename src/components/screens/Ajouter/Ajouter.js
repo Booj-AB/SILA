@@ -1,416 +1,402 @@
 import axios from 'axios';
+import { Button } from 'native-base';
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, TextInput, StyleSheet, Alert } from 'react-native';
 import DocumentPicker from 'react-native-document-picker';
-
-export default function Acc() {
-  const [add, setAdd] = useState({
-    One: false,
-    Two: false,
-    Three: false,
-    Four: false,
-    Five : false ,
-    six:false
-  });
-  const [fileName, setFileName] = useState('');
-
-    const [object, setObject] = useState('');
-     const [type, setType] = useState('');
-    const [Title, setTitle] = useState('');
-    const [url, setUrl] = useState('');
-    const [description, setDescription] = useState('');
-    const [date, setDate] = useState('');
+import RNFS from 'react-native-fs'; // Import the react-native-fs library
+import ImageResizer from 'react-native-image-resizer'; // Import the image resizer
+import { useNavigation } from '@react-navigation/native';
 
 
+export default function Ajouter() {
+  const [fileName, setFileName] = useState(''); 
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [date, setDate] = useState('');
+  const [showNew, setShowNew] = useState(false);
+  const [showMots, setShowMots] = useState(false);
+  const [showImageVd, setShowImageVd] = useState(false);
+  const [showPodcast, setShowPodcast] = useState(false);
+  const [showPdf, setShowPdf] = useState(false);
+  const [showDate, setShowDate] = useState(false);
+  const [showSponsor, setShowSponsor] = useState(false);
+  const [object, setObject] = useState('');
+  const [type, setType] = useState('');
 
-  const pickDocument = async (type) => {
-   if(type || type != ''){
-    try {
-      const res = await DocumentPicker.pick({
-        type: [DocumentPicker.types.allFiles],
-      });
-      setObject(res[0].name); // Set the file name to state
-    } catch (err) {
-      if (DocumentPicker.isCancel(err)) {
-        // User cancelled the picker
-      } else {
-        Alert.alert('Error', 'Unable to pick the document');
-      }
+  const navigation = useNavigation();
+
+  // Function to pick a document (image, PDF, or video)
+ const pickDocument = async () => {
+  try {
+    // Pick a document (image, PDF, or video)
+    const res = await DocumentPicker.pick({
+      type: [DocumentPicker.types.images, DocumentPicker.types.pdf, DocumentPicker.types.video],
+    });
+
+    const filePath = res[0].uri;
+
+    // Check if the file is an image
+    if (res[0].type.startsWith('image/')) {
+      // Resize image
+      const resizedImage = await ImageResizer.createResizedImage(filePath, 800, 600, 'JPEG', 80);
+      const base64Data = await RNFS.readFile(resizedImage.uri, 'base64'); // Read resized image as base64
+      setFileName(`data:${res[0].type};base64,${base64Data}`); // Set Base64 data with MIME type
+    } 
+    // Check if the file is a PDF
+    else if (res[0].type === 'application/pdf') {
+      const base64Data = await RNFS.readFile(filePath, 'base64'); // Read PDF file as base64
+      setFileName(`data:${res[0].type};base64,${base64Data}`); // Set Base64 data with MIME type
+    } 
+    // Otherwise, assume it's a video
+    else if (res[0].type.startsWith('video/')) {
+      const base64Data = await RNFS.readFile(filePath, 'base64'); // Read video file as base64
+      setFileName(`data:${res[0].type};base64,${base64Data}`); // Set Base64 data with MIME type
     }
-    return
-   }
+  } catch (err) {
+    if (!DocumentPicker.isCancel(err)) {
+      Alert.alert('Error', 'Unable to pick the document');
+    }
+  }
+};
 
-
+  // Function to send data to the server
+  const sendRequest = async (endpoint, data, resetFields) => {
+    console.log(data);
+    console.log(resetFields);
+    console.log(endpoint);
+    
     try {
-      const res = await DocumentPicker.pick({
-        type: [DocumentPicker.types.allFiles],
-      });
-      setFileName(res[0].name); // Set the file name to state
-    } catch (err) {
-      if (DocumentPicker.isCancel(err)) {
-        // User cancelled the picker
-      } else {
-        Alert.alert('Error', 'Unable to pick the document');
+      const res = await axios.post(`http://10.0.2.2:9400/api/${endpoint}`, data);
+      console.log(res);
+      if (res.data.code === '01') {
+        resetFields();
+        Alert.alert("Data Sent", "Done", [{ text: "OK" }]);
       }
+    } catch (error) {
+      console.error('Network error:', error);
     }
   };
 
+  // Function to send new data
+  const SEND_NEW = () => {
+    const resetFields = () => {
+      setTitle('');
+      setDescription('');
+      setDate('');
+      setFileName('');
+    };
+    sendRequest('AddNew', { Title: title, des: description, date, Image: fileName }, resetFields);
+  };
 
-  async function SEND(type) {
-      switch (type) {
-         case 'New':
-              const res = await axios.post(`'http://localhost:9100/AddNew'`,{
-                Title ,  des:description ,  date , Image : fileName
-              })
-              console.log(res);
-              if(res.data.code=='01'){
-                setTitle('')
-                setDate('')
-                setDescription('')
-                setFileName('')
-                Alert.alert(
-                 "Data Sent",
-                 `Done`,
-                [{ text: "OK", onPress: () => console.log("") }]
-    );
-              }
-            break;
+  // Function to send mots
+  const SEND_MOTS = () => {
+    const resetFields = () => {
+      setTitle('');
+      setDescription('');
+      setFileName('');
+    };
+    sendRequest('AddMots', { Title: title, des: description, Image: fileName }, resetFields);
+  };
 
+  // Function to send image or video
+  const SEND_IMAGE_VD = () => {
+    const resetFields = () => {
+      setObject('');
+      setType('');
+    };
+    sendRequest('AddImageVdPo', { Object : fileName, type: type }, resetFields);
+  };
 
+  const [url , setUrl] = useState('')
 
-              case 'Mots':
-               const res2 = await axios.post(`'http://localhost:9100/AddMots'`,{
-                Title ,  des:description ,   Image : fileName
-              })
-              console.log(res2);
-              if(res2.data.code=='01'){
-                setTitle('')
-                setDescription('')
-                setFileName('')
-                Alert.alert(
-                 "Data Sent",
-                 `Done`,
-                [{ text: "OK", onPress: () => console.log("") }]
-    );
-              }
-            
-            break;
+  // Function to send podcast
+  const SEND_PODCAST = () => {
+    const resetFields = () => {
+      setObject('');
+    };
+    sendRequest('AddImageVdPo', { Object: url, type: 'podcast' }, resetFields);
+  };
 
+  // Function to send PDF
+  const SEND_PDF = () => {
+    const resetFields = () => {
+      setFileName('');
+      setType('');
+    };
+    sendRequest('AddPdf', { Pdf: fileName, type }, resetFields);
+  };
 
+  // Function to send date
+  const SEND_DATE = () => {
+    const resetFields = () => {
+      setDescription('');
+      setDate('');
+    };
+    sendRequest('AddDate', { Date:date, des: description }, resetFields);
+  };
 
-
-               case 'ImageVd':
-
-                const res3 = await axios.post(`'http://localhost:9100/AddImageVdPo'`,{object , type:'NoPod' })
-              console.log(res3);
-              if(res3.data.code=='01'){
-                setObject('')
-                Alert.alert(
-                 "Data Sent",
-                 `Done`,
-                [{ text: "OK", onPress: () => console.log("") }]
-    );
-              }
-            
-            break;
-
-
-
-             case 'podcast':
-
-                const res4 = await axios.post(`'http://localhost:9100/AddImageVdPo'`,{object:url , type:'podcast' })
-              console.log(res4);
-              if(res4.data.code=='01'){
-                setObject('')
-                Alert.alert(
-                 "Data Sent",
-                 `Done`,
-                [{ text: "OK", onPress: () => console.log("") }]
-    );
-              }
-            
-            break;
-
-
-
-               case 'Pdf':
-
-          const res5 = await axios.post(`'http://localhost:9100/AddPdf'`,{Pdf : fileName , type:type })
-              console.log(res5);
-              if(res5.data.code=='01'){
-                setFileName('')
-                setType('')
-                Alert.alert(
-                 "Data Sent",
-                 `Done`,
-                [{ text: "OK", onPress: () => console.log("") }]
-    );
-              }
-            
-            break;
-
-
-
-            case 'Date':
-            const res6= await axios.post(`'http://localhost:9100/AddDate'`,{date : date , des:description })
-              console.log(res6);
-              if(res5.data.code=='01'){
-                setDate('')
-                setDescription('')
-                Alert.alert(
-                 "Data Sent",
-                 `Done`,
-                [{ text: "OK", onPress: () => console.log("") }]
-    );
-              }
-
-            
-            break;
-
-
-            case 'spon':
-
-                   const res7 = await axios.post(`'http://localhost:9100/AddParAndSponsor'`,{Image : fileName , type:type })
-              console.log(res7);
-              if(res7.data.code=='01'){
-                setType('')
-                setFileName('')
-                Alert.alert(
-                 "Data Sent",
-                 `Done`,
-                [{ text: "OK", onPress: () => console.log("") }]
-    );
-              }
-              
-            break;
-
-          
-      
-         default:
-            break;
-      }
-  }
+  // Function to send sponsor data
+  const SEND_SPONSOR = () => {
+    const resetFields = () => {
+      setFileName('');
+      setType('');
+    };
+    sendRequest('AddParAndSponsor', { Image: fileName, type }, resetFields);
+  };
 
   return (
     <View style={styles.container}>
-      {/* Page Header */}
       <View style={styles.header}>
         <Text style={styles.headerText}>Page</Text>
       </View>
 
-      {/* Main Container */}
       <View style={styles.mainContainer}>
         <View style={styles.box}>
-          {/* Section One */}
-            <View style={styles.section}>
-      <TouchableOpacity
-        onPress={() => setAdd({ ...add, One: !add.One })}
-        style={styles.toggleButton}
-      >
-        <Text style={styles.buttonText}>ajouter Dernieres Nouvelles</Text>
-        <Text style={styles.buttonText}>{add.One ? '-' : '+'}</Text>
-      </TouchableOpacity>
-      {add.One && (
-        <View style={styles.inputContainer}>
-          <TextInput
-            placeholder='Title'
-            onChangeText={(e) => setTitle(e)} // Set title state
-            value={Title}                     // Bind title state
-            style={styles.input}
-          />
-          <TextInput
-            placeholder='Description'
-            onChangeText={(e) => setDescription(e)} // Set description state
-            value={description}                     // Bind description state
-            style={styles.input}
-          />
-          <TextInput
-            placeholder='Date'
-            onChangeText={(e) => setDate(e)}       // Set date state
-            value={date}                             // Bind date state
-            style={styles.input}
-          />
-          <TouchableOpacity onPress={pickDocument} style={styles.documentPicker}>
-            <Text style={styles.buttonText}>{fileName || 'Upload Document'}</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={()=>SEND('New')} style={styles.documentPicker}>
-            <Text style={styles.buttonText}>Send</Text>
-          </TouchableOpacity>
-        </View>
-      )}
-    </View>
-
-
-
-
-          {/* Section Two */}
+          {/* New Section */}
           <View style={styles.section}>
-            <TouchableOpacity
-              onPress={() => setAdd({ ...add, Two: !add.Two })}
-              style={styles.toggleButton}
-            >
+            <TouchableOpacity onPress={() => {
+              setShowNew(!showNew), 
+              setFileName(''),
+              setDate(''),
+              setObject(''),
+              setType(""),
+              setTitle(''),
+              setDescription('')
+            }} style={styles.toggleButton}>
+              <Text style={styles.buttonText}>Ajouter New</Text>
+              <Text style={styles.buttonText}>{showNew ? '-' : '+'}</Text>
+            </TouchableOpacity>
+            {showNew && (
+              <View style={styles.inputContainer}>
+                <TextInput
+                  placeholder='Title'
+                  value={title}
+                  onChangeText={setTitle}
+                  style={styles.input}
+                />
+                <TextInput
+                  placeholder='Description'
+                  value={description}
+                  onChangeText={setDescription}
+                  style={styles.input}
+                />
+                <TextInput
+                  placeholder='Date'
+                  value={date}
+                  onChangeText={setDate}
+                  style={styles.input}
+                />
+                <TouchableOpacity onPress={pickDocument} style={styles.button}>
+                  <Text style={styles.buttonText}>{showNew && fileName != '' ?'Image Dowlonde':'Select Image'}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={SEND_NEW} style={styles.button}>
+                  <Text style={styles.buttonText}>Send</Text>
+                </TouchableOpacity>
+              </View>
+            )}
+          </View>
+
+          {/* Mots Section */}
+          <View style={styles.section}>
+            <TouchableOpacity onPress={() => {setShowMots(!showMots),
+              setFileName(''),
+              setDate(''),
+              setObject(''),
+              setType(""),
+              setTitle(''),
+              setDescription('')}} style={styles.toggleButton}>
               <Text style={styles.buttonText}>Ajouter Mots</Text>
-              <Text style={styles.buttonText}>{add.Two ? '-' : '+'}</Text>
+              <Text style={styles.buttonText}>{showMots ? '-' : '+'}</Text>
             </TouchableOpacity>
-            {add.Two && (
+            {showMots && (
               <View style={styles.inputContainer}>
-
-              <TextInput
-            placeholder='Title'
-            onChangeText={(e) => setTitle(e)} // Set title state
-            value={Title}                     // Bind title state
-            style={styles.input}
-          />
-          <TextInput
-            placeholder='Description'
-            onChangeText={(e) => setDescription(e)} // Set description state
-            value={description}                     // Bind description state
-            style={styles.input}
-          />
-        
-
-
-                <TouchableOpacity onPress={pickDocument} style={styles.documentPicker}>
-                  <Text style={styles.buttonText}>{fileName || 'Upload Document'}</Text>
+                <TextInput
+                  placeholder='Title'
+                  value={title}
+                  onChangeText={setTitle}
+                  style={styles.input}
+                />
+                <TextInput
+                  placeholder='Description'
+                  value={description}
+                  onChangeText={setDescription}
+                  style={styles.input}
+                />
+                <TouchableOpacity onPress={pickDocument} style={styles.button}>
+                  <Text style={styles.buttonText}>{showMots && fileName != '' ?'Image Dowlonde':'Select Image'}</Text>
                 </TouchableOpacity>
-
-
-                  <TouchableOpacity onPress={()=>SEND('Mots')}  style={styles.documentPicker}>
+                <TouchableOpacity onPress={SEND_MOTS} style={styles.button}>
                   <Text style={styles.buttonText}>Send</Text>
                 </TouchableOpacity>
               </View>
             )}
           </View>
 
-
-
-
-
-          {/* Section Three */}
+          {/* Image Video Section */}
           <View style={styles.section}>
-            <TouchableOpacity
-              onPress={() => setAdd({ ...add, Three: !add.Three })}
-              style={styles.toggleButton}
-            >
-              <Text style={styles.buttonText}>Ajouter Nos Partenaires</Text>
-              <Text style={styles.buttonText}>{add.Three ? '-' : '+'}</Text>
+            <TouchableOpacity onPress={() => {setShowImageVd(!showImageVd),
+                  setFileName(''),
+                  setDate(''),
+                  setObject(''),
+                  setType(""),
+                  setTitle(''),
+                  setDescription('')
+            }} style={styles.toggleButton}>
+              <Text style={styles.buttonText}>Ajouter ImageVd</Text>
+              <Text style={styles.buttonText}>{showImageVd ? '-' : '+'}</Text>
             </TouchableOpacity>
-            {add.Three && (
+            {showImageVd && (
               <View style={styles.inputContainer}>
-                <TextInput placeholder='Type'  value={type} onChangeText={(e)=>setType(e)} style={styles.input} />
-                <TouchableOpacity onPress={pickDocument} style={styles.documentPicker}>
-                  <Text style={styles.buttonText}>{fileName || 'Upload Document'}</Text>
+                <TextInput
+                  placeholder='Type'
+                  value={type}
+                  onChangeText={setType}
+                  style={styles.input}
+                />
+                <TouchableOpacity onPress={pickDocument} style={styles.button}>
+                  <Text style={styles.buttonText}>{showImageVd && fileName != '' ?'Image Dowlonde':'Select Image'}</Text>
                 </TouchableOpacity>
 
-                  <TouchableOpacity  onPress={()=>SEND('spon')}  style={styles.documentPicker}>
+                <TouchableOpacity onPress={SEND_IMAGE_VD} style={styles.button}>
                   <Text style={styles.buttonText}>Send</Text>
                 </TouchableOpacity>
               </View>
             )}
           </View>
 
-          {/* Section Four */}
+          {/* Podcast Section */}
           <View style={styles.section}>
-            <TouchableOpacity
-              onPress={() => setAdd({ ...add, Four: !add.Four })}
-              style={styles.toggleButton}
-            >
-              <Text style={styles.buttonText}>Ajouter Image Or Video dans page Presse</Text>
-              <Text style={styles.buttonText}>{add.Four ? '-' : '+'}</Text>
+            <TouchableOpacity onPress={() => {setShowPodcast(!showPodcast),
+                  setFileName(''),
+                  setDate(''),
+                  setObject(''),
+                  setType(""),
+                  setTitle(''),
+                  setDescription('')
+            }} style={styles.toggleButton}>
+              <Text style={styles.buttonText}>Ajouter Podcast</Text>
+              <Text style={styles.buttonText}>{showPodcast ? '-' : '+'}</Text>
             </TouchableOpacity>
-            {add.Four && (
+            {showPodcast && (
               <View style={styles.inputContainer}>
-                <TextInput placeholder='type'   value={type} onChangeText={(e)=>setType(e)} style={styles.input} />
-                   <TextInput placeholder='title'   value={Title} onChangeText={(e)=>setTitle(e)} style={styles.input} />
-                      <TextInput placeholder='des'   value={description} onChangeText={(e)=>setDescription(e)} style={styles.input} />
-                <TouchableOpacity onPress={()=>pickDocument('d')} style={styles.documentPicker}>
-                  <Text style={styles.buttonText}>{fileName || 'Upload Document'}</Text>
-                </TouchableOpacity>
+                
+                <TextInput
+                  placeholder='Url'
+                  value={url}
+                  onChangeText={setUrl}
+                  style={styles.input}
+                />
 
-
-                 <TouchableOpacity  onPress={()=>SEND('ImageVd')} style={styles.documentPicker}>
+                <TouchableOpacity onPress={SEND_PODCAST} style={styles.button}>
                   <Text style={styles.buttonText}>Send</Text>
                 </TouchableOpacity>
               </View>
             )}
           </View>
 
-        { /* Five */}
-            <View style={styles.section}>
-            <TouchableOpacity
-              onPress={() => setAdd({ ...add, Five: !add.Five })}
-              style={styles.toggleButton}
-            >
-              <Text style={styles.buttonText}>Ajouter Pdf</Text>
-              <Text style={styles.buttonText}>{add.Five ? '-' : '+'}</Text>
+          {/* PDF Section */}
+          <View style={styles.section}>
+            <TouchableOpacity onPress={() => {setShowPdf(!showPdf),
+                  setFileName(''),
+                  setDate(''),
+                  setObject(''),
+                  setType(""),
+                  setTitle(''),
+                  setDescription('')
+            }} style={styles.toggleButton}>
+              <Text style={styles.buttonText}>Ajouter PDF</Text>
+              <Text style={styles.buttonText}>{showPdf ? '-' : '+'}</Text>
             </TouchableOpacity>
-            {add.Five && (
+            {showPdf && (
               <View style={styles.inputContainer}>
-                <TextInput placeholder='type ' value={type} onChangeText={(e)=>setType(e)} style={styles.input} />
-                <TouchableOpacity onPress={pickDocument} style={styles.documentPicker}>
-                  <Text style={styles.buttonText}>{fileName || 'Upload pdf'}</Text>
+                <TextInput
+                  placeholder='Type'
+                  value={type}
+                  onChangeText={setType}
+                  style={styles.input}
+                />
+                <TouchableOpacity onPress={pickDocument} style={styles.button}>
+                  <Text style={styles.buttonText}>{showPdf && fileName!=''?'pdf dowlonde':'select Pdf'}</Text>
                 </TouchableOpacity>
-
-
-                 <TouchableOpacity onPress={()=>SEND('Pdf')} style={styles.documentPicker}>
+                <TouchableOpacity onPress={SEND_PDF} style={styles.button}>
                   <Text style={styles.buttonText}>Send</Text>
                 </TouchableOpacity>
               </View>
             )}
           </View>
 
-
-
-          
-              <View style={styles.section}>
-            <TouchableOpacity
-              onPress={() => setAdd({ ...add, six: !add.six })}
-              style={styles.toggleButton}
-            >
-              <Text style={styles.buttonText}>Ajouter date</Text>
-              <Text style={styles.buttonText}>{add.six ? '-' : '+'}</Text>
+          {/* Date Section */}
+          <View style={styles.section}>
+            <TouchableOpacity onPress={() => {setShowDate(!showDate),
+                  setFileName(''),
+                  setDate(''),
+                  setObject(''),
+                  setType(""),
+                  setTitle(''),
+                  setDescription('')
+            }} style={styles.toggleButton}>
+              <Text style={styles.buttonText}>Ajouter Date</Text>
+              <Text style={styles.buttonText}>{showDate ? '-' : '+'}</Text>
             </TouchableOpacity>
-            {add.six && (
+            {showDate && (
               <View style={styles.inputContainer}>
-                <TextInput placeholder='date'  value={date} onChangeText={(e)=>setDate(e)} style={styles.input} />
-                <TextInput placeholder='des'  value={description} onChangeText={(e)=>setDescription(e)} style={styles.input} />
-            
-
-
-                 <TouchableOpacity onPress={()=>SEND('Date')}  style={styles.documentPicker}>
+                <TextInput
+                  placeholder='Description'
+                  value={description}
+                  onChangeText={setDescription}
+                  style={styles.input}
+                />
+                <TextInput
+                  placeholder='Date'
+                  value={date}
+                  onChangeText={setDate}
+                  style={styles.input}
+                />
+                <TouchableOpacity onPress={SEND_DATE} style={styles.button}>
                   <Text style={styles.buttonText}>Send</Text>
                 </TouchableOpacity>
               </View>
             )}
           </View>
 
-
-
-         <View style={styles.section}>
-            <TouchableOpacity
-              onPress={() => setAdd({ ...add, sev: !add.sev})}
-              style={styles.toggleButton}
-            >
-              <Text style={styles.buttonText}>Ajouter Podcst</Text>
-              <Text style={styles.buttonText}>{add.sev ? '-' : '+'}</Text>
+          {/* Sponsor Section */}
+          <View style={styles.section}>
+            <TouchableOpacity onPress={() => {setShowSponsor(!showSponsor),
+                  setFileName(''),
+                  setDate(''),
+                  setObject(''),
+                  setType(""),
+                  setTitle(''),
+                  setDescription('')
+            }} style={styles.toggleButton}>
+              <Text style={styles.buttonText}>Ajouter Sponsor</Text>
+              <Text style={styles.buttonText}>{showSponsor ? '-' : '+'}</Text>
             </TouchableOpacity>
-            {add.sev && (
+            {showSponsor && (
               <View style={styles.inputContainer}>
-                <TextInput placeholder='Url'  value={url} onChangeText={(e)=>setUrl(e)} style={styles.input} />
-                {/* <TextInput placeholder='type'  value={type} onPress={()=>setType('podcast')} style={styles.input} /> */}
-
-         
-                 <TouchableOpacity onPress={()=>SEND('podcast')}  style={styles.documentPicker}>
-                  <Text style={styles.buttonText} >Send</Text>
+                <TouchableOpacity onPress={pickDocument} style={styles.button}>
+                  <Text style={styles.buttonText}>{showSponsor && fileName != "" ?'Image Dowonde':'select Image'}</Text>
+                </TouchableOpacity>
+                <TextInput
+                  placeholder='Type'
+                  value={type}
+                  onChangeText={setType}
+                  style={styles.input}
+                />
+                <TouchableOpacity onPress={SEND_SPONSOR} style={styles.button}>
+                  <Text style={styles.buttonText}>Send</Text>
                 </TouchableOpacity>
               </View>
             )}
           </View>
-
-
         </View>
       </View>
+
+       <TouchableOpacity  onPress={()=>navigation.navigate('Home')}>
+                  <Text style={{color:'red'}}>return</Text>
+                </TouchableOpacity>
+
+
     </View>
   );
 }
@@ -418,83 +404,60 @@ export default function Acc() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: '100%',
-    height: '100%',
+    backgroundColor: '#F5F5F5',
+    padding: 10,
   },
   header: {
-    width: '100%',
-    marginTop: 50,
     alignItems: 'center',
+    padding: 10,
+    backgroundColor: '#007AFF',
   },
   headerText: {
-    fontSize: 24,
+    color: 'white',
+    fontSize: 20,
     fontWeight: 'bold',
-    color: '#333',
   },
   mainContainer: {
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 20,
+    flex: 1,
   },
   box: {
-    width: '70%',
+    margin: 10,
+    padding: 10,
     backgroundColor: 'white',
     borderRadius: 8,
-    padding: 20,
-    elevation: 4, // for Android shadow
-    shadowColor: '#000', // for iOS shadow
-    shadowOffset: { width: 0, height: 2 },
+    shadowColor: '#000',
     shadowOpacity: 0.1,
-    shadowRadius: 4,
+    shadowRadius: 5,
+    elevation: 2,
   },
   section: {
-    position: 'relative',
-    marginBottom: 15,
+    marginVertical: 10,
   },
   toggleButton: {
-    width: '100%',
-    height: 55,
-    backgroundColor: '#0396A6',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 6,
-    borderRadius: 4,
-    cursor: 'pointer',
+    backgroundColor: '#007AFF',
+    padding: 10,
+    borderRadius: 5,
   },
   buttonText: {
     color: 'white',
-    fontSize: 18,
-    fontWeight: '500',
   },
   inputContainer: {
-    position: 'absolute',
-    zIndex: 2,
-    top: 60,
-    left: 0,
-    width: '97%',
-    padding: 15,
-    backgroundColor: 'white',
-    elevation: 2,
-    borderRadius: 4,
-    flexDirection: 'column',
-    gap: 10,
+    marginTop: 10,
   },
   input: {
-    width: '100%',
-    padding: 4,
-    borderRadius: 4,
-    borderColor: '#ddd',
     borderWidth: 1,
-  },
-  documentPicker: {
-    width: '100%',
+    borderColor: '#D0D0D0',
+    borderRadius: 5,
     padding: 10,
-    borderRadius: 4,
-    borderColor: '#ddd',
-    borderWidth: 1,
+    marginVertical: 5,
+  },
+  button: {
+    backgroundColor: 'red',
+    padding: 10,
+    borderRadius: 5,
     alignItems: 'center',
-    justifyContent: 'center',
+    marginVertical: 5,
   },
 });

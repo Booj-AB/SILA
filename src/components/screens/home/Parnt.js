@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Image } from 'react-native';
 import imageMain from '../../../assets/Images/ImageMain.jpg';
 import {colors, icons, images} from '../../constants';
 
-export default function Parnt() {
+export default function Parnt(arr) {
   return (
     <View style={styles.container}>
      <Text style={styles.title}>Nos Partenaires</Text>

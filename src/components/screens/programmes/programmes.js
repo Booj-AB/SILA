@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import Header from '../../header';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { View, Text, Image, ScrollView, TouchableOpacity, Linking, StyleSheet } from 'react-native';
@@ -16,6 +16,22 @@ export default function Programmes() {
   const [activeTab, setActiveTab] = useState('culturels');
 
   const items = useMemo(() => Menu, []);
+
+      const [dates, setDates] = useState([]);
+      const [cul, setCul] = useState([]);
+
+  useEffect(()=>{
+    getDate()
+    getPdf()
+  },[])
+
+  async function getPdf() {
+    
+  }
+
+  async function getDate() {
+    
+  }
 
   const renderContent = () => {
     switch (activeTab) {

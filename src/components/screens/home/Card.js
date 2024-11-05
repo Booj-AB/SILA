@@ -10,7 +10,7 @@ const Card = ({ titel, image, des, date }) => {
   }
   return (
     <View style={styles.card}>
-      <Image source={image} style={styles.image} />
+      <Image  source={{ uri: 'http://10.0.2.2:9400/Images/fgjg6j5ehhgDURJD6heH.png' }} style={styles.image} />
       <Text style={styles.title}>{titel}</Text>
       <Text style={styles.date}>{date}</Text>
       <Text style={styles.description}>{des}</Text>
