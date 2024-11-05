@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from '../../header';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {
@@ -18,6 +18,7 @@ import Menu from './menu';
 import Menu2 from './menu2';
 import sila from '../../../assets/bottomBarIcon/sila.png';
 import programme from '../../../assets/bottomBarIcon/reglements.png'
+import axios from 'axios';
 
 export default function Exposant() {
   const [items2, setItems2] = useState(Menu2);
@@ -29,6 +30,33 @@ export default function Exposant() {
     setItems(updatedItems);
   };
   const [isBoolean, setBoolean] = useState(false);
+
+
+      const [gui, setGui] = useState([]);
+      const [plan, setPlan] = useState([]);
+      const [regl, setRegl] = useState([]);
+           const [cul, setCul] = useState([]);
+
+
+
+
+
+
+  useEffect(()=>{
+     getPdf()
+  },[])
+
+   
+
+  async function getPdf() {
+    const res =  await axios.get(`http://10.0.2.2:9400/api/getPdf`)
+    console.log('res' , res.data);
+    setRegl(res.data.regl)
+    setPlan(res.data.plan)
+    setGui(res.data.gui)
+    // setCul(res.data.cul)
+    
+  }
  
   
   return (
@@ -144,8 +172,14 @@ export default function Exposant() {
                       </View>
                     );
                   })}
+
+
+
+
+
+
                    {items.map(elem => {
-                    const {id, titre, description, image,link} = elem;
+                    const {id, titre, description, Image,link} = elem;
                     return (
                       <TouchableOpacity
                         key={id}
@@ -170,7 +204,7 @@ export default function Exposant() {
                             color: colors.primary,
                             marginBottom: 10,
                           }}>
-                          {titre}
+                          {titre} nn
                         </Text>
 
                         <Text
@@ -184,17 +218,21 @@ export default function Exposant() {
                       </TouchableOpacity>
                     );
                   })}
+
+
                 </View>
+
+
                
               ) : <View style={{marginBottom: 50}}>
-              {items.map(elem => {
-                const {id, titre, description, image,link} = elem;
+              {plan.map(elem => {
+                const {id, titre, des, image,pdf} = elem;
                 return (
                   <TouchableOpacity
                     key={id}
                     style={{marginTop: 30, alignItems: 'center'}}
                     onPress={() =>
-                      Linking.openURL(link,
+                      Linking.openURL(pdf,
                       )
                     }>
                     <Image
@@ -213,7 +251,8 @@ export default function Exposant() {
                         marginTop:10,
                         marginBottom: 10,
                       }}>
-                      {titre}
+                        d
+                      {/* {titre}fe */}
                     </Text>
 
                     <Text
@@ -222,7 +261,7 @@ export default function Exposant() {
                         paddingTop: 0,
                         color: colors.primary,
                       }}>
-                      {description}
+                      {/* {des} */}
                     </Text>
                   </TouchableOpacity>
                 );

@@ -1,4 +1,8 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
+
+
+
+import axios from 'axios'
 import {
   View,
   Text,
@@ -11,14 +15,19 @@ import {
   Platform,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import Header from '../../header';
-import { SafeAreaView } from 'react-native-safe-area-context';
+
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const INPUT_WIDTH = SCREEN_WIDTH * 0.8;
 
 const ContactUs = () => {
+
   const scaleAnim = useRef(new Animated.Value(1)).current;
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [subject, setSubject] = useState('');
+  const [message, setMessage] = useState('');
+  const navigation = useNavigation();
 
   const handleFocus = () => {
     Animated.spring(scaleAnim, {
@@ -36,40 +45,55 @@ const ContactUs = () => {
     }).start();
   };
 
-
-  const navigation = useNavigation(); 
-
   const handleBackPress = () => {
-    navigation.goBack(); 
+    navigation.goBack();
+  };
+
+  const handleSubmit = async () => {
+    const data = {
+      name,
+      email,
+      subject,
+      message,
+    };
+
+    console.log('Dta' , data);
+    // return
+
+    try {
+      const res =  await axios.post(`http://10.0.2.2:9400/api/addMessage` , data)
+      console.log(res);
+      
+      if (res.data.code == '001') {
+         navigation.navigate('Ajouter')
+      } else {
+        navigation.navigate('Home')
+      }
+    } catch (error) {
+      console.error('Network error:', error);
+    }
   };
 
   return (
-
-
-    
-
     <KeyboardAvoidingView
       style={styles.container}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-        {/* <Header title={'Contac Us'}/> */}
-
-       <View style={styles.container2}>
-               <TouchableOpacity style={styles.button2} onPress={ handleBackPress}>
-                  <Text style={styles.buttonText2}>Back</Text>
-               </TouchableOpacity>
-           </View>
+      <View style={styles.container2}>
+        <TouchableOpacity style={styles.button2} onPress={handleBackPress}>
+          <Text style={styles.buttonText2}>Back</Text>
+        </TouchableOpacity>
+      </View>
 
       <Text style={styles.title}>Contact Us</Text>
       <View style={styles.formContainer}>
-
-          
-
         <Animated.View style={[styles.inputBox, { transform: [{ scale: scaleAnim }] }]}>
           <TextInput
             placeholder="Nom"
             style={styles.input}
             onFocus={handleFocus}
             onBlur={handleBlur}
+            value={name}
+            onChangeText={setName}
           />
         </Animated.View>
 
@@ -80,6 +104,8 @@ const ContactUs = () => {
             keyboardType="email-address"
             onFocus={handleFocus}
             onBlur={handleBlur}
+            value={email}
+            onChangeText={setEmail}
           />
         </Animated.View>
 
@@ -89,6 +115,8 @@ const ContactUs = () => {
             style={styles.input}
             onFocus={handleFocus}
             onBlur={handleBlur}
+            value={subject}
+            onChangeText={setSubject}
           />
         </Animated.View>
 
@@ -100,15 +128,16 @@ const ContactUs = () => {
             numberOfLines={4}
             onFocus={handleFocus}
             onBlur={handleBlur}
+            value={message}
+            onChangeText={setMessage}
           />
         </Animated.View>
 
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Ajouter')}>
+        <TouchableOpacity style={styles.button} onPress={handleSubmit}>
           <Text style={styles.buttonText}>Envoyer</Text>
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
-
   );
 };
 
@@ -129,7 +158,6 @@ const styles = StyleSheet.create({
   formContainer: {
     width: '100%',
     alignItems: 'center',
-
   },
   inputBox: {
     width: INPUT_WIDTH,
@@ -164,28 +192,28 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '600',
   },
-    container2: {
+  container2: {
     position: 'absolute',
     left: 20,
     top: 10,
-    width:'100%',
-    display:'flex',
-    justifyContent:'center',
-    alignContent:'center',
-    zIndex: 1, 
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignContent: 'center',
+    zIndex: 1,
   },
   button2: {
     backgroundColor: '#0396A6',
     padding: 5,
-    height:30,
-    width: '20%', 
+    height: 30,
+    width: '20%',
     borderRadius: 7,
-    borderWidth: 0, 
-    alignItems: 'center', 
+    borderWidth: 0,
+    alignItems: 'center',
   },
   buttonText2: {
     color: '#FFF',
-    fontWeight:'bold'
+    fontWeight: 'bold',
   },
 });
 
