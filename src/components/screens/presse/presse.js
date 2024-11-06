@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../../header';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import YoutubePlayer from 'react-native-youtube-iframe';
 import {
   View,
   Text,
@@ -13,6 +14,7 @@ import { colors } from '../../constants';
 import { Dimensions } from 'react-native';
 import Menu from './menu';
 import axios from 'axios';
+import Video from 'react-native-video';
 
 const { width } = Dimensions.get('window');
 const scale = width / 420;
@@ -116,14 +118,11 @@ export default function Presse() {
                             source={Object}
                           />}
 
-                          {/* {
-                            type != 'Image' && <Video
-                             source={{ uri: Object }} 
-                             controls={true} 
-                             resizeMode="contain"
-                             repeat
-                            />
-                          } */}
+                                <YoutubePlayer
+                                  height={300}
+                                  play={true}
+                                  videoId={Object}
+                              />
                           <Text
                             style={{
                               fontWeight: 'bold',
@@ -174,6 +173,8 @@ export default function Presse() {
                           alignItems:'center',
                           marginHorizontal: 20,
                         }}>
+
+
                         <View>
                            {type == 'Image' && <Image
                             style={{
@@ -236,14 +237,12 @@ export default function Presse() {
                         }}>
                         <View>
 
-                          {/* {
-                            type != 'Image' && <Video
-                             source={{ uri: Object }} 
-                             controls={true} 
-                             resizeMode="contain"
-                             repeat
-                            />
-                          } */}
+                                 <YoutubePlayer
+                                  height={300}
+                                  play={true}
+                                  videoId={Object}
+                           />
+
                           <Text
                             style={{
                               fontWeight: 'bold',
@@ -279,7 +278,7 @@ export default function Presse() {
 
 
 
-
+  
 
 
 
@@ -298,14 +297,12 @@ export default function Presse() {
                         <View>
                          
 
-                          {/* {
-                            type != 'Image' && <Video
-                             source={{ uri: Object }} 
-                             controls={true} 
-                             resizeMode="contain"
-                             repeat
-                            />
-                          } */}
+                                <YoutubePlayer
+                                  height={300}
+                                  play={true}
+                                  videoId={Object}
+                           />
+
                           <Text
                             style={{
                               fontWeight: 'bold',

@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Header from '../../header';
 import {SafeAreaView} from 'react-native-safe-area-context';
+
 import {
   View,
   Text,
@@ -13,13 +14,14 @@ import {NativeBaseProvider} from 'native-base';
 import {colors, icons, images} from '../../constants';
 import {Dimensions, StyleSheet} from 'react-native';
 const {width} = Dimensions.get('window');
-import image from '../../../assets/Images/ImageMain.png'
+import image from '../../../assets/Images/LogoPdf.jpg'
 const scale = width / 420;
 import Menu from './menu';
 import Menu2 from './menu2';
 import sila from '../../../assets/bottomBarIcon/sila.png';
 import programme from '../../../assets/bottomBarIcon/reglements.png'
 import axios from 'axios';
+
 
 export default function Exposants() {
   const [items2, setItems2] = useState(Menu2);
@@ -167,6 +169,7 @@ export default function Exposants() {
                           }}>
                           {titre}
                         </Text>
+     
                         <Text
                           style={{
                             color: colors.fifthly,
@@ -238,9 +241,7 @@ export default function Exposants() {
                       <TouchableOpacity
                         key={elem._id}
                         style={{marginTop: 30, alignItems: 'center'}}
-                        onPress={() =>
-                          Linking.openURL(pdf,
-                          )
+                        onPress={() =>Linking.openURL('https://drive.google.com/file/d/1SDl_QqGC2usubRxl78xq4q1-M7N4KE_h/view?usp=sharing').catch((err) => console.error("Failed to open URL: ", err))
                         }>
                         <Image
                           resizeMode="contain"
