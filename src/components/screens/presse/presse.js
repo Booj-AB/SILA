@@ -20,9 +20,10 @@ const scale = width / 420;
 export default function Presse() {
   
   const [items, setItems] = useState(Menu);
+  const [sel , setSel]  = useState('tous')
 
      const [tous, setTous] = useState([]);
-     const [image, setImage] = useState([]);
+     const [ima, setIma] = useState([]);
      const [vd, setVd] = useState([]);
      const [po, setPo] = useState([]);
      
@@ -32,13 +33,13 @@ export default function Presse() {
 
      async function getImagesVd() {
         const res = await axios.get(`http://10.0.2.2:9400/api/getImageVdPo`);
-        // setVd(res.data.Vd)
-        // setImage(res.data.Im)
-        // setPo(res.data.Po)
-        console.log(res);
+        setVd(res.data.Vd)
+        setIma(res.data.Im)
+        setPo(res.data.Po)
+        setTous(res.data.all)
         
-        setTous([...res.data.Po , ...res.data.Vd , ...res.data.Im])
-        console.log("PR ",[...res.data.Po , ...res.data.Vd , ...res.data.Im]);
+        console.log("All" ,res.data );
+        
         
      }
 
@@ -57,6 +58,8 @@ export default function Presse() {
               width: '100%',
               backgroundColor: colors.tertiary,
               borderRadius: 70 * scale,
+              height:'135%'
+              
             }}>
             <NativeBaseProvider>
               <View
@@ -71,23 +74,29 @@ export default function Presse() {
                   alignItems: 'center',
                   padding: 15 * scale,
                 }}>
-                <TouchableOpacity onPress={() => setItems(Menu)}>
+                <TouchableOpacity onPress={() => setSel('tous')}>
                   <Text style={{ fontWeight: 'bold', color: colors.white }}>Tout</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => filterItem('podcast')}>
+
+                <TouchableOpacity onPress={() => setSel('Po')}>
                   <Text style={{ fontWeight: 'bold', color: colors.white }}>Podcast</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => filterItem('vd')}>
+                <TouchableOpacity onPress={() => setSel('vd')}>
                   <Text style={{ fontWeight: 'bold', color: colors.white }}>Videos</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => filterItem('Image')}>
+                <TouchableOpacity onPress={() => setSel('Image')}>
                   <Text style={{ fontWeight: 'bold', color: colors.white }}>Photos</Text>
-                </TouchableOpacity>
+                 </TouchableOpacity>
               </View>
 
-              <View>
+
+
+
+                {sel == 'tous' && 
+                 
+                  <View>
                 {tous.map((elem) => {
-                  const { _id, titre, image} = elem;
+                  const { _id, Title, Object , des , type} = elem;
 
                   return (
                     <View key={_id} style={{ marginTop: 30 }}>
@@ -98,30 +107,247 @@ export default function Presse() {
                           marginHorizontal: 20,
                         }}>
                         <View>
-                          <Image
+                           {type == 'Image' && <Image
                             style={{
                               width: 300,
                               height: 200,
                               borderRadius: 10,
                             }}
-                            source={image}
-                          />
+                            source={Object}
+                          />}
+
+                          {/* {
+                            type != 'Image' && <Video
+                             source={{ uri: Object }} 
+                             controls={true} 
+                             resizeMode="contain"
+                             repeat
+                            />
+                          } */}
                           <Text
                             style={{
                               fontWeight: 'bold',
+                              marginBottom:10,
                               color: colors.primary,
                               width: 300,
                               textAlign: 'center',
                               marginBottom: 10,
+                              fontSize:23
                             }}>
-                            {titre}
+                            {Title}
                           </Text>
+
+                           <Text
+                            style={{
+                              fontWeight: 'bold',
+                              marginBottom:10,
+                              color: colors.primary,
+                              width: 300,
+                              textAlign: 'center',
+                              marginBottom: 10,
+                              fontSize:17
+                            }}>
+                            {des}
+                          </Text>
+
                         </View>
                       </View>
                     </View>
                   );
                 })}
               </View>
+                
+                }
+
+
+
+
+                <View>
+                {ima.map((elem) => {
+                  const { _id, Title, Object , des , type} = elem;
+
+                  return (
+                    <View key={_id} style={{ marginTop: 30 }}>
+                      <View
+                        style={{
+                          
+                          alignItems:'center',
+                          marginHorizontal: 20,
+                        }}>
+                        <View>
+                           {type == 'Image' && <Image
+                            style={{
+                              width: 300,
+                              height: 200,
+                              borderRadius: 10,
+                            }}
+                            source={Object}
+                          />}
+
+                
+                          <Text
+                            style={{
+                              fontWeight: 'bold',
+                              marginBottom:10,
+                              color: colors.primary,
+                              width: 300,
+                              textAlign: 'center',
+                              marginBottom: 10,
+                              fontSize:23
+                            }}>
+                            {Title}
+                          </Text>
+
+                           <Text
+                            style={{
+                              fontWeight: 'bold',
+                              marginBottom:10,
+                              color: colors.primary,
+                              width: 300,
+                              textAlign: 'center',
+                              marginBottom: 10,
+                              fontSize:17
+                            }}>
+                            {des}
+                          </Text>
+
+                        </View>
+                      </View>
+                    </View>
+                  );
+                })}
+              </View>
+
+
+
+
+
+              <View>
+                {vd.map((elem) => {
+                  const { _id, Title, Object , des , type} = elem;
+
+                  return (
+                    <View key={_id} style={{ marginTop: 30 }}>
+                      <View
+                        style={{
+                          
+                          alignItems:'center',
+                          marginHorizontal: 20,
+                        }}>
+                        <View>
+
+                          {/* {
+                            type != 'Image' && <Video
+                             source={{ uri: Object }} 
+                             controls={true} 
+                             resizeMode="contain"
+                             repeat
+                            />
+                          } */}
+                          <Text
+                            style={{
+                              fontWeight: 'bold',
+                              marginBottom:10,
+                              color: colors.primary,
+                              width: 300,
+                              textAlign: 'center',
+                              marginBottom: 10,
+                              fontSize:23
+                            }}>
+                            {Title}
+                          </Text>
+
+                           <Text
+                            style={{
+                              fontWeight: 'bold',
+                              marginBottom:10,
+                              color: colors.primary,
+                              width: 300,
+                              textAlign: 'center',
+                              marginBottom: 10,
+                              fontSize:17
+                            }}>
+                            {des}
+                          </Text>
+
+                        </View>
+                      </View>
+                    </View>
+                  );
+                })}
+              </View>
+
+
+
+
+
+
+
+              <View>
+                {po.map((elem) => {
+                  const { _id, Title, Object , des , type} = elem;
+
+                  return (
+                    <View key={_id} style={{ marginTop: 30 }}>
+                      <View
+                        style={{
+                          
+                          alignItems:'center',
+                          marginHorizontal: 20,
+                        }}>
+                        <View>
+                         
+
+                          {/* {
+                            type != 'Image' && <Video
+                             source={{ uri: Object }} 
+                             controls={true} 
+                             resizeMode="contain"
+                             repeat
+                            />
+                          } */}
+                          <Text
+                            style={{
+                              fontWeight: 'bold',
+                              marginBottom:10,
+                              color: colors.primary,
+                              width: 300,
+                              textAlign: 'center',
+                              marginBottom: 10,
+                              fontSize:23
+                            }}>
+                            {Title}
+                          </Text>
+
+                           <Text
+                            style={{
+                              fontWeight: 'bold',
+                              marginBottom:10,
+                              color: colors.primary,
+                              width: 300,
+                              textAlign: 'center',
+                              marginBottom: 10,
+                              fontSize:17
+                            }}>
+                            {des}
+                          </Text>
+
+                        </View>
+                      </View>
+                    </View>
+                  );
+                })}
+              </View>
+                
+
+
+
+
+
+
+
+
+
             </NativeBaseProvider>
           </View>
         </ScrollView>
