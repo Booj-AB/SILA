@@ -9,19 +9,19 @@ export default function SponsorOne() {
      <Text style={styles.title}>Sponsors officiels</Text>
       <View style={styles.partnersContainer}>
         <View style={styles.partnerImageWrapper}>
-          <Image source={images.sponsorsOf1} style={styles.partnerImage} />
+          <Image  resizeMode='contain' source={images.sponsorsOf1} style={styles.partnerImage} />
         </View>
         <View style={styles.partnerImageWrapper}>
-          <Image source={images.sponsorsOf2} style={styles.partnerImage} />
+          <Image resizeMode='contain' source={images.sponsorsOf2} style={styles.partnerImage} />
         </View>
         <View style={styles.partnerImageWrapper}>
-          <Image source={images.sponsorsOf3} style={styles.partnerImage} />
+          <Image resizeMode='contain' source={images.sponsorsOf3} style={styles.partnerImage} />
         </View>
         <View style={styles.partnerImageWrapper}>
-          <Image source={images.sponsorsOf4} style={styles.partnerImage} />
+          <Image resizeMode='contain' source={images.sponsorsOf4} style={styles.partnerImage} />
         </View>
         <View style={styles.partnerImageWrapper}>
-          <Image source={images.sponsorsOf5} style={styles.partnerImage} />
+          <Image resizeMode='contain' source={images.sponsorsOf5} style={styles.partnerImage} />
         </View>
       </View>
     </View>
@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
   partnerImageWrapper: {
     width: '45%', 
     marginBottom: 10,
+   
   },
   partnerImage: {
     width: '100%',

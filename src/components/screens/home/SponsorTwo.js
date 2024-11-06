@@ -9,22 +9,26 @@ export default function SponsorTwo() {
      <Text style={styles.title}>Sponsors</Text>
       <View style={styles.partnersContainer}>
         <View style={styles.partnerImageWrapper}>
-          <Image source={images.sponsors1} style={styles.partnerImage} />
+          <Image resizeMode='contain' source={images.sponsors1} style={styles.partnerImage} />
         </View>
         <View style={styles.partnerImageWrapper}>
-          <Image source={images.sponsors2} style={styles.partnerImage} />
+          <Image resizeMode='contain' source={images.sponsors2} style={styles.partnerImage} />
         </View>
         <View style={styles.partnerImageWrapper}>
-          <Image source={images.sponsors3} style={styles.partnerImage} />
+          <Image resizeMode='contain' source={images.sponsors3} style={styles.partnerImage} />
         </View>
         <View style={styles.partnerImageWrapper}>
-          <Image source={images.sponsors4} style={styles.partnerImage} />
+          <Image resizeMode='contain' source={images.sponsors4} style={styles.partnerImage} />
         </View>
         <View style={styles.partnerImageWrapper}>
-          <Image source={images.sponsors5} style={styles.partnerImage} />
+          <Image resizeMode='contain' source={images.sponsors5} style={styles.partnerImage} />
         </View>
-       
-      </View>
+     
+      </View>  <View style={{
+        marginBottom:100,
+       }}>
+
+       </View>
     </View>
   );
 }
@@ -55,6 +59,5 @@ const styles = StyleSheet.create({
         fontSize: 32,
         marginVertical: 20,
         color:colors.primary,
-        fontWeight:'bold'
-    },
+        fontWeight:'bold'},
 });
