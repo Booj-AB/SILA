@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 // import { useNavigation } from '@react-navigation/native';
+import { colors, icons, images } from '../../constants';
 
 const Card = ({ titel, image, des, date }) => {
   // const navigation = useNavigation();
@@ -50,11 +51,10 @@ const styles = StyleSheet.create({
   date: {
     marginTop: 5,
     textAlign: 'center',
-    backgroundColor: 'white',
-    color: 'gray',
+    color: colors.secondary,
     padding: 10,
     borderRadius: 5,
-    marginBottom: 10, 
+    marginBottom: 5, 
   },
   container: {
     display: 'flex',
@@ -63,13 +63,14 @@ const styles = StyleSheet.create({
     paddingVertical: 10, 
   },
   button: {
-    backgroundColor: 'rgba(0, 204, 255, 0.568)', 
+    backgroundColor: colors.secondary, 
     padding: 10,
     borderRadius: 5,
     alignItems: 'center', 
+    marginHorizontal:40
   },
   buttonText: {
-    color: 'white', 
+    color: colors.primary, 
     fontSize: 16, 
   },
 });

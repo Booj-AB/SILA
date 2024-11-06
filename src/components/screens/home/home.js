@@ -8,9 +8,9 @@ import SponsorOne from './SponsorOne';
 import SponsorTwo from './SponsorTwo';
 import Qatar from './Qatar';
 import FlatOne from './FlatOne';
-import imageMain from '../../../assets/Images/ImageMain.jpg'
+import imageMain from '../../../assets/Images/ImageMain.png'
 import Header from '../../header';
-
+import {colors, icons, images} from '../../constants';
 
 // Get screen dimensions
 const { width, height } = Dimensions.get('window');
@@ -19,8 +19,8 @@ const { width, height } = Dimensions.get('window');
 const scale = size => (width / 375) * size; // Assuming 375 is the base width for your design
 
 export default function Main() {
-  const fadeAnim = useRef(new Animated.Value(0)).current; 
-  const slideAnim = useRef(new Animated.Value(100)).current; 
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+  const slideAnim = useRef(new Animated.Value(100)).current;
   const [showButton, setShowButton] = useState(false);
   const scrollViewRef = useRef(null);
 
@@ -60,38 +60,38 @@ export default function Main() {
                 <Text style={{ color: 'orange' }}>S</Text>
                 <Text style={{ color: 'red' }}>I</Text>
                 <Text style={{ color: 'green' }}>L</Text>
-                <Text style={{ color: 'rgb(0, 119, 255)' }}>A</Text>
+                <Text style={{ color: colors.primary }}>A</Text>
                 <Text style={{ color: 'white' }}> 2024</Text>
               </Text>
               <Text style={styles.subtitle}>La 27ème Edition du Salon International du Livre d’Alger</Text>
               <Text style={styles.date}>Du 06 au 16 Novembre 2024</Text>
               <Text style={styles.location}>Au Palais des Expositions des Pins Maritimes</Text>
+              <Text style={styles.slogan}>اقرأ للننتصر</Text>
             </Animated.View>
-            <Animated.View style={[styles.buttonContainer, { transform: [{ translateY: slideAnim }] }]}>
+            {/* <Animated.View style={[styles.buttonContainer, { transform: [{ translateY: slideAnim }] }]}>
               <TouchableOpacity style={styles.buNov}>
                 <Text style={styles.buttonText}>Nouvelles</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.buPro}>
                 <Text style={styles.buttonText}>Programmes</Text>
               </TouchableOpacity>
-            </Animated.View>
+            </Animated.View> */}
           </View>
         </ImageBackground>
       ),
     },
-    { key: '2', renderItem: () => <Circel /> },
     { key: '3', renderItem: () => <PartyPro /> },
     { key: '4', renderItem: () => <FlatOne /> },
     { key: '5', renderItem: () => <Qatar /> },
     { key: '6', renderItem: () => <FlatTwo /> },
-    { key: '7', renderItem: () => <Parnt/> },
+    { key: '7', renderItem: () => <Parnt /> },
     { key: '8', renderItem: () => <SponsorOne /> },
     { key: '9', renderItem: () => <SponsorTwo /> },
   ];
 
   return (
     <View style={styles.container}>
-       <Header title="accuil" />
+      <Header title="accuil" />
       <FlatList
         ref={scrollViewRef}
         data={data}
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
   },
   main: {
     width: '100%',
-    height: scale(545), // Use scaling for height
+    height: scale(545), 
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -137,64 +137,70 @@ const styles = StyleSheet.create({
   headerText: {
     justifyContent: 'center',
     alignItems: 'center',
-    gap: scale(16), // Scale for gap
+    gap: scale(16), 
   },
   title: {
-    fontSize: scale(40), // Scale for font size
+    fontSize: scale(40), 
     fontWeight: 'bold',
     textAlign: 'center',
   },
   subtitle: {
     color: 'white',
-    fontSize: scale(20), // Scale for font size
+    fontSize: scale(16), 
     textAlign: 'center',
   },
   date: {
-    fontSize: scale(30), // Scale for font size
+    fontSize: scale(20),
     color: 'white',
     textAlign: 'center',
   },
   location: {
     color: 'white',
-    fontSize: scale(16), // Scale for font size
+    fontSize: scale(16), 
     textAlign: 'center',
   },
+  slogan: {
+    color: 'white',
+    fontSize: scale(46), 
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
   buttonContainer: {
-    marginTop: scale(30), // Scale for margin
+    marginTop: scale(30),
     flexDirection: 'row',
     justifyContent: 'center',
-    gap: scale(40), // Scale for gap
+    gap: scale(40),
     width: '100%',
   },
   buPro: {
-    backgroundColor: 'rgb(0, 136, 255)',
-    paddingVertical: scale(10), // Scale for padding
-    paddingHorizontal: scale(20), // Scale for padding
-    borderRadius: scale(10), // Scale for border radius
+    backgroundColor: colors.primary,
+    paddingVertical: scale(10), 
+    paddingHorizontal: scale(20), 
+    borderRadius: scale(10),
     width: '35%',
     alignItems: 'center',
   },
   buNov: {
-    borderWidth: scale(3), // Scale for border width
-    borderColor: 'rgb(0, 136, 255)',
+    borderWidth: scale(3), 
+    borderColor: colors.primary,
     backgroundColor: 'transparent',
-    paddingVertical: scale(10), // Scale for padding
-    paddingHorizontal: scale(20), // Scale for padding
-    borderRadius: scale(10), // Scale for border radius
+    paddingVertical: scale(10),
+    paddingHorizontal: scale(20), 
+    borderRadius: scale(10), 
     width: '35%',
     alignItems: 'center',
   },
   buttonText: {
     color: 'white',
     fontWeight: 'bold',
-    fontSize: scale(12), // Scale for font size
+    fontSize: scale(12), 
   },
   scrollButton: {
     position: 'absolute',
-    bottom: scale(20), // Scale for positioning
-    right: scale(20), // Scale for positioning
-    backgroundColor: '#3b5998',
-    padding: scale(10), // Scale for padding
-    borderRadius: scale(30), // Scale for border radius
+    bottom: scale(80), 
+    right: scale(20), 
+    backgroundColor: colors.primary,
+    padding: scale(10), 
+    borderRadius: scale(30), 
   },
 });

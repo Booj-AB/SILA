@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { View, Text, StyleSheet, FlatList, Image, Animated, Dimensions, TouchableOpacity } from 'react-native';
+import {colors, icons, images} from '../../constants';
 
 import image from '../../../assets/Images/ImageMain.jpg';
 
@@ -48,7 +49,7 @@ const FlatTwo = () => {
             <Text style={styles.cardTitle}>{item.title}</Text>
             <Text style={styles.description}>{item.description}</Text>
                 <TouchableOpacity style={styles.button}>
-                        <Text style={styles.buttonText}>Lire Plus +</Text>
+                        <Text style={styles.buttonText}>Lire Plus</Text>
                     </TouchableOpacity>
           </View>
         )}
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: 'rgb(1, 175, 234)',
+    color:  colors.primary,
     marginBottom: 20,
   },
   cardContainer: {
@@ -88,7 +89,7 @@ const styles = StyleSheet.create({
   cardTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: 'rgba(0, 204, 255, 0.568)',
+    color:  colors.Quaternary,
     marginTop: 10,
   },
   description: {
@@ -100,7 +101,7 @@ const styles = StyleSheet.create({
    button: {
         alignSelf: 'flex-end',
         padding: 10,
-        backgroundColor: 'rgba(0, 204, 255, 0.568)',
+        backgroundColor: colors.primary,
         borderRadius: 10,
         marginTop: 20,
     },

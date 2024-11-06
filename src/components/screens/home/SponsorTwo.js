@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import imageMain from '../../../assets/Images/ImageMain.jpg';
+import {colors, icons, images} from '../../constants';
 
 export default function SponsorTwo() {
   return (
@@ -8,26 +9,21 @@ export default function SponsorTwo() {
      <Text style={styles.title}>Sponsors</Text>
       <View style={styles.partnersContainer}>
         <View style={styles.partnerImageWrapper}>
-          <Image source={imageMain} style={styles.partnerImage} />
+          <Image source={images.sponsors1} style={styles.partnerImage} />
         </View>
         <View style={styles.partnerImageWrapper}>
-          <Image source={imageMain} style={styles.partnerImage} />
+          <Image source={images.sponsors2} style={styles.partnerImage} />
         </View>
         <View style={styles.partnerImageWrapper}>
-          <Image source={imageMain} style={styles.partnerImage} />
+          <Image source={images.sponsors3} style={styles.partnerImage} />
         </View>
         <View style={styles.partnerImageWrapper}>
-          <Image source={imageMain} style={styles.partnerImage} />
+          <Image source={images.sponsors4} style={styles.partnerImage} />
         </View>
         <View style={styles.partnerImageWrapper}>
-          <Image source={imageMain} style={styles.partnerImage} />
+          <Image source={images.sponsors5} style={styles.partnerImage} />
         </View>
-        <View style={styles.partnerImageWrapper}>
-          <Image source={imageMain} style={styles.partnerImage} />
-        </View>
-        <View style={styles.partnerImageWrapper}>
-          <Image source={imageMain} style={styles.partnerImage} />
-        </View>
+       
       </View>
     </View>
   );
@@ -58,7 +54,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 32,
         marginVertical: 20,
-        color: 'rgb(1, 175, 234)',
+        color:colors.primary,
         fontWeight:'bold'
     },
 });

@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 import React, { useRef, useState } from 'react';
 
 
 
 import axios from 'axios'
+=======
+import React, { useRef } from 'react';
+>>>>>>> b0ef529fbb98a01e9a555e21a409a8cfa53e239f
 import {
   View,
   Text,
@@ -15,12 +19,18 @@ import {
   Platform,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+<<<<<<< HEAD
 
+=======
+import Header from '../../header';
+import { SafeAreaView } from 'react-native-safe-area-context';
+>>>>>>> b0ef529fbb98a01e9a555e21a409a8cfa53e239f
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const INPUT_WIDTH = SCREEN_WIDTH * 0.8;
 
 const ContactUs = () => {
+<<<<<<< HEAD
 
   const scaleAnim = useRef(new Animated.Value(1)).current;
   const [name, setName] = useState('');
@@ -28,6 +38,9 @@ const ContactUs = () => {
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
   const navigation = useNavigation();
+=======
+  const scaleAnim = useRef(new Animated.Value(1)).current;
+>>>>>>> b0ef529fbb98a01e9a555e21a409a8cfa53e239f
 
   const handleFocus = () => {
     Animated.spring(scaleAnim, {
@@ -45,6 +58,7 @@ const ContactUs = () => {
     }).start();
   };
 
+<<<<<<< HEAD
   const handleBackPress = () => {
     navigation.goBack();
   };
@@ -86,14 +100,47 @@ const ContactUs = () => {
 
       <Text style={styles.title}>Contact Us</Text>
       <View style={styles.formContainer}>
+=======
+
+  const navigation = useNavigation(); 
+
+  const handleBackPress = () => {
+    navigation.goBack(); 
+  };
+
+  return (
+
+
+    
+
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+        {/* <Header title={'Contac Us'}/> */}
+
+       <View style={styles.container2}>
+               <TouchableOpacity style={styles.button2} onPress={ handleBackPress}>
+                  <Text style={styles.buttonText2}>Back</Text>
+               </TouchableOpacity>
+           </View>
+
+      <Text style={styles.title}>Contact Us</Text>
+      <View style={styles.formContainer}>
+
+          
+
+>>>>>>> b0ef529fbb98a01e9a555e21a409a8cfa53e239f
         <Animated.View style={[styles.inputBox, { transform: [{ scale: scaleAnim }] }]}>
           <TextInput
             placeholder="Nom"
             style={styles.input}
             onFocus={handleFocus}
             onBlur={handleBlur}
+<<<<<<< HEAD
             value={name}
             onChangeText={setName}
+=======
+>>>>>>> b0ef529fbb98a01e9a555e21a409a8cfa53e239f
           />
         </Animated.View>
 
@@ -104,8 +151,11 @@ const ContactUs = () => {
             keyboardType="email-address"
             onFocus={handleFocus}
             onBlur={handleBlur}
+<<<<<<< HEAD
             value={email}
             onChangeText={setEmail}
+=======
+>>>>>>> b0ef529fbb98a01e9a555e21a409a8cfa53e239f
           />
         </Animated.View>
 
@@ -115,8 +165,11 @@ const ContactUs = () => {
             style={styles.input}
             onFocus={handleFocus}
             onBlur={handleBlur}
+<<<<<<< HEAD
             value={subject}
             onChangeText={setSubject}
+=======
+>>>>>>> b0ef529fbb98a01e9a555e21a409a8cfa53e239f
           />
         </Animated.View>
 
@@ -128,16 +181,27 @@ const ContactUs = () => {
             numberOfLines={4}
             onFocus={handleFocus}
             onBlur={handleBlur}
+<<<<<<< HEAD
             value={message}
             onChangeText={setMessage}
           />
         </Animated.View>
 
         <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+=======
+          />
+        </Animated.View>
+
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Ajouter')}>
+>>>>>>> b0ef529fbb98a01e9a555e21a409a8cfa53e239f
           <Text style={styles.buttonText}>Envoyer</Text>
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
+<<<<<<< HEAD
+=======
+
+>>>>>>> b0ef529fbb98a01e9a555e21a409a8cfa53e239f
   );
 };
 
@@ -158,6 +222,10 @@ const styles = StyleSheet.create({
   formContainer: {
     width: '100%',
     alignItems: 'center',
+<<<<<<< HEAD
+=======
+
+>>>>>>> b0ef529fbb98a01e9a555e21a409a8cfa53e239f
   },
   inputBox: {
     width: INPUT_WIDTH,
@@ -192,6 +260,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '600',
   },
+<<<<<<< HEAD
   container2: {
     position: 'absolute',
     left: 20,
@@ -201,10 +270,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignContent: 'center',
     zIndex: 1,
+=======
+    container2: {
+    position: 'absolute',
+    left: 20,
+    top: 10,
+    width:'100%',
+    display:'flex',
+    justifyContent:'center',
+    alignContent:'center',
+    zIndex: 1, 
+>>>>>>> b0ef529fbb98a01e9a555e21a409a8cfa53e239f
   },
   button2: {
     backgroundColor: '#0396A6',
     padding: 5,
+<<<<<<< HEAD
     height: 30,
     width: '20%',
     borderRadius: 7,
@@ -214,6 +295,17 @@ const styles = StyleSheet.create({
   buttonText2: {
     color: '#FFF',
     fontWeight: 'bold',
+=======
+    height:30,
+    width: '20%', 
+    borderRadius: 7,
+    borderWidth: 0, 
+    alignItems: 'center', 
+  },
+  buttonText2: {
+    color: '#FFF',
+    fontWeight:'bold'
+>>>>>>> b0ef529fbb98a01e9a555e21a409a8cfa53e239f
   },
 });
 

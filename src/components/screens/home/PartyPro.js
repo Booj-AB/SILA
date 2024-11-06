@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import ProCom from '../../screens/home/ProCom'
+import {colors, icons, images} from '../../constants';
 
 const PartyPro = () => {
   // Define the static progress values
@@ -16,7 +17,7 @@ const PartyPro = () => {
               size={95}
               strokeWidth={10}
               progress={progress} // Use static progress value here
-              color="#3498db"
+              color={colors.Quaternary}
             />
             <Text style={styles.label}>{getLabel(index)}</Text>
           </View>
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
     fontSize: 40,
-    color: 'rgb(1, 175, 234)',
+    color: colors.primary,
     marginBottom: 60,
     fontWeight: 'bold',
   },

@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView, Animated, Dimensions } from 'react-native';
 import image from '../../../assets/Images/ImageMain.jpg';
+import {colors, icons, images} from '../../constants';
 
 const { width } = Dimensions.get('window');
 
@@ -36,14 +37,14 @@ export default function Qatar() {
 
                 <View style={styles.textContainer}>
                     <Text style={styles.countryTitle}>Qatar</Text>
-                    <Text style={styles.subtitle}>Lorem ipsum dolor, sit amet consectetur</Text>
+                    <Text style={styles.subtitle}>Le Qatar, Pays à l’honneur</Text>
                     <Text style={styles.description}>
                         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis voluptatem illum
                         molestiae amet? Voluptates quaerat quidem architecto aut dignissimos pariatur nulla
                         porro quo consequuntur sunt? Id corrupti adipisci consequuntur vitae!
                     </Text>
                     <TouchableOpacity style={styles.button}>
-                        <Text style={styles.buttonText}>Lire Plus +</Text>
+                        <Text style={styles.buttonText}>Lire Plus</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -60,7 +61,8 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 32,
         marginVertical: 20,
-        color: 'rgb(1, 175, 234)',
+        fontWeight:'bold',
+        color: colors.primary,
     },
     contentContainer: {
         flexDirection: 'row',
@@ -83,13 +85,13 @@ const styles = StyleSheet.create({
     textContainer: {
         width: width > 600 ? '45%' : '100%',
         padding: 10,
-        borderColor: 'rgb(104, 1, 151)',
+        borderColor: '#8A1538',
         borderWidth: 1,
         borderRadius: 10,
     },
     countryTitle: {
         fontSize: 24,
-        color: 'rgb(104, 1, 151)',
+        color: '#8A1538',
         marginVertical: 10,
     },
     subtitle: {
@@ -105,7 +107,7 @@ const styles = StyleSheet.create({
     button: {
         alignSelf: 'flex-end',
         padding: 10,
-        backgroundColor: 'rgb(104, 1, 151)',
+        backgroundColor: '#8A1538',
         borderRadius: 10,
         marginTop: 20,
     },
