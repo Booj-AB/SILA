@@ -1,14 +1,53 @@
 import axios from 'axios';
 import { Button } from 'native-base';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, TextInput, StyleSheet, Alert } from 'react-native';
 import DocumentPicker from 'react-native-document-picker';
 import RNFS from 'react-native-fs'; // Import the react-native-fs library
 import ImageResizer from 'react-native-image-resizer'; // Import the image resizer
 import { useNavigation } from '@react-navigation/native';
+import { launchImageLibrary } from 'react-native-image-picker';
 
 
 export default function Ajouter() {
+  const [arr, setArr] = useState({
+     vist :'' , 
+     tit: '' ,
+     expo : '',
+     paysAf:'',
+     pays:'',
+     sur:''
+  })
+  const [relode , setRelode] = useState(false)
+  useEffect(()=>{
+      getPro()
+  },[relode])
+
+    async function update() {
+      console.log(arr);
+      
+      const res = await axios.post('http://10.0.2.2:9400/api/UpdatePro',{
+        sur:arr.sur , pays:arr.pays , paysAfr:arr.paysAf , vis:arr.vist  , titres:arr.tit , expo:arr.expo
+      })
+      if(res.data.code == '01'){
+        setRelode(p=>!p)
+        Alert.alert("Data Sent", "Done", [{ text: "OK" }]);
+       
+      }
+    }  
+
+  async function getPro() {
+      const res = await axios.get('http://10.0.2.2:9400/api/getPro')
+      setArr({
+         vist :res.data.pro.visit, 
+         tit: res.data.pro.titer  ,
+         expo : res.data.pro.expo ,
+         paysAf:res.data.pro.paysAfrican,
+         pays:res.data.pro.pays,
+         sur:res.data.pro.surface
+      })
+  }
+
   const [fileName, setFileName] = useState(''); 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -24,6 +63,26 @@ export default function Ajouter() {
   const [type, setType] = useState('');
 
   const navigation = useNavigation();
+  const [image, setImage] = useState('')
+
+
+   const pickImage = () => {
+    launchImageLibrary(
+      { mediaType: 'photo', quality: 1 },
+      response => {
+        if (response.didCancel) {
+          console.log('User cancelled image picker');
+        } else if (response.errorCode) {
+          console.error('ImagePicker Error:', response.errorMessage);
+        } else {
+          setImage(response.assets[0].uri); // Set the image URI
+        }
+      }
+    );
+  };
+
+
+
 
   // Function to pick a document (image, PDF, or video)
  const pickDocument = async () => {
@@ -58,6 +117,7 @@ export default function Ajouter() {
     }
   }
 };
+
 
   // Function to send data to the server
   const sendRequest = async (endpoint, data, resetFields) => {
@@ -315,9 +375,15 @@ export default function Ajouter() {
                   onChangeText={setType}
                   style={styles.input}
                 />
-                <TouchableOpacity onPress={pickDocument} style={styles.button}>
+                <TextInput
+                  placeholder='Url '
+                  value={type}
+                  onChangeText={setFileName}
+                  style={styles.input}
+                />
+                {/* <TouchableOpacity onPress={pickDocument} style={styles.button}>
                   <Text style={styles.buttonText}>{showPdf && fileName!=''?'pdf dowlonde':'select Pdf'}</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
                 <TouchableOpacity onPress={SEND_PDF} style={styles.button}>
                   <Text style={styles.buttonText}>Send</Text>
                 </TouchableOpacity>
@@ -359,36 +425,68 @@ export default function Ajouter() {
             )}
           </View>
 
-          {/* Sponsor Section */}
-          <View style={styles.section}>
-            <TouchableOpacity onPress={() => {setShowSponsor(!showSponsor),
-                  setFileName(''),
-                  setDate(''),
-                  setObject(''),
-                  setType(""),
-                  setTitle(''),
-                  setDescription('')
-            }} style={styles.toggleButton}>
-              <Text style={styles.buttonText}>Ajouter Sponsor</Text>
-              <Text style={styles.buttonText}>{showSponsor ? '-' : '+'}</Text>
-            </TouchableOpacity>
-            {showSponsor && (
-              <View style={styles.inputContainer}>
-                <TouchableOpacity onPress={pickDocument} style={styles.button}>
-                  <Text style={styles.buttonText}>{showSponsor && fileName != "" ?'Image Dowonde':'select Image'}</Text>
-                </TouchableOpacity>
-                <TextInput
-                  placeholder='Type'
-                  value={type}
-                  onChangeText={setType}
+
+          <View>
+               
+
+
+                 <TextInput
+                  placeholder='surface'
+                  value={arr.sur}
+                  onChangeText={(e)=>setArr({...arr , sur : e})}
                   style={styles.input}
                 />
-                <TouchableOpacity onPress={SEND_SPONSOR} style={styles.button}>
-                  <Text style={styles.buttonText}>Send</Text>
+
+                 <TextInput
+                  placeholder='pays'
+                   value={arr.pays}
+                   onChangeText={(e)=>setArr({...arr , pays : e})}
+                  style={styles.input}
+                />
+
+                 <TextInput
+                   onChangeText={(e)=>setArr({...arr , paysAf : e})}
+                   value={arr.paysAf}
+                  style={styles.input}
+                />
+
+                 <TextInput
+                  placeholder='expo'
+                  value={arr.expo}
+                   onChangeText={(e)=>setArr({...arr , expo : e})}
+                  style={styles.input}
+                />
+
+
+                <TextInput
+                  placeholder='titres'
+                  value={arr.tit}
+                   onChangeText={(e)=>setArr({...arr , tit : e})}
+                  style={styles.input}
+                />
+
+                 <TextInput
+                  placeholder='visit'
+                  value={arr.vist}
+                   onChangeText={(e)=>setArr({...arr , vist : e})}
+                  style={styles.input}
+
+
+                />
+
+
+                <TouchableOpacity onPress={update}>
+                   <Text>Updet</Text>
                 </TouchableOpacity>
-              </View>
-            )}
+
+
+            
+
+
           </View>
+
+        
+          
         </View>
       </View>
 

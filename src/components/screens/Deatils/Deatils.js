@@ -1,20 +1,21 @@
 import React from 'react';
-import { View, Text, ImageBackground, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, ImageBackground, StyleSheet, ScrollView, Dimensions } from 'react-native';
+import { RFValue } from 'react-native-responsive-fontsize'; // For responsive font sizes
+
+// Get the screen width and height
+const { width, height } = Dimensions.get('window');
 
 export default function Deatils({ route }) {
-   const data = route.params;
+  const data = route.params;
   return (
-       <ScrollView contentContainerStyle={styles.container}>
-
+    <ScrollView contentContainerStyle={styles.container}>
       <ImageBackground 
-        source={{uri:data.Image}} 
+        source={{ uri: data.Image }} 
         style={styles.imageBackground}
         imageStyle={styles.backgroundImage}
       >
-
-        <View style={styles.circle}>{data.Date}</View>
+        <View style={styles.circle}>{data.Date && data.Date}</View>
       </ImageBackground>
-
 
       <View style={styles.content}>
         <Text style={styles.title}>{data.Title}</Text>
@@ -25,7 +26,7 @@ export default function Deatils({ route }) {
         </View>
       </View>
     </ScrollView>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -36,7 +37,7 @@ const styles = StyleSheet.create({
   imageBackground: {
     position: 'relative',
     width: '100%',
-    height: 200,
+    height: height * 0.3, 
   },
   backgroundImage: {
     resizeMode: 'cover',
@@ -44,8 +45,8 @@ const styles = StyleSheet.create({
   },
   circle: {
     position: 'absolute',
-    left: '40%',
-    bottom: -10,
+    left: width * 0.4, 
+    bottom: -height * 0.05, 
     width: 50,
     height: 50,
     backgroundColor: 'blue',
@@ -59,7 +60,7 @@ const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
     marginVertical: 30,
-    fontSize: 24,
+    fontSize: RFValue(24), 
     fontWeight: 'bold',
   },
   textContainer: {
@@ -67,7 +68,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   paragraph: {
-    fontSize: 16,
+    fontSize: RFValue(16), 
     color: '#333',
     textAlign: 'left',
   },

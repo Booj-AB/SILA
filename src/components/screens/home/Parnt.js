@@ -9,10 +9,17 @@ export default function Parnt(arr) {
      <Text style={styles.title}>Nos Partenaires</Text>
       <View style={styles.partnersContainer}>
         <View style={styles.partnerImageWrapper}>
+<<<<<<< HEAD
+          <Image  resizeMode='contain' source={images.partenaire1} style={styles.partnerImage} />
+        </View>
+        <View style={styles.partnerImageWrapper}>
+          <Image  resizeMode='contain' source={images.partenaire2} style={styles.partnerImage} />
+=======
           <Image resizeMode='contain' source={images.partenaire1} style={styles.partnerImage} />
         </View>
         <View style={styles.partnerImageWrapper}>
           <Image resizeMode='contain' source={images.partenaire2} style={styles.partnerImage} />
+>>>>>>> 41aa71ad6224bfa024c13c3af7ba46794cba53cd
         </View>
 
         </View>

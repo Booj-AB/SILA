@@ -15,13 +15,21 @@ export default function SponsorTwo() {
           <Image resizeMode='contain' source={images.sponsors2} style={styles.partnerImage} />
         </View>
         <View style={styles.partnerImageWrapper}>
+<<<<<<< HEAD
+          <Image  resizeMode='contain' source={images.sponsors3} style={styles.partnerImage} />
+=======
           <Image resizeMode='contain' source={images.sponsors3} style={styles.partnerImage} />
+>>>>>>> 41aa71ad6224bfa024c13c3af7ba46794cba53cd
         </View>
         <View style={styles.partnerImageWrapper}>
           <Image resizeMode='contain' source={images.sponsors4} style={styles.partnerImage} />
         </View>
         <View style={styles.partnerImageWrapper}>
+<<<<<<< HEAD
+          <Image  resizeMode='contain' source={images.sponsors5} style={styles.partnerImage} />
+=======
           <Image resizeMode='contain' source={images.sponsors5} style={styles.partnerImage} />
+>>>>>>> 41aa71ad6224bfa024c13c3af7ba46794cba53cd
         </View>
      
       </View>  <View style={{

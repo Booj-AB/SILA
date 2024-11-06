@@ -2,21 +2,36 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 // import { useNavigation } from '@react-navigation/native';
 import { colors, icons, images } from '../../constants';
+import Video from 'react-native-video'
+import Ima from '../../../assets/Images/ImageMain.png'
+import { useNavigation } from '@react-navigation/native';
 
 const Card = ({ titel, image, des, date }) => {
   // const navigation = useNavigation();
   const data  ={
     titel , image , des , date
   }
+  const navigation = useNavigation()
   return (
     <View style={styles.card}>
-      <Image  source={{ uri: 'http://10.0.2.2:9400/Images/fgjg6j5ehhgDURJD6heH.png' }} style={styles.image} />
-      <Text style={styles.title}>{titel}</Text>
+      
+       <Image 
+       style={{width:'100%' , height:200}}
+        source={Ima} 
+       />
+
+     
+
+
+       
+
+
+      <Text style={styles.title}>{titel} ee</Text>
       <Text style={styles.date}>{date}</Text>
       <Text style={styles.description}>{des}</Text>
 
       <View style={styles.container}>
-        <TouchableOpacity style={styles.button}  >
+        <TouchableOpacity style={styles.button} onPress={()=>navigation.navigate('Details', { data })}>
           <Text style={styles.buttonText}>Lire Plus +</Text>
         </TouchableOpacity>
       </View>

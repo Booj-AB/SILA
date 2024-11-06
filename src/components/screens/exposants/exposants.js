@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Header from '../../header';
 import {SafeAreaView} from 'react-native-safe-area-context';
+
 import {
   View,
   Text,
@@ -13,6 +14,7 @@ import {NativeBaseProvider} from 'native-base';
 import {colors, icons, images} from '../../constants';
 import {Dimensions, StyleSheet} from 'react-native';
 const {width} = Dimensions.get('window');
+import image from '../../../assets/Images/LogoPdf.jpg'
 const scale = width / 420;
 import Menu from './menu';
 import Menu2 from './menu2';
@@ -20,7 +22,8 @@ import sila from '../../../assets/bottomBarIcon/sila.png';
 import programme from '../../../assets/bottomBarIcon/reglements.png'
 import axios from 'axios';
 
-export default function Exposant() {
+
+export default function Exposants() {
   const [items2, setItems2] = useState(Menu2);
   const [items, setItems] = useState(Menu);
   const filterItem = categoryItem => {
@@ -166,6 +169,7 @@ export default function Exposant() {
                           }}>
                           {titre}
                         </Text>
+     
                         <Text
                           style={{
                             color: colors.fifthly,
@@ -199,7 +203,7 @@ export default function Exposant() {
                         borderRadius:10,
 
                           }}
-                          source={Image}
+                          source={image}
                         />
                         <Text
                           style={{
@@ -207,7 +211,7 @@ export default function Exposant() {
                             color: colors.primary,
                             marginBottom: 10,
                           }}>
-                          {Title}
+                          {/* {Title} */}
                         </Text>
 
                         <Text
@@ -216,7 +220,7 @@ export default function Exposant() {
                             paddingTop: 0,
                             color: colors.primary,
                           }}>
-                          {des}
+                          {/* {des} */}
                         </Text>
                       </TouchableOpacity>
                     );
@@ -227,7 +231,7 @@ export default function Exposant() {
 
 
 
-                  {isBoolean == "Plan" && 
+                  {isBoolean == "plan" && 
 
 
 
@@ -237,9 +241,7 @@ export default function Exposant() {
                       <TouchableOpacity
                         key={elem._id}
                         style={{marginTop: 30, alignItems: 'center'}}
-                        onPress={() =>
-                          Linking.openURL(pdf,
-                          )
+                        onPress={() =>Linking.openURL('https://drive.google.com/file/d/1SDl_QqGC2usubRxl78xq4q1-M7N4KE_h/view?usp=sharing').catch((err) => console.error("Failed to open URL: ", err))
                         }>
                         <Image
                           resizeMode="contain"
@@ -249,15 +251,16 @@ export default function Exposant() {
                         borderRadius:10,
 
                           }}
-                          source={Image}
+                          source={image}
                         />
                         <Text
                           style={{
                             fontWeight: 'bold',
                             color: colors.primary,
                             marginBottom: 10,
+                            margin:10
                           }}>
-                          dd{Title}
+                          {/* {Title} */}
                         </Text>
 
                         <Text
@@ -265,8 +268,9 @@ export default function Exposant() {
                             padding: 30,
                             paddingTop: 0,
                             color: colors.primary,
+                            marginTop:20
                           }}>
-                          {des}
+                          {/* {des}  */}
                         </Text>
                       </TouchableOpacity>
                     );
@@ -297,7 +301,7 @@ export default function Exposant() {
                         borderRadius:10,
 
                           }}
-                          source={Image}
+                         source={image}
                         />
                         <Text
                           style={{
@@ -305,7 +309,7 @@ export default function Exposant() {
                             color: colors.primary,
                             marginBottom: 10,
                           }}>
-                          {Title}
+                          {/* {Title} */}
                         </Text>
 
                         <Text
@@ -314,7 +318,7 @@ export default function Exposant() {
                             paddingTop: 0,
                             color: colors.primary,
                           }}>
-                          {des}
+                          {/* {des} */}
                         </Text>
                       </TouchableOpacity>
                     );
@@ -458,15 +462,15 @@ const styles = StyleSheet.create({
 //                     onPress={() =>
 //                       Linking.openURL(pdf,)
 //                     }>
-//                     <Image
-//                       resizeMode="contain"
-//                       style={{
-//                         width: '100%',
-//                         height: 200,
-//                         borderRadius:10,
-//                       }}
-//                       source={image}
-//                     />
+                    // <Image
+                    //   resizeMode="contain"
+                    //   style={{
+                    //     width: '100%',
+                    //     height: 200,
+                    //     borderRadius:10,
+                    //   }}
+                    //   source={image}
+                    // />
 //                     <Text
 //                       style={{
 //                         fontWeight: 'bold',

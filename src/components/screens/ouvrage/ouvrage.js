@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import Loding from '../../Loding/Loding'
 import Header from '../../header';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { View, Text, Image, TextInput, StyleSheet, FlatList } from 'react-native';
@@ -103,7 +104,7 @@ export default function Ouvrage() {
                             keyExtractor={item => item._id}
                             onEndReached={loadMoreBooks} // Load more when end is reached
                             onEndReachedThreshold={0.1} // Trigger when 10% of the end is reached
-                            ListFooterComponent={loading ? <Text style={{ textAlign: 'center' }}>Loading more books...</Text> : null} // Show loading text
+                            ListFooterComponent={loading ? <View style={{display:'flex', justifyContent:'center', alignItems:'center', width:'100%', height:400}}> <Loding/> </View> : null} 
                             contentContainerStyle={styles.listItem}
                             getItemLayout={(data, index) => (
                                 { length: 80, offset: 80 * index, index } // Adjust based on your item height
