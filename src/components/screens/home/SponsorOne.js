@@ -9,19 +9,19 @@ export default function SponsorOne() {
      <Text style={styles.title}>Sponsors officiels</Text>
       <View style={styles.partnersContainer}>
         <View style={styles.partnerImageWrapper}>
-          <Image source={images.sponsorOf1} style={styles.partnerImage} />
+          <Image source={images.sponsorsOf1} style={styles.partnerImage} />
         </View>
         <View style={styles.partnerImageWrapper}>
-          <Image source={images.sponsorOf2} style={styles.partnerImage} />
+          <Image source={images.sponsorsOf2} style={styles.partnerImage} />
         </View>
         <View style={styles.partnerImageWrapper}>
-          <Image source={images.sponsorOf3} style={styles.partnerImage} />
+          <Image source={images.sponsorsOf3} style={styles.partnerImage} />
         </View>
         <View style={styles.partnerImageWrapper}>
-          <Image source={images.sponsorOf4} style={styles.partnerImage} />
+          <Image source={images.sponsorsOf4} style={styles.partnerImage} />
         </View>
         <View style={styles.partnerImageWrapper}>
-          <Image source={images.sponsorOf5} style={styles.partnerImage} />
+          <Image source={images.sponsorsOf5} style={styles.partnerImage} />
         </View>
       </View>
     </View>
