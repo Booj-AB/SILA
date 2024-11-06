@@ -35,7 +35,7 @@ export default function Exposant() {
       const [gui, setGui] = useState([]);
       const [plan, setPlan] = useState([]);
       const [regl, setRegl] = useState([]);
-           const [cul, setCul] = useState([]);
+     
 
 
 
@@ -50,9 +50,10 @@ export default function Exposant() {
 
   async function getPdf() {
     const res =  await axios.get(`http://10.0.2.2:9400/api/getPdf`)
-    console.log('res' , res.data);
+    console.log('res' , res.data.plan);
     setRegl(res.data.regl)
     setPlan(res.data.plan)
+
     setGui(res.data.gui)
     // setCul(res.data.cul)
     
@@ -69,7 +70,7 @@ export default function Exposant() {
           <View
             style={{
               width: '100%',
-              height: '100%',
+              height: '130%',
               backgroundColor: colors.tertiary,
               borderRadius: 70 * scale,
               position: 'fixed',
@@ -93,7 +94,7 @@ export default function Exposant() {
                   fontWeight: 'bold',
                 }}>
                 <TouchableOpacity
-                  onPress={() => {setItems2(Menu2);setBoolean(true);}}
+                  onPress={() => {setItems2(Menu2);setBoolean('Info');}}
                   >
                   <Text
                     style={{
@@ -105,7 +106,7 @@ export default function Exposant() {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                  onPress={() =>  {filterItem('Guide');setBoolean(false);}}>
+                  onPress={() =>  {filterItem('Guide');setBoolean('guide');}}>
                   <Text
                     style={{
                       fontWeight: 'bold',
@@ -114,7 +115,7 @@ export default function Exposant() {
                     Guide
                   </Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => {filterItem('Plan');setBoolean(false);}}>
+                <TouchableOpacity onPress={() => {filterItem('Plan');setBoolean('plan');}}>
                   <Text
                     style={{
                       fontWeight: 'bold',
@@ -124,7 +125,7 @@ export default function Exposant() {
                   </Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => {filterItem('Reglements');setBoolean(false);}}>
+                <TouchableOpacity onPress={() => {filterItem('Reglements');setBoolean("reg");}}>
                   <Text
                     style={{
                       fontWeight: 'bold',
@@ -135,13 +136,17 @@ export default function Exposant() {
                 </TouchableOpacity>
               </View>
 
+
+
+
+
               {/* infos */}
-              {isBoolean ? (
-                <View
-                  style={{
-                    marginTop: 30,
-                  }}>
-                  {items2.map(elem => {
+
+              {isBoolean == "Info" && 
+
+
+
+                  items2.map(elem => {
                     const {id, titre, description} = elem;
                     return (
                       <View
@@ -170,22 +175,20 @@ export default function Exposant() {
                           {description}
                         </Text>
                       </View>
+                  
+                    
                     );
                   })}
 
-
-
-
-
-
-                   {items.map(elem => {
-                    const {id, titre, description, Image,link} = elem;
-                    return (
+                  {isBoolean == "guide" && 
+                  gui.map(elem=> {
+                    const {des, Title, pdf} = elem;
+                       return (
                       <TouchableOpacity
-                        key={id}
+                        key={elem._id}
                         style={{marginTop: 30, alignItems: 'center'}}
                         onPress={() =>
-                          Linking.openURL(link,
+                          Linking.openURL(pdf,
                           )
                         }>
                         <Image
@@ -196,7 +199,7 @@ export default function Exposant() {
                         borderRadius:10,
 
                           }}
-                          source={image}
+                          source={Image}
                         />
                         <Text
                           style={{
@@ -204,7 +207,7 @@ export default function Exposant() {
                             color: colors.primary,
                             marginBottom: 10,
                           }}>
-                          {titre} nn
+                          {Title}
                         </Text>
 
                         <Text
@@ -213,62 +216,121 @@ export default function Exposant() {
                             paddingTop: 0,
                             color: colors.primary,
                           }}>
-                          {description}
+                          {des}
                         </Text>
                       </TouchableOpacity>
                     );
                   })}
 
 
-                </View>
 
 
-               
-              ) : <View style={{marginBottom: 50}}>
-              {plan.map(elem => {
-                const {id, titre, des, image,pdf} = elem;
-                return (
-                  <TouchableOpacity
-                    key={id}
-                    style={{marginTop: 30, alignItems: 'center'}}
-                    onPress={() =>
-                      Linking.openURL(pdf,
-                      )
-                    }>
-                    <Image
-                      resizeMode="contain"
-                      style={{
-                        width: '100%',
-                        height: 200,
+
+
+                  {isBoolean == "Plan" && 
+
+
+
+                  plan.map(elem=> {
+                    const {des, Title, pdf} = elem;
+                       return (
+                      <TouchableOpacity
+                        key={elem._id}
+                        style={{marginTop: 30, alignItems: 'center'}}
+                        onPress={() =>
+                          Linking.openURL(pdf,
+                          )
+                        }>
+                        <Image
+                          resizeMode="contain"
+                          style={{
+                            width: '100%',
+                            height: 200,
                         borderRadius:10,
-                      }}
-                      source={image}
-                    />
-                    <Text
-                      style={{
-                        fontWeight: 'bold',
-                        color: colors.primary,
-                        marginTop:10,
-                        marginBottom: 10,
-                      }}>
-                        d
-                      {/* {titre}fe */}
-                    </Text>
 
-                    <Text
-                      style={{
-                        padding: 30,
-                        paddingTop: 0,
-                        color: colors.primary,
-                      }}>
-                      {/* {des} */}
-                    </Text>
-                  </TouchableOpacity>
-                );
-              })}
+                          }}
+                          source={Image}
+                        />
+                        <Text
+                          style={{
+                            fontWeight: 'bold',
+                            color: colors.primary,
+                            marginBottom: 10,
+                          }}>
+                          dd{Title}
+                        </Text>
 
-              <View style={{height: 400}}></View>
-            </View>}
+                        <Text
+                          style={{
+                            padding: 30,
+                            paddingTop: 0,
+                            color: colors.primary,
+                          }}>
+                          {des}
+                        </Text>
+                      </TouchableOpacity>
+                    );
+                  })}
+
+
+
+
+                   {isBoolean == "reg" && 
+
+
+
+                  regl.map(elem=> {
+                    const {des, Title, pdf} = elem;
+                       return (
+                      <TouchableOpacity
+                        key={elem._id}
+                        style={{marginTop: 30, alignItems: 'center'}}
+                        onPress={() =>
+                          Linking.openURL(pdf,
+                          )
+                        }>
+                        <Image
+                          resizeMode="contain"
+                          style={{
+                            width: '100%',
+                            height: 200,
+                        borderRadius:10,
+
+                          }}
+                          source={Image}
+                        />
+                        <Text
+                          style={{
+                            fontWeight: 'bold',
+                            color: colors.primary,
+                            marginBottom: 10,
+                          }}>
+                          {Title}
+                        </Text>
+
+                        <Text
+                          style={{
+                            padding: 30,
+                            paddingTop: 0,
+                            color: colors.primary,
+                          }}>
+                          {des}
+                        </Text>
+                      </TouchableOpacity>
+                    );
+                  })}
+
+
+
+                  
+
+
+
+                 
+              
+              
+              
+             
              
             </NativeBaseProvider>
           </View>
@@ -323,3 +385,110 @@ const styles = StyleSheet.create({
     tintColor: colors.error,
   },
 });
+
+
+
+
+
+ 
+                // <View
+                //   style={{
+                //     marginTop: 30,
+                //   }}>
+                  
+
+
+
+
+
+
+//                    {items.map(elem => {
+//                     const {id, titre, description, Image,link} = elem;
+//                     return (
+//                       <TouchableOpacity
+//                         key={id}
+//                         style={{marginTop: 30, alignItems: 'center'}}
+//                         onPress={() =>
+//                           Linking.openURL(link,
+//                           )
+//                         }>
+//                         <Image
+//                           resizeMode="contain"
+//                           style={{
+//                             width: '100%',
+//                             height: 200,
+//                         borderRadius:10,
+
+//                           }}
+//                           source={Image}
+//                         />
+//                         <Text
+//                           style={{
+//                             fontWeight: 'bold',
+//                             color: colors.primary,
+//                             marginBottom: 10,
+//                           }}>
+//                           {titre}
+//                         </Text>
+
+//                         <Text
+//                           style={{
+//                             padding: 30,
+//                             paddingTop: 0,
+//                             color: colors.primary,
+//                           }}>
+//                           {description}
+//                         </Text>
+//                       </TouchableOpacity>
+//                     );
+//                   })}
+
+
+//                 </View>
+
+
+               
+//               ) : <View style={{marginBottom: 50}}>
+//               {plan.map(elem => {
+//                 const {id, titre, des, image,pdf} = elem;
+//                 return (
+//                   <TouchableOpacity
+//                     key={id}
+//                     style={{marginTop: 30, alignItems: 'center'}}
+//                     onPress={() =>
+//                       Linking.openURL(pdf,)
+//                     }>
+//                     <Image
+//                       resizeMode="contain"
+//                       style={{
+//                         width: '100%',
+//                         height: 200,
+//                         borderRadius:10,
+//                       }}
+//                       source={image}
+//                     />
+//                     <Text
+//                       style={{
+//                         fontWeight: 'bold',
+//                         color: colors.primary,
+//                         marginTop:10,
+//                         marginBottom: 10,
+//                       }}>
+//                         d
+//                       {/* {titre}fe */}
+//                     </Text>
+
+//                     <Text
+//                       style={{
+//                         padding: 30,
+//                         paddingTop: 0,
+//                         color: colors.primary,
+//                       }}>
+//                       {/* {des} */}
+//                     </Text>
+//                   </TouchableOpacity>
+//                 );
+//               })}
+
+//               <View style={{height: 400}}></View>
+//             </View>}

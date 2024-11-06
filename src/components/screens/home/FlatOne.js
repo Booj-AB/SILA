@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, FlatList, Animated } from 'react-native';
 import React, { useRef, useEffect } from 'react';
-import image from '../../../assets/Images/ImageMain.jpg';
+import image from '../../../assets/Images/ImageMain.png';
 import Card from './Card';
 import {colors, icons, images} from '../../constants';
 

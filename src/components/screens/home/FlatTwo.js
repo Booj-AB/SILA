@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { View, Text, StyleSheet, FlatList, Image, Animated, Dimensions, TouchableOpacity } from 'react-native';
 import {colors, icons, images} from '../../constants';
 
-import image from '../../../assets/Images/ImageMain.jpg';
+import image from '../../../assets/Images/ImageMain.png';
 
 const data = [
   { id: '1', title: 'One', description: 'Description for item One', image },

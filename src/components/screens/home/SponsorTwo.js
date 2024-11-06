@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
-import imageMain from '../../../assets/Images/ImageMain.jpg';
+import imageMain from '../../../assets/Images/ImageMain.png';
 import {colors, icons, images} from '../../constants';
 
 export default function SponsorTwo() {

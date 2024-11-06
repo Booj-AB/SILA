@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView, Animated, Dimensions } from 'react-native';
-import image from '../../../assets/Images/ImageMain.jpg';
+import image from '../../../assets/Images/ImageMain.png';
 import {colors, icons, images} from '../../constants';
 
 const { width } = Dimensions.get('window');
