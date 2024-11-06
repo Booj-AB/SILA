@@ -32,7 +32,7 @@ export default function Qatar() {
             <View style={styles.contentContainer}>
           
                 <Animated.View style={[styles.imageContainer, { opacity: fadeAnim, transform: [{ scale: scaleAnim }] }]}>
-                    <Image source={image} style={styles.image} />
+                    <Image source={images.qatar3} style={styles.image} />
                 </Animated.View>
 
                 <View style={styles.textContainer}>
