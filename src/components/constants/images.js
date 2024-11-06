@@ -15,6 +15,7 @@ import sponsors3 from '../../assets/bottomBarIcon/sponsors3.jpg';
 import sponsors4 from '../../assets/bottomBarIcon/sponsors4.jpg';
 import sponsors5 from '../../assets/bottomBarIcon/sponsors5.jpg';
 import sponsorOficiel from '../../assets/bottomBarIcon/sponsorOficiel.jpg';
+import qatar3 from '../../assets/bottomBarIcon/qatar3.jpeg';
 
 
 
@@ -39,4 +40,5 @@ export default {
     sponsors3,
     sponsors4,
     sponsors5,
+    qatar3,
 };
