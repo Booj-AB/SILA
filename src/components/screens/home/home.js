@@ -104,7 +104,7 @@ export default function Main() {
               <Text style={styles.subtitle}>La 27ème Edition du Salon International du Livre d’Alger</Text>
               <Text style={styles.date}>Du 06 au 16 Novembre 2024</Text>
               <Text style={styles.location}>Au Palais des Expositions des Pins Maritimes</Text>
-              <Text style={styles.slogan}>اقرأ للننتصر</Text>
+              <Text style={styles.slogan}>نقرأ للننتصر</Text>
             </Animated.View>
             {/* <Animated.View style={[styles.buttonContainer, { transform: [{ translateY: slideAnim }] }]}>
               <TouchableOpacity style={styles.buNov}>
