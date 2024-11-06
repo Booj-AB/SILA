@@ -6,7 +6,7 @@ import {colors, icons, images} from '../../constants';
 export default function SponsorTwo() {
   return (
     <View style={styles.container}>
-     <Text style={styles.title}>Sponsors</Text>
+      <View><Text style={styles.title}>Sponsors</Text></View>
       <View style={styles.partnersContainer}>
         <View style={styles.partnerImageWrapper}>
           <Image resizeMode='contain' source={images.sponsors1} style={styles.partnerImage} />
@@ -15,28 +15,20 @@ export default function SponsorTwo() {
           <Image resizeMode='contain' source={images.sponsors2} style={styles.partnerImage} />
         </View>
         <View style={styles.partnerImageWrapper}>
-<<<<<<< HEAD
-          <Image  resizeMode='contain' source={images.sponsors3} style={styles.partnerImage} />
-=======
           <Image resizeMode='contain' source={images.sponsors3} style={styles.partnerImage} />
->>>>>>> 41aa71ad6224bfa024c13c3af7ba46794cba53cd
         </View>
         <View style={styles.partnerImageWrapper}>
           <Image resizeMode='contain' source={images.sponsors4} style={styles.partnerImage} />
         </View>
         <View style={styles.partnerImageWrapper}>
-<<<<<<< HEAD
-          <Image  resizeMode='contain' source={images.sponsors5} style={styles.partnerImage} />
-=======
           <Image resizeMode='contain' source={images.sponsors5} style={styles.partnerImage} />
->>>>>>> 41aa71ad6224bfa024c13c3af7ba46794cba53cd
         </View>
-     
-      </View>  <View style={{
-        marginBottom:100,
-       }}>
+      
+      </View>  
 
-       </View>
+      <View style={{marginBottom:100 }}> </View>
+
+
     </View>
   );
 }

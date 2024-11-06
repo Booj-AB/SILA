@@ -118,6 +118,8 @@ export default function Ajouter() {
   }
 };
 
+const [urlPdf , setUrlPdf] = useState('')
+
 
   // Function to send data to the server
   const sendRequest = async (endpoint, data, resetFields) => {
@@ -164,7 +166,7 @@ export default function Ajouter() {
       setObject('');
       setType('');
     };
-    sendRequest('AddImageVdPo', { Object : fileName, type: type }, resetFields);
+    sendRequest('AddImageVdPo', { Object : fileName, type: type , des: description , Title:title }, resetFields);
   };
 
   const [url , setUrl] = useState('')
@@ -183,7 +185,7 @@ export default function Ajouter() {
       setFileName('');
       setType('');
     };
-    sendRequest('AddPdf', { Pdf: fileName, type }, resetFields);
+    sendRequest('AddPdf', { Pdf: urlPdf , Image : fileName, type , Title:title , des:description }, resetFields);
   };
 
   // Function to send date
@@ -313,6 +315,20 @@ export default function Ajouter() {
                   onChangeText={setType}
                   style={styles.input}
                 />
+                <TextInput
+                  placeholder='Titel'
+                  value={title}
+                  onChangeText={setTitle}
+                  style={styles.input}
+                />
+
+                <TextInput
+                  placeholder='des'
+                  value={description}
+                  onChangeText={setDescription}
+                  style={styles.input}
+                />
+
                 <TouchableOpacity onPress={pickDocument} style={styles.button}>
                   <Text style={styles.buttonText}>{showImageVd && fileName != '' ?'Image Dowlonde':'Select Image'}</Text>
                 </TouchableOpacity>
@@ -347,6 +363,20 @@ export default function Ajouter() {
                   style={styles.input}
                 />
 
+
+                <TextInput
+                  placeholder='des '
+                  value={description}
+                  onChangeText={setDescription}
+                  style={styles.input}
+                />
+                <TextInput
+                  placeholder='Titel'
+                  value={title}
+                  onChangeText={setTitle}
+                  style={styles.input}
+                />
+
                 <TouchableOpacity onPress={SEND_PODCAST} style={styles.button}>
                   <Text style={styles.buttonText}>Send</Text>
                 </TouchableOpacity>
@@ -377,13 +407,26 @@ export default function Ajouter() {
                 />
                 <TextInput
                   placeholder='Url '
-                  value={type}
-                  onChangeText={setFileName}
+                  value={urlPdf}
+                  onChangeText={setUrlPdf}
                   style={styles.input}
                 />
-                {/* <TouchableOpacity onPress={pickDocument} style={styles.button}>
-                  <Text style={styles.buttonText}>{showPdf && fileName!=''?'pdf dowlonde':'select Pdf'}</Text>
-                </TouchableOpacity> */}
+                <TextInput
+                  placeholder='des '
+                  value={description}
+                  onChangeText={setDescription}
+                  style={styles.input}
+                />
+                <TextInput
+                  placeholder='Titel'
+                  value={title}
+                  onChangeText={setTitle}
+                  style={styles.input}
+                />
+
+                <TouchableOpacity onPress={pickDocument} style={styles.button}>
+                  <Text style={styles.buttonText}>{showPdf && fileName!=''?'Image dowlonde':'select Image'}</Text>
+                </TouchableOpacity>
                 <TouchableOpacity onPress={SEND_PDF} style={styles.button}>
                   <Text style={styles.buttonText}>Send</Text>
                 </TouchableOpacity>
@@ -490,9 +533,9 @@ export default function Ajouter() {
         </View>
       </View>
 
-       <TouchableOpacity  onPress={()=>navigation.navigate('Home')}>
+       {/* <TouchableOpacity  onPress={()=>navigation.navigate('Home')}>
                   <Text style={{color:'red'}}>return</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
 
 
     </View>

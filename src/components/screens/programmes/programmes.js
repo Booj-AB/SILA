@@ -35,13 +35,16 @@ export default function Programmes() {
 
   async function getPdf() {
     const res =  await axios.get(`http://10.0.2.2:9400/api/getPdf`)
-    setCul(res.data.cul)
+    console.log('pdf ' , res.data.cul);
     
+    setCul(res.data.cul)
   }
  
 
   async function getDate() {
        const res =  await axios.get(`http://10.0.2.2:9400/api/getDate`)
+       console.log('date' , res.data.all);
+       
        setDates(res.data.all)
   }
 
@@ -52,7 +55,7 @@ export default function Programmes() {
 
           cul.length > 0  ?
            cul.map(elem=> {
-                    const {des, Title, pdf} = elem;
+                    const {des, Title, pdf , Image:ii} = elem;
                        return (
                       <TouchableOpacity
                         key={elem._id}
@@ -62,6 +65,7 @@ export default function Programmes() {
                           )
                         }>
                         <Image
+                         source={{uri :ii}}
                           resizeMode="contain"
                           style={{
                             width: '100%',
@@ -69,7 +73,7 @@ export default function Programmes() {
                         borderRadius:10,
 
                           }}
-                          source={image}
+                         
                         />
                         <Text
                           style={{
@@ -117,8 +121,8 @@ export default function Programmes() {
 
               return (
                 <View key={`${elem._id}-${index}`} style={styles.dateItem}>
-                  <Text style={styles.dateText}>{elem.date}</Text>
-                  <Text style={styles.dateText}>Du {elem.heure}</Text>
+                  <Text style={styles.dateText}>{elem.Date}</Text>
+                  <Text style={styles.dateText}>Du {elem.Hour}</Text>
                   <Text style={styles.dateDescription}>{elem.des}</Text> {/* Ensure this is wrapped in <Text> */}
                 </View>
               );
@@ -227,7 +231,8 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     marginHorizontal: 20,
     marginBottom: 10,
-    height: 300,
+    // height: 300,
+    flexShrink: 1,
   },
   dateText: {
     fontWeight: 'bold',

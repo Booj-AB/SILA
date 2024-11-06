@@ -65,7 +65,7 @@ export default function Exposants() {
   
   return (
    
-    <SafeAreaView style={{flex: 1, backgroundColor: colors.Quaternary}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: colors.Quaternary , padding:10}}>
       <View style={{flex: 1, backgroundColor: colors.Quaternary}}>
         <Header title="Exposants" />
 
@@ -74,6 +74,7 @@ export default function Exposants() {
             style={{
               width: '100%',
               height: '130%',
+              padding:10,
               backgroundColor: colors.tertiary,
               borderRadius: 70 * scale,
               position: 'fixed',
@@ -186,16 +187,20 @@ export default function Exposants() {
 
                   {isBoolean == "guide" && 
                   gui.map(elem=> {
-                    const {des, Title, pdf} = elem;
+                    const {des, Title, pdf, Image:ii} = elem;
                        return (
                       <TouchableOpacity
                         key={elem._id}
-                        style={{marginTop: 30, alignItems: 'center'}}
+                        style={{marginTop: 30, alignItems: 'center' ,    marginTop: 30 ,
+                      borderBottomWidth: 1,
+                      borderBottomColor: 'black',
+                      borderBottomStyle: 'solid' }}
                         onPress={() =>
                           Linking.openURL(pdf,
                           )
                         }>
                         <Image
+                         source={{uri : ii}}
                           resizeMode="contain"
                           style={{
                             width: '100%',
@@ -203,7 +208,7 @@ export default function Exposants() {
                         borderRadius:10,
 
                           }}
-                          source={image}
+                         
                         />
                         <Text
                           style={{
@@ -211,7 +216,7 @@ export default function Exposants() {
                             color: colors.primary,
                             marginBottom: 10,
                           }}>
-                          {/* {Title} */}
+                          {Title}
                         </Text>
 
                         <Text
@@ -220,7 +225,7 @@ export default function Exposants() {
                             paddingTop: 0,
                             color: colors.primary,
                           }}>
-                          {/* {des} */}
+                          {des}
                         </Text>
                       </TouchableOpacity>
                     );
@@ -236,14 +241,21 @@ export default function Exposants() {
 
 
                   plan.map(elem=> {
-                    const {des, Title, pdf} = elem;
+                    const {des, Title, pdf , Image:ii} = elem;
                        return (
                       <TouchableOpacity
                         key={elem._id}
-                        style={{marginTop: 30, alignItems: 'center'}}
-                        onPress={() =>Linking.openURL('https://drive.google.com/file/d/1SDl_QqGC2usubRxl78xq4q1-M7N4KE_h/view?usp=sharing').catch((err) => console.error("Failed to open URL: ", err))
+                        style={{marginTop: 30, alignItems: 'center' , 
+                          marginTop: 30 ,
+                      borderBottomWidth: 1,
+                      borderBottomColor: 'black',
+                      borderBottomStyle: 'solid'
+
+                        }}
+                        onPress={() =>Linking.openURL(pdf).catch((err) => console.error("Failed to open URL: ", err))
                         }>
                         <Image
+                        source={{uri : ii}}
                           resizeMode="contain"
                           style={{
                             width: '100%',
@@ -251,7 +263,7 @@ export default function Exposants() {
                         borderRadius:10,
 
                           }}
-                          source={image}
+                            
                         />
                         <Text
                           style={{
@@ -260,7 +272,7 @@ export default function Exposants() {
                             marginBottom: 10,
                             margin:10
                           }}>
-                          {/* {Title} */}
+                          {Title}
                         </Text>
 
                         <Text
@@ -270,7 +282,7 @@ export default function Exposants() {
                             color: colors.primary,
                             marginTop:20
                           }}>
-                          {/* {des}  */}
+                          {des} 
                         </Text>
                       </TouchableOpacity>
                     );
@@ -284,11 +296,14 @@ export default function Exposants() {
 
 
                   regl.map(elem=> {
-                    const {des, Title, pdf} = elem;
+                    const {des, Title, pdf , Image:ii} = elem;
                        return (
                       <TouchableOpacity
                         key={elem._id}
-                        style={{marginTop: 30, alignItems: 'center'}}
+                        style={{marginTop: 30, alignItems: 'center' ,   marginTop: 30 ,
+                      borderBottomWidth: 1,
+                      borderBottomColor: 'black',
+                      borderBottomStyle: 'solid'}}
                         onPress={() =>
                           Linking.openURL(pdf,
                           )
@@ -301,7 +316,7 @@ export default function Exposants() {
                         borderRadius:10,
 
                           }}
-                         source={image}
+                          source={{uri : ii}}
                         />
                         <Text
                           style={{
@@ -309,7 +324,7 @@ export default function Exposants() {
                             color: colors.primary,
                             marginBottom: 10,
                           }}>
-                          {/* {Title} */}
+                          {Title}
                         </Text>
 
                         <Text
@@ -318,7 +333,7 @@ export default function Exposants() {
                             paddingTop: 0,
                             color: colors.primary,
                           }}>
-                          {/* {des} */}
+                          {des}
                         </Text>
                       </TouchableOpacity>
                     );

@@ -60,7 +60,7 @@ export default function FlatOne({arr}) {
                     renderItem={({ item }) => (
                         <View style={styles.cardContainer}>
                             <Card
-                                titel={item.titel}
+                                titel={item.Title}
                                 image={item.Image}
                                 des={item.des}
                                 date={item.date}

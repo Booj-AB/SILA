@@ -40,7 +40,7 @@ export default function Presse() {
         setPo(res.data.Po)
         setTous(res.data.all)
         
-        console.log("All" ,res.data );
+        console.log("All =>" ,res.data );
         
         
      }
@@ -101,7 +101,12 @@ export default function Presse() {
                   const { _id, Title, Object , des , type} = elem;
 
                   return (
-                    <View key={_id} style={{ marginTop: 30 }}>
+                    <View key={_id} style={{ marginTop: 30 ,
+                      borderBottomWidth: 1,
+                      borderBottomColor: 'black',
+                      borderBottomStyle: 'solid'
+
+                      }}>
                       <View
                         style={{
                           
@@ -115,14 +120,18 @@ export default function Presse() {
                               height: 200,
                               borderRadius: 10,
                             }}
-                            source={Object}
+                            source={{uri : Object}}
                           />}
 
-                                <YoutubePlayer
+                            {type != 'Image' && type != 'podcast' && 
+                             <YoutubePlayer
                                   height={300}
                                   play={true}
                                   videoId={Object}
                               />
+                            }
+
+
                           <Text
                             style={{
                               fontWeight: 'bold',
@@ -162,11 +171,17 @@ export default function Presse() {
 
 
                 <View>
-                {ima.map((elem) => {
+                { sel == 'Image' && ima.length >0 &&
+                ima.map((elem) => {
                   const { _id, Title, Object , des , type} = elem;
 
                   return (
-                    <View key={_id} style={{ marginTop: 30 }}>
+                    <View key={_id} style={{ marginTop: 30 ,
+                      borderBottomWidth: 1,
+                      borderBottomColor: 'black',
+                      borderBottomStyle: 'solid'
+
+                      }}>
                       <View
                         style={{
                           
@@ -176,14 +191,14 @@ export default function Presse() {
 
 
                         <View>
-                           {type == 'Image' && <Image
+                           <Image
                             style={{
                               width: 300,
                               height: 200,
                               borderRadius: 10,
                             }}
-                            source={Object}
-                          />}
+                            source={{uri : Object}}
+                          />
 
                 
                           <Text
@@ -224,11 +239,16 @@ export default function Presse() {
 
 
               <View>
-                {vd.map((elem) => {
+                { sel == 'vd' && vd.length >0 && vd.map((elem) => {
                   const { _id, Title, Object , des , type} = elem;
 
                   return (
-                    <View key={_id} style={{ marginTop: 30 }}>
+                    <View key={_id} style={{ marginTop: 30 ,
+                      borderBottomWidth: 1,
+                      borderBottomColor: 'black',
+                      borderBottomStyle: 'solid'
+
+                      }}>
                       <View
                         style={{
                           
@@ -283,11 +303,16 @@ export default function Presse() {
 
 
               <View>
-                {po.map((elem) => {
+                {sel == 'po' && po.map((elem) => {
                   const { _id, Title, Object , des , type} = elem;
 
                   return (
-                    <View key={_id} style={{ marginTop: 30 }}>
+                    <View key={_id} style={{ marginTop: 30 ,
+                      borderBottomWidth: 1,
+                      borderBottomColor: 'black',
+                      borderBottomStyle: 'solid'
+
+                      }}>
                       <View
                         style={{
                           

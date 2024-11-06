@@ -2,11 +2,13 @@ import React, { useRef } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView, Animated, Dimensions } from 'react-native';
 import image from '../../../assets/Images/ImageMain.png';
 import {colors, icons, images} from '../../constants';
+import { useNavigation } from '@react-navigation/native';
 
 const { width } = Dimensions.get('window');
 
 export default function Qatar() {
     // Animation values
+    const navigation = useNavigation()
     const fadeAnim = useRef(new Animated.Value(0)).current;
     const scaleAnim = useRef(new Animated.Value(0.8)).current; 
 
@@ -26,6 +28,13 @@ export default function Qatar() {
         ]).start();
     }, []);
 
+    const data = {
+        titrel :'Pays à l’honneur' ,
+        image : images.qatar3 , 
+        Bol : true ,
+        date : 'Qatar'
+    }
+
     return (
         <ScrollView contentContainerStyle={styles.container}>
             <Text style={styles.title}>Pays à l’honneur</Text>
@@ -43,7 +52,7 @@ export default function Qatar() {
                         molestiae amet? Voluptates quaerat quidem architecto aut dignissimos pariatur nulla
                         porro quo consequuntur sunt? Id corrupti adipisci consequuntur vitae!
                     </Text>
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity style={styles.button} onPress={()=>navigation.navigate('Details', { data })}>
                         <Text style={styles.buttonText}>Lire Plus</Text>
                     </TouchableOpacity>
                 </View>

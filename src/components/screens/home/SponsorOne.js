@@ -13,16 +13,6 @@ export default function SponsorOne() {
         </View>
         <View style={styles.partnerImageWrapper}>
           <Image resizeMode='contain' source={images.sponsorsOf2} style={styles.partnerImage} />
-<<<<<<< HEAD
-        </View>
-        <View  style={styles.partnerImageWrapper}>
-          <Image resizeMode='contain' source={images.sponsorsOf3} style={styles.partnerImage} />
-        </View>
-        <View style={styles.partnerImageWrapper}>
-          <Image resizeMode='contain' source={images.sponsorsOf4} style={styles.partnerImage} />
-        </View>
-        <View style={styles.partnerImageWrapper}>
-=======
         </View>
         <View style={styles.partnerImageWrapper}>
           <Image resizeMode='contain' source={images.sponsorsOf3} style={styles.partnerImage} />
@@ -31,7 +21,6 @@ export default function SponsorOne() {
           <Image resizeMode='contain' source={images.sponsorsOf4} style={styles.partnerImage} />
         </View>
         <View style={styles.partnerImageWrapper}>
->>>>>>> 41aa71ad6224bfa024c13c3af7ba46794cba53cd
           <Image resizeMode='contain' source={images.sponsorsOf5} style={styles.partnerImage} />
         </View>
       </View>

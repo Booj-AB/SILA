@@ -1,5 +1,8 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+
+
+
 // import { useNavigation } from '@react-navigation/native';
 import { colors, icons, images } from '../../constants';
 import Video from 'react-native-video'
@@ -8,17 +11,23 @@ import { useNavigation } from '@react-navigation/native';
 
 const Card = ({ titel, image, des, date }) => {
   // const navigation = useNavigation();
+  console.log('***' , titel);
+  
   const data  ={
     titel , image , des , date
   }
+
+
+   
   const navigation = useNavigation()
   return (
     <View style={styles.card}>
-      
-       <Image 
-       style={{width:'100%' , height:200}}
-        source={Ima} 
-       />
+       
+      <Image
+      style={{ width: '100%', height: 200 }}
+      source={{ uri: image }}
+   />
+
 
      
 
