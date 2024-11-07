@@ -3,7 +3,7 @@ import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView, Animated, 
 import image from '../../../assets/Images/ImageMain.png';
 import {colors, icons, images} from '../../constants';
 import { useNavigation } from '@react-navigation/native';
-
+import qata from '../../../assets/Images/qata.jpg'
 const { width } = Dimensions.get('window');
 
 export default function Qatar() {
@@ -28,11 +28,14 @@ export default function Qatar() {
         ]).start();
     }, []);
 
+
+
     const data = {
-        titrel :'Pays à l’honneur' ,
-        image : images.qatar3 , 
+        titel :'Pays à l’honneur' ,
+        image : qata , 
         Bol : true ,
-        date : 'Qatar'
+        date : 'Qatar',
+        isDes : true
     }
 
     return (
@@ -41,16 +44,14 @@ export default function Qatar() {
             <View style={styles.contentContainer}>
           
                 <Animated.View style={[styles.imageContainer, { opacity: fadeAnim, transform: [{ scale: scaleAnim }] }]}>
-                    <Image source={images.qatar3} style={styles.image} />
+                    <Image source={qata} style={styles.image} />
                 </Animated.View>
 
                 <View style={styles.textContainer}>
                     <Text style={styles.countryTitle}>Qatar</Text>
                     <Text style={styles.subtitle}>Le Qatar, Pays à l’honneur</Text>
                     <Text style={styles.description}>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis voluptatem illum
-                        molestiae amet? Voluptates quaerat quidem architecto aut dignissimos pariatur nulla
-                        porro quo consequuntur sunt? Id corrupti adipisci consequuntur vitae!
+                      Liens émotionnels et humains entre l'Algérie et le Qatar : une présence qui renforce des relations de respect mutuel. Le Salon International du Livre d'Alger 2024 est honoré d'accueillir l'État du Qatar en tant qu'invité d'honneur, en reconnaissance de la profondeur des relations algéro-qataries, basées sur un respect mutuel qui dure depuis des décennies. Le Qatar a soutenu la révolution algérienne, tant matériellement que moralement, à travers des campagnes de dons et en fournissant des moyens...
                     </Text>
                     <TouchableOpacity style={styles.button} onPress={()=>navigation.navigate('Details', { data })}>
                         <Text style={styles.buttonText}>Lire Plus</Text>

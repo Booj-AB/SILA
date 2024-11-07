@@ -7,6 +7,7 @@ import { NativeBaseProvider } from 'native-base';
 import { colors, icons } from '../../constants';
 import { Dimensions } from 'react-native';
 import axios from 'axios';
+
 import { debounce } from 'lodash'; // Import lodash for debouncing
 
 const { width } = Dimensions.get('window');
@@ -44,7 +45,7 @@ export default function Ouvrage() {
     async function getBooks(page) {
         setLoading(true);
         try {
-            const res = await axios.get(`http://10.0.2.2:9400/api/getBook?page=${page}&limit=${PAGE_LIMIT}`);
+            const res = await axios.get(`http://102.220.30.73/api/getBook?page=${page}&limit=${PAGE_LIMIT}`);
             console.log('Full Response:', res); // Log the entire response object
             console.log('Response Data:', res.data); // Log the data part specifically
             setBooks(prevBooks => [...prevBooks, ...res.data.books]); // Append new books to existing list

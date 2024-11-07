@@ -42,7 +42,7 @@ export default function Main() {
 
 
   async function getSpoandPar() {
-      const res = await axios.get('http://10.0.2.2:9400/api/getParAndSponsor')
+      const res = await axios.get('http://102.220.30.73/api/getParAndSponsor')
 
       setPar(res.data.Par)
       setSpo(res.data.Spo)
@@ -51,13 +51,13 @@ export default function Main() {
   }
 
   async function getMot() {
-      const res = await axios.get('http://10.0.2.2:9400/api/getMots')
+      const res = await axios.get('http://102.220.30.73/api/getMots')
       setMot(res.data.all)
 
   }
 
   async function getNew() {
-      const res = await axios.get('http://10.0.2.2:9400/api/getNew')
+      const res = await axios.get('http://102.220.30.73/api/getNew')
       setNewP(res.data.all)
         
   }

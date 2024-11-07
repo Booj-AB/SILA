@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { Button } from 'native-base';
+import { Button, } from 'native-base';
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, TextInput, StyleSheet, Alert } from 'react-native';
+import {  ScrollView,View, Text, TouchableOpacity, TextInput, StyleSheet, Alert } from 'react-native';
 import DocumentPicker from 'react-native-document-picker';
 import RNFS from 'react-native-fs'; // Import the react-native-fs library
 import ImageResizer from 'react-native-image-resizer'; // Import the image resizer
@@ -26,7 +26,7 @@ export default function Ajouter() {
     async function update() {
       console.log(arr);
       
-      const res = await axios.post('http://10.0.2.2:9400/api/UpdatePro',{
+      const res = await axios.post('http://102.220.30.73/api/UpdatePro',{
         sur:arr.sur , pays:arr.pays , paysAfr:arr.paysAf , vis:arr.vist  , titres:arr.tit , expo:arr.expo
       })
       if(res.data.code == '01'){
@@ -37,7 +37,7 @@ export default function Ajouter() {
     }  
 
   async function getPro() {
-      const res = await axios.get('http://10.0.2.2:9400/api/getPro')
+      const res = await axios.get('http://102.220.30.73/api/getPro')
       setArr({
          vist :res.data.pro.visit, 
          tit: res.data.pro.titer  ,
@@ -128,7 +128,7 @@ const [urlPdf , setUrlPdf] = useState('')
     console.log(endpoint);
     
     try {
-      const res = await axios.post(`http://10.0.2.2:9400/api/${endpoint}`, data);
+      const res = await axios.post(`http://102.220.30.73/api/${endpoint}`, data);
       console.log(res);
       if (res.data.code === '01') {
         resetFields();
@@ -213,7 +213,7 @@ const [urlPdf , setUrlPdf] = useState('')
       </View>
 
       <View style={styles.mainContainer}>
-        <View style={styles.box}>
+        <ScrollView style={styles.box}>
           {/* New Section */}
           <View style={styles.section}>
             <TouchableOpacity onPress={() => {
@@ -518,7 +518,7 @@ const [urlPdf , setUrlPdf] = useState('')
                 />
 
 
-                <TouchableOpacity onPress={update}>
+                <TouchableOpacity style={{width:'100%', padding:10 , backgroundColor:'green'}} onPress={update}>
                    <Text>Updet</Text>
                 </TouchableOpacity>
 
@@ -530,12 +530,12 @@ const [urlPdf , setUrlPdf] = useState('')
 
         
           
-        </View>
+        </ScrollView>
       </View>
 
-       {/* <TouchableOpacity  onPress={()=>navigation.navigate('Home')}>
+       <TouchableOpacity  onPress={()=>navigation.navigate('Home')}>
                   <Text style={{color:'red'}}>return</Text>
-                </TouchableOpacity> */}
+                </TouchableOpacity>
 
 
     </View>

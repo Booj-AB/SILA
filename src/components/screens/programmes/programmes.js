@@ -34,7 +34,7 @@ export default function Programmes() {
 
 
   async function getPdf() {
-    const res =  await axios.get(`http://10.0.2.2:9400/api/getPdf`)
+    const res =  await axios.get(`http://102.220.30.73/api/getPdf`)
     console.log('pdf ' , res.data.cul);
     
     setCul(res.data.cul)
@@ -42,7 +42,7 @@ export default function Programmes() {
  
 
   async function getDate() {
-       const res =  await axios.get(`http://10.0.2.2:9400/api/getDate`)
+       const res =  await axios.get(`http://102.220.30.73/api/getDate`)
        console.log('date' , res.data.all);
        
        setDates(res.data.all)

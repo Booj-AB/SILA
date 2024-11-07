@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   },
   loadingBar: {
     height: 20,
-    backgroundColor: 'blue',
+    backgroundColor: 'rgb(1, 150, 150)',
     borderRadius: 10,
     position: 'relative',
     overflow: 'hidden',

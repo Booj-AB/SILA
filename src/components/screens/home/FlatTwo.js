@@ -52,6 +52,21 @@ const FlatTwo = (arrMo) => {
   //   };
   // }, []);
 
+  function handel(i) {
+    console.log(i);
+    console.log(data1[i]);
+    
+    
+      const data = {
+         titel :data1[i].Title , 
+         image: data1[i].Image,
+         Bol : false,
+         des : data1[i].des
+      }
+      navigation.navigate('Details', { data })
+  }
+ 
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Mots</Text>
@@ -64,12 +79,13 @@ const FlatTwo = (arrMo) => {
         horizontal
         pagingEnabled
         showsHorizontalScrollIndicator={false}
-        renderItem={({ item }) => (
+        renderItem={({ item , index }) => (
           <View style={styles.cardContainer}>
             <Image source={{uri : item.Image}} style={styles.image} />
             <Text style={styles.cardTitle}>{item.Title}</Text>
-            <Text style={styles.description}>{item.des}</Text>
-                <TouchableOpacity style={styles.button}>
+            <Text style={styles.description}>{item.des.length > 190 ?`${item.des.slice(0,190)}....`:item.des}</Text>
+
+                <TouchableOpacity style={styles.button}  onPress={()=>handel(index)}>
                         <Text style={styles.buttonText}>Lire Plus</Text>
                     </TouchableOpacity>
           </View>
@@ -96,6 +112,7 @@ const styles = StyleSheet.create({
   },
   cardContainer: {
     width: Dimensions.get('window').width * 0.8,
+    height:520,
     marginHorizontal: 10,
     borderRadius: 10,
     backgroundColor: '#fff',

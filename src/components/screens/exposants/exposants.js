@@ -52,7 +52,7 @@ export default function Exposants() {
    
 
   async function getPdf() {
-    const res =  await axios.get(`http://10.0.2.2:9400/api/getPdf`)
+    const res =  await axios.get(`http://102.220.30.73/api/getPdf`)
     console.log('res' , res.data.plan);
     setRegl(res.data.regl)
     setPlan(res.data.plan)

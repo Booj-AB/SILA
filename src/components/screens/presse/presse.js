@@ -34,7 +34,9 @@ export default function Presse() {
      },[])
 
      async function getImagesVd() {
-        const res = await axios.get(`http://10.0.2.2:9400/api/getImageVdPo`);
+        const res = await axios.get(`http://102.220.30.73/api/getImageVdPo`);
+        console.log('es',res);
+        
         setVd(res.data.Vd)
         setIma(res.data.Im)
         setPo(res.data.Po)
@@ -90,6 +92,7 @@ export default function Presse() {
                   <Text style={{ fontWeight: 'bold', color: colors.white }}>Photos</Text>
                  </TouchableOpacity>
               </View>
+
 
 
 

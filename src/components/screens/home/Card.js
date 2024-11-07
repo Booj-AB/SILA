@@ -37,7 +37,7 @@ const Card = ({ titel, image, des, date }) => {
 
       <Text style={styles.title}>{titel} ee</Text>
       <Text style={styles.date}>{date}</Text>
-      <Text style={styles.description}>{des}</Text>
+      <Text style={styles.description}>{ des.length>90 ?`${des.slice(0,100)}....`:des}</Text>
 
       <View style={styles.container}>
         <TouchableOpacity style={styles.button} onPress={()=>navigation.navigate('Details', { data })}>
@@ -51,6 +51,7 @@ const Card = ({ titel, image, des, date }) => {
 const styles = StyleSheet.create({
   card: {
     width: '100%', 
+    height:450,
     marginVertical: 5, 
     backgroundColor: 'rgb(1, 150, 150)', 
     borderRadius: 8,

@@ -14,7 +14,7 @@ const PartyPro = () => {
   const [arr, setArr] = useState([])
 
   async function getPro() {
-     const res = await axios.get(`http://10.0.2.2:9400/api/getPro`);
+     const res = await axios.get(`http://102.220.30.73/api/getPro`);
      console.log('UUU' , res.data);
      setArr([
         res.data.pro.surface , 
@@ -35,7 +35,7 @@ const PartyPro = () => {
           <View key={index} style={styles.card}>
             <ProCom
               size={95}
-              strokeWidth={10}
+              strokeWidth={3}
               progress={progress} // Use static progress value here
               color={colors.Quaternary}
             />

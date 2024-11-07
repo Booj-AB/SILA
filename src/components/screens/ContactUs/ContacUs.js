@@ -61,7 +61,7 @@ const ContactUs = () => {
     // return
 
     try {
-      const res =  await axios.post(`http://10.0.2.2:9400/api/addMessage` , data)
+      const res =  await axios.post(`http://102.220.30.73/api/addMessage` , data)
       console.log(res);
       
       if (res.data.code == '001') {
