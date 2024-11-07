@@ -12,7 +12,7 @@ import {
   Programmes,
 } from './src/components/screens';
 import { colors, icons } from './src/components/constants';
-import Deatils from './src/components/screens/home/Deatils';
+import Deatils from './src/components/screens/Deatils/Deatils';
 import ContacUs from './src/components/screens/ContactUs/ContacUs';
 import Ajouter from './src/components/screens/Ajouter/Ajouter';
 

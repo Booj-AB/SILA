@@ -1,10 +1,12 @@
 import { StyleSheet, Text, View, FlatList, Animated } from 'react-native';
 import React, { useRef, useEffect } from 'react';
-import image from '../../../assets/Images/ImageMain.jpg';
+import image from '../../../assets/Images/ImageMain.png';
 import Card from './Card';
 import {colors, icons, images} from '../../constants';
 
-export default function FlatOne() {
+export default function FlatOne({arr}) {
+    console.log('Ar' , arr.length > 0 && arr[0].Image);
+    
     const sections = [
         {
             id: '1',
@@ -53,13 +55,13 @@ export default function FlatOne() {
             </Text>
             <Animated.View style={{ opacity: fadeAnim }}>
                 <FlatList
-                    data={sections}
-                    keyExtractor={(item) => item.id}
+                    data={arr}
+                    keyExtractor={(item) => item._id}
                     renderItem={({ item }) => (
                         <View style={styles.cardContainer}>
                             <Card
-                                titel={item.titel}
-                                image={item.image}
+                                titel={item.Title}
+                                image={item.Image}
                                 des={item.des}
                                 date={item.date}
                             />

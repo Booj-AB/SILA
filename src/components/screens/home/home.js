@@ -11,7 +11,7 @@ import FlatOne from './FlatOne';
 import imageMain from '../../../assets/Images/ImageMain.png'
 import Header from '../../header';
 import {colors, icons, images} from '../../constants';
-
+import axios from 'axios'
 // Get screen dimensions
 const { width, height } = Dimensions.get('window');
 
@@ -23,6 +23,44 @@ export default function Main() {
   const slideAnim = useRef(new Animated.Value(100)).current;
   const [showButton, setShowButton] = useState(false);
   const scrollViewRef = useRef(null);
+
+      const [par, setPar] = useState([]);
+      const [spo, setSpo] = useState([]);
+      const [newP, setNewP] = useState([]);
+      const [mot, setMot] = useState([]);
+
+
+
+
+  useEffect(()=>{
+     getSpoandPar()
+     getMot()
+     getNew()
+     
+     
+  },[])
+
+
+  async function getSpoandPar() {
+      const res = await axios.get('http://102.220.30.73/api/getParAndSponsor')
+
+      setPar(res.data.Par)
+      setSpo(res.data.Spo)
+
+      
+  }
+
+  async function getMot() {
+      const res = await axios.get('http://102.220.30.73/api/getMots')
+      setMot(res.data.all)
+
+  }
+
+  async function getNew() {
+      const res = await axios.get('http://102.220.30.73/api/getNew')
+      setNewP(res.data.all)
+        
+  }
 
   useEffect(() => {
     Animated.timing(fadeAnim, {
@@ -66,7 +104,7 @@ export default function Main() {
               <Text style={styles.subtitle}>La 27ème Edition du Salon International du Livre d’Alger</Text>
               <Text style={styles.date}>Du 06 au 16 Novembre 2024</Text>
               <Text style={styles.location}>Au Palais des Expositions des Pins Maritimes</Text>
-              <Text style={styles.slogan}>اقرأ للننتصر</Text>
+              <Text style={styles.slogan}>نقرأ للننتصر</Text>
             </Animated.View>
             {/* <Animated.View style={[styles.buttonContainer, { transform: [{ translateY: slideAnim }] }]}>
               <TouchableOpacity style={styles.buNov}>
@@ -81,12 +119,12 @@ export default function Main() {
       ),
     },
     { key: '3', renderItem: () => <PartyPro /> },
-    { key: '4', renderItem: () => <FlatOne /> },
+    { key: '4', renderItem: () => <FlatOne arr={newP} /> },
     { key: '5', renderItem: () => <Qatar /> },
-    { key: '6', renderItem: () => <FlatTwo /> },
-    { key: '7', renderItem: () => <Parnt /> },
-    { key: '8', renderItem: () => <SponsorOne /> },
-    { key: '9', renderItem: () => <SponsorTwo /> },
+    { key: '6', renderItem: () => <FlatTwo arrMo={mot} /> },
+    { key: '7', renderItem: () => <Parnt arr={par} /> },
+    { key: '8', renderItem: () => <SponsorOne arr={spo} /> },
+    { key: '9', renderItem: () => <SponsorTwo  /> },
   ];
 
   return (

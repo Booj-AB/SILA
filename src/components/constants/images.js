@@ -1,20 +1,22 @@
-const ministere = require('../../assets/bottomBarIcon/logo.png');
-const sila = require('../../assets/bottomBarIcon/sila.png');
-const partenaire = require('../../assets/bottomBarIcon/partenaire.png');
-const partenaire1 = require('../../assets/bottomBarIcon/partenaire1.jpg');
-const partenaire2 = require('../../assets/bottomBarIcon/partenaire2.jpg');
-const sponsor = require('../../assets/bottomBarIcon/sponsor.png');
-const sponsorOf1 = require('../../assets/bottomBarIcon/sponsorOf1.jpg');
-const sponsorOf2 = require('../../assets/bottomBarIcon/sponsorOf2.jpg');
-const sponsorOf3 = require('../../assets/bottomBarIcon/sponsorOf3.jpg');
-const sponsorOf4 = require('../../assets/bottomBarIcon/sponsorOf4.jpg');
-const sponsorOf5 = require('../../assets/bottomBarIcon/sponsorOf5.jpg');
-const sponsors1 = require('../../assets/bottomBarIcon/sponsors1.jpg');
-const sponsors2 = require('../../assets/bottomBarIcon/sponsors2.jpg');
-const sponsors3 = require('../../assets/bottomBarIcon/sponsors3.jpg');
-const sponsors4 = require('../../assets/bottomBarIcon/sponsors4.jpg');
-const sponsors5 = require('../../assets/bottomBarIcon/sponsors5.jpg');
-const sponsorOficiel = require('../../assets/bottomBarIcon/sponsorOficiel.jpg');
+import ministere from '../../assets/bottomBarIcon/logo.png';
+import sila from '../../assets/bottomBarIcon/sila.png';
+import partenaire from '../../assets/bottomBarIcon/partenaire.png';
+import partenaire1 from '../../assets/bottomBarIcon/partenaire1.jpg';
+import partenaire2 from '../../assets/bottomBarIcon/partenaire2.jpg';
+import sponsor from '../../assets/bottomBarIcon/sponsor.png';
+ import sponsorsOf1 from '../../assets/bottomBarIcon/sponsorsOf1.jpg';
+import sponsorsOf2 from '../../assets/bottomBarIcon/sponsorsOf2.png';
+import sponsorsOf3 from '../../assets/bottomBarIcon/sponsorsOf3.jpg';
+import sponsorsOf4 from '../../assets/bottomBarIcon/sponsorsOf4.jpg';
+import sponsorsOf5 from '../../assets/bottomBarIcon/sponsorsOf5.jpg';
+import sponsors1 from '../../assets/bottomBarIcon/sponsors1.jpg';
+import sponsors2 from '../../assets/bottomBarIcon/sponsors2.jpg';
+import sponsors3 from '../../assets/bottomBarIcon/sponsors3.jpg';
+import sponsors4 from '../../assets/bottomBarIcon/sponsors4.jpg';
+import sponsors5 from '../../assets/bottomBarIcon/sponsors5.jpg';
+import sponsorOficiel from '../../assets/bottomBarIcon/sponsorOficiel.jpg';
+import qatar3 from '../../assets/bottomBarIcon/qatar3.jpeg';
+
 
 
 
@@ -28,14 +30,15 @@ export default {
     partenaire2,
     sponsor,
     sponsorOficiel,
-    sponsorOf1,
-    sponsorOf2,
-    sponsorOf3,
-    sponsorOf4,
-    sponsorOf5,
+    sponsorsOf1,
+    sponsorsOf2,
+    sponsorsOf3,
+    sponsorsOf4,
+    sponsorsOf5,
     sponsors1,
     sponsors2,
     sponsors3,
     sponsors4,
     sponsors5,
+    qatar3,
 };

@@ -1,21 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import ProCom from '../../screens/home/ProCom'
 import {colors, icons, images} from '../../constants';
+import axios from 'axios';
 
 const PartyPro = () => {
-  // Define the static progress values
-  const progressValues = [90, 10, 80, 70, 10, 98];
+
+
+  useEffect(()=>{
+    getPro()
+  },[])
+
+  const [arr, setArr] = useState([])
+
+  async function getPro() {
+     const res = await axios.get(`http://102.220.30.73/api/getPro`);
+     console.log('UUU' , res.data);
+     setArr([
+        res.data.pro.surface , 
+        res.data.pro.pays ,
+        res.data.pro.paysAfrican ,
+         res.data.pro.expo,
+        res.data.pro.titer ,
+        res.data.pro.visit,
+     ])
+ 
+  }
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Le SILA en Bref</Text>
       <View style={styles.innerContainer}>
-        {progressValues.map((progress, index) => (
+        {arr.map((progress, index) => (
           <View key={index} style={styles.card}>
             <ProCom
               size={95}
-              strokeWidth={10}
+              strokeWidth={3}
               progress={progress} // Use static progress value here
               color={colors.Quaternary}
             />
@@ -59,6 +79,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     flexWrap: 'wrap',
     width: '100%',
+    marginRight:20
   },
   card: {
     alignItems: 'center',

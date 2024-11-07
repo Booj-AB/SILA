@@ -38,7 +38,7 @@ const ProCom = ({ size = 100, strokeWidth = 10, progress = 50, color = '#4caf50'
         fontSize={20} // Use numeric value for fontSize
         fill={color}
       >
-        {`${progress}%`}
+        {`${progress}`}
       </Text>
     </Svg>
   );

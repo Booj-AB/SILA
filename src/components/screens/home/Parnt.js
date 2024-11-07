@@ -1,23 +1,23 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
-import imageMain from '../../../assets/Images/ImageMain.jpg';
+import imageMain from '../../../assets/Images/ImageMain.png';
 import {colors, icons, images} from '../../constants';
 
-export default function Parnt() {
+export default function Parnt(arr) {
   return (
     <View style={styles.container}>
      <Text style={styles.title}>Nos Partenaires</Text>
       <View style={styles.partnersContainer}>
         <View style={styles.partnerImageWrapper}>
-          <Image source={images.partenaire1} style={styles.partnerImage} />
+          <Image resizeMode='contain' source={images.partenaire1} style={styles.partnerImage} />
         </View>
         <View style={styles.partnerImageWrapper}>
-          <Image source={images.partenaire2} style={styles.partnerImage} />
+          <Image resizeMode='contain' source={images.partenaire2} style={styles.partnerImage} />
         </View>
 
         </View>
       </View>
-    </View>
+
   );
 }
 

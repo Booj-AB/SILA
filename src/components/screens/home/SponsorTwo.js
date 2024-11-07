@@ -1,30 +1,34 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
-import imageMain from '../../../assets/Images/ImageMain.jpg';
+import imageMain from '../../../assets/Images/ImageMain.png';
 import {colors, icons, images} from '../../constants';
 
 export default function SponsorTwo() {
   return (
     <View style={styles.container}>
-     <Text style={styles.title}>Sponsors</Text>
+      <View><Text style={styles.title}>Sponsors</Text></View>
       <View style={styles.partnersContainer}>
         <View style={styles.partnerImageWrapper}>
-          <Image source={images.sponsors1} style={styles.partnerImage} />
+          <Image resizeMode='contain' source={images.sponsors1} style={styles.partnerImage} />
         </View>
         <View style={styles.partnerImageWrapper}>
-          <Image source={images.sponsors2} style={styles.partnerImage} />
+          <Image resizeMode='contain' source={images.sponsors2} style={styles.partnerImage} />
         </View>
         <View style={styles.partnerImageWrapper}>
-          <Image source={images.sponsors3} style={styles.partnerImage} />
+          <Image resizeMode='contain' source={images.sponsors3} style={styles.partnerImage} />
         </View>
         <View style={styles.partnerImageWrapper}>
-          <Image source={images.sponsors4} style={styles.partnerImage} />
+          <Image resizeMode='contain' source={images.sponsors4} style={styles.partnerImage} />
         </View>
         <View style={styles.partnerImageWrapper}>
-          <Image source={images.sponsors5} style={styles.partnerImage} />
+          <Image resizeMode='contain' source={images.sponsors5} style={styles.partnerImage} />
         </View>
-       
-      </View>
+      
+      </View>  
+
+      <View style={{marginBottom:100 }}> </View>
+
+
     </View>
   );
 }
@@ -55,6 +59,5 @@ const styles = StyleSheet.create({
         fontSize: 32,
         marginVertical: 20,
         color:colors.primary,
-        fontWeight:'bold'
-    },
+        fontWeight:'bold'},
 });

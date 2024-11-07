@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import Header from '../../header';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { View, Text, Image, ScrollView, TouchableOpacity, Linking, StyleSheet } from 'react-native';
@@ -8,6 +8,8 @@ import { Dimensions } from 'react-native';
 import plans from '../../../assets/bottomBarIcon/plan.jpg';
 import programme from '../../../assets/bottomBarIcon/programmes.png';
 import Menu from './menu';
+import axios from 'axios';
+import image from '../../../assets/Images/ImageMain.png'
 
 const { width } = Dimensions.get('window');
 const scale = width / 420;
@@ -17,10 +19,83 @@ export default function Programmes() {
 
   const items = useMemo(() => Menu, []);
 
+      const [dates, setDates] = useState([]);
+      const [cul, setCul] = useState([]);
+
+  useEffect(()=>{
+    getDate()
+    getPdf()
+  },[])
+
+   useEffect(()=>{
+     getPdf()
+  },[])
+
+
+
+  async function getPdf() {
+    const res =  await axios.get(`http://102.220.30.73/api/getPdf`)
+    console.log('pdf ' , res.data.cul);
+    
+    setCul(res.data.cul)
+  }
+ 
+
+  async function getDate() {
+       const res =  await axios.get(`http://102.220.30.73/api/getDate`)
+       console.log('date' , res.data.all);
+       
+       setDates(res.data.all)
+  }
+
   const renderContent = () => {
     switch (activeTab) {
       case 'culturels':
         return (
+
+          cul.length > 0  ?
+           cul.map(elem=> {
+                    const {des, Title, pdf , Image:ii} = elem;
+                       return (
+                      <TouchableOpacity
+                        key={elem._id}
+                        style={{marginTop: 30, alignItems: 'center' , marginBottom:20}}
+                        onPress={() =>
+                          Linking.openURL(pdf,
+                          )
+                        }>
+                        <Image
+                         source={{uri :ii}}
+                          resizeMode="contain"
+                          style={{
+                            width: '100%',
+                            height: 200,
+                        borderRadius:10,
+
+                          }}
+                         
+                        />
+                        <Text
+                          style={{
+                            fontWeight: 'bold',
+                            color: colors.primary,
+                            marginBottom: 10,
+                          }}>
+                          {Title}
+                        </Text>
+
+                        <Text
+                          style={{
+                            padding: 30,
+                            paddingTop: 0,
+                            color: colors.primary,
+                          }}>
+                          {des}
+                        </Text>
+                      </TouchableOpacity>
+                    );
+                  })
+          :
           <TouchableOpacity
             style={styles.touchableContainer}
             onPress={() => Linking.openURL('https://drive.google.com/file/d/1_jJT4JNAQYlp16Du9ydz6HSeWbIQR8ID/view?usp=sharing')}
@@ -42,13 +117,13 @@ export default function Programmes() {
       case 'dates':
         return (
           <View style={styles.datesContainer}>
-            {items.map((elem, index) => {
-              const { id, date, heure, description } = elem;
+            {dates.map((elem, index) => {
+
               return (
-                <View key={`${id}-${index}`} style={styles.dateItem}>
-                  <Text style={styles.dateText}>{date}</Text>
-                  <Text style={styles.dateText}>Du {heure}</Text>
-                  <Text style={styles.dateDescription}>{description}</Text> {/* Ensure this is wrapped in <Text> */}
+                <View key={`${elem._id}-${index}`} style={styles.dateItem}>
+                  <Text style={styles.dateText}>{elem.Date}</Text>
+                  <Text style={styles.dateText}>Du {elem.Hour}</Text>
+                  <Text style={styles.dateDescription}>{elem.des}</Text> {/* Ensure this is wrapped in <Text> */}
                 </View>
               );
             })}
@@ -156,7 +231,8 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     marginHorizontal: 20,
     marginBottom: 10,
-    height: 300,
+    // height: 300,
+    flexShrink: 1,
   },
   dateText: {
     fontWeight: 'bold',

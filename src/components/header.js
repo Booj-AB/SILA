@@ -120,7 +120,7 @@ const header = ({title, onPress}) => {
 
               <View style={{width:'100%', display:'flex', justifyContent:'center'}}>
                  <TouchableOpacity  onPress={() => navigation.navigate('ContacUs')}  style={{width:'99%', backgroundColor: colors.Quaternary, padding:10  , marginBottom:10 , borderRadius:5}}>
-                    <Text style={styles.buttonText}>  Send A message</Text>
+                    <Text style={styles.buttonText}> envoyer message</Text>
                    </TouchableOpacity>
               </View>
 
