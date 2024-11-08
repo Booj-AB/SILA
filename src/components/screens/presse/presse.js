@@ -120,7 +120,7 @@ export default function Presse() {
                            {type == 'Image' && <Image
                             style={{
                               width: 300,
-                              height: 200,
+                              height: 'auto',
                               borderRadius: 10,
                             }}
                             source={{uri : Object}}
@@ -128,8 +128,7 @@ export default function Presse() {
 
                             {type != 'Image' && type != 'podcast' && 
                              <YoutubePlayer
-                                  height={300}
-                                  play={true}
+                                  play={false}
                                   videoId={Object}
                               />
                             }
@@ -140,9 +139,7 @@ export default function Presse() {
                               fontWeight: 'bold',
                               marginBottom:10,
                               color: colors.primary,
-                              width: 300,
-                              textAlign: 'center',
-                              marginBottom: 10,
+                              
                               fontSize:23
                             }}>
                             {Title}
@@ -155,7 +152,6 @@ export default function Presse() {
                               color: colors.primary,
                               width: 300,
                               textAlign: 'center',
-                              marginBottom: 10,
                               fontSize:17
                             }}>
                             {des}
@@ -197,7 +193,6 @@ export default function Presse() {
                            <Image
                             style={{
                               width: 300,
-                              height: 200,
                               borderRadius: 10,
                             }}
                             source={{uri : Object}}
@@ -262,7 +257,7 @@ export default function Presse() {
 
                                  <YoutubePlayer
                                   height={300}
-                                  play={true}
+                                  play={false}
                                   videoId={Object}
                            />
 
@@ -319,15 +314,14 @@ export default function Presse() {
                       <View
                         style={{
                           
-                          alignItems:'center',
                           marginHorizontal: 20,
                         }}>
                         <View>
                          
 
                                 <YoutubePlayer
-                                  height={300}
-                                  play={true}
+                                  height={200}
+                                  play={false}
                                   videoId={Object}
                            />
 
@@ -351,7 +345,6 @@ export default function Presse() {
                               color: colors.primary,
                               width: 300,
                               textAlign: 'center',
-                              marginBottom: 10,
                               fontSize:17
                             }}>
                             {des}
@@ -362,6 +355,13 @@ export default function Presse() {
                     </View>
                   );
                 })}
+
+
+
+
+                <View style={{marginBottom:100}}>
+
+                </View>
               </View>
                 
 

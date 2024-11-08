@@ -28,21 +28,21 @@ const header = ({title, onPress}) => {
     },
     {
       label: 'Service Commercial',
-      description: 'Fodhil Nasser',
+      description: 'FODHIL Nasser',
       description2: 'commercial@sila.dz',
     },
     {
       label: 'Administration et Logistiques',
-      description: 'BOUINOONE larbi',
+      description: 'BOUINOUNE larbi',
       description2: 'administration@sila.dz',
     },
     {
       label: 'Service Technique',
-      description: 'Brahimi Akram / Tounsi Sarah',
+      description: 'BRAHIMI Akram / TOUNSI Sarah',
       description2: ' technique@sila.dz',
     },
     {
-      label: 'Relations Ministériel et Douanes',
+      label: 'Relations Ministéres et Douanes',
       description: 'DAHMANI Yazid',
       description2: 'yazid.dahmani@sila.dz',
     },
@@ -120,7 +120,7 @@ const header = ({title, onPress}) => {
 
               <View style={{width:'100%', display:'flex', justifyContent:'center'}}>
                  <TouchableOpacity  onPress={() => navigation.navigate('ContacUs')}  style={{width:'99%', backgroundColor: colors.Quaternary, padding:10  , marginBottom:10 , borderRadius:5}}>
-                    <Text style={styles.buttonText}> envoyer message</Text>
+                    <Text style={styles.buttonText}> Envoyer un message</Text>
                    </TouchableOpacity>
               </View>
 

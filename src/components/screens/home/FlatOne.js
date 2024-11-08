@@ -60,6 +60,7 @@ export default function FlatOne({arr}) {
                     renderItem={({ item }) => (
                         <View style={styles.cardContainer}>
                             <Card
+                            
                                 titel={item.Title}
                                 image={item.Image}
                                 des={item.des}
@@ -87,6 +88,7 @@ const styles = StyleSheet.create({
     cardContainer: {
         width: 300, 
         marginHorizontal: 5,
+        
     },
     title: {
         marginBottom: 25,

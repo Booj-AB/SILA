@@ -32,7 +32,7 @@ export default function Exposants() {
     });
     setItems(updatedItems);
   };
-  const [isBoolean, setBoolean] = useState(false);
+  const [isBoolean, setBoolean] = useState('Info');
 
 
       const [gui, setGui] = useState([]);
@@ -158,6 +158,7 @@ export default function Exposants() {
                         key={id}
                         style={{
                           marginTop: 4,
+                         
                         }}>
                         <Text
                           style={{
@@ -184,6 +185,7 @@ export default function Exposants() {
                     
                     );
                   })}
+                  <View style={{ marginBottom:100}} ></View>
 
                   {isBoolean == "guide" && 
                   gui.map(elem=> {

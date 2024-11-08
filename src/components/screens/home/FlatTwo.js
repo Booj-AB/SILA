@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
   },
   cardContainer: {
     width: Dimensions.get('window').width * 0.8,
-    height:520,
+    height:535,
     marginHorizontal: 10,
     borderRadius: 10,
     backgroundColor: '#fff',

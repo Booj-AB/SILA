@@ -129,7 +129,7 @@ export default function Main() {
 
   return (
     <View style={styles.container}>
-      <Header title="accuil" />
+      <Header title="Acceuil" />
       <FlatList
         ref={scrollViewRef}
         data={data}

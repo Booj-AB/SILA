@@ -1,13 +1,16 @@
 import React from 'react';
+
 import { Svg, Circle, Text } from 'react-native-svg';
 
-const ProCom = ({ size = 100, strokeWidth = 10, progress = 50, color = '#4caf50' }) => {
+const ProCom = ({  size = 100, strokeWidth = 10, progress = 50, color = '#4caf50' }) => {
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (progress / 100) * circumference;
 
   return (
-    <Svg width={size} height={size}>
+
+    
+    <Svg  style={{marginLeft:10}} width={size} height={size}>
       {/* Background Circle */}
       <Circle
         cx={size / 2}
@@ -41,6 +44,7 @@ const ProCom = ({ size = 100, strokeWidth = 10, progress = 50, color = '#4caf50'
         {`${progress}`}
       </Text>
     </Svg>
+   
   );
 };
 

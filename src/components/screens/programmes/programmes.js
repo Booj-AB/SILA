@@ -98,7 +98,8 @@ export default function Programmes() {
           :
           <TouchableOpacity
             style={styles.touchableContainer}
-            onPress={() => Linking.openURL('https://drive.google.com/file/d/1_jJT4JNAQYlp16Du9ydz6HSeWbIQR8ID/view?usp=sharing')}
+            // eslint-disable-next-line no-undef
+            onPress={() => Linking.openURL('https://drive.google.com/file/d/1QzJOyKEUD9G6gDrgqmzZ02yZzitjRgDs/view?usp=sharing')}
             accessibilityLabel="Open Programme Culturel"
             accessible
           >
@@ -152,13 +153,11 @@ export default function Programmes() {
           <View style={styles.tabContainer}>
             <NativeBaseProvider>
               <View style={styles.tabButtonContainer}>
-                <TouchableOpacity onPress={() => setActiveTab('culturels')}>
+                <TouchableOpacity style={{marginLeft:30}} onPress={() => setActiveTab('culturels')}>
                   <Text style={styles.tabButtonText}>Culturels</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => setActiveTab('dates')}>
-                  <Text style={styles.tabButtonText}>Dates</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => setActiveTab('plan')}>
+                
+                <TouchableOpacity style={{marginRight:30}} onPress={() => setActiveTab('plan')}>
                   <Text style={styles.tabButtonText}>Plan</Text>
                 </TouchableOpacity>
               </View>

@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import Loding from '../../Loding/Loding'
+import React, { useState, useEffect } from 'react';
+import Loding from '../../Loding/Loding';
 import Header from '../../header';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { View, Text, Image, TextInput, StyleSheet, FlatList } from 'react-native';
@@ -8,18 +8,17 @@ import { colors, icons } from '../../constants';
 import { Dimensions } from 'react-native';
 import axios from 'axios';
 
-import { debounce } from 'lodash'; // Import lodash for debouncing
-
 const { width } = Dimensions.get('window');
-const scale = width / 420;
-const PAGE_LIMIT = 50; // Number of books per page
+const PAGE_LIMIT = 50;
 
 const BookItem = React.memo(({ item }) => {
     const { isbn, titre, auteur, prixDA } = item;
     return (
         <View key={item._id} style={styles.listItem2}>
             <View>
-                <Text style={{ marginRight: 10, textAlign: 'center', fontWeight: 'bold' }}>{isNaN(parseInt(titre))?titre:''}</Text>
+                <Text style={{ marginRight: 10, textAlign: 'center', fontWeight: 'bold' }}>
+                    {isNaN(parseInt(titre)) ? titre : ''}
+                </Text>
                 <Text style={{ marginRight: 10, textAlign: 'center', fontWeight: 'bold' }}>{auteur}</Text>
             </View>
             <View style={{ flexDirection: 'row', alignSelf: 'center', fontWeight: 'bold' }}>
@@ -31,26 +30,23 @@ const BookItem = React.memo(({ item }) => {
 });
 
 export default function Ouvrage() {
-    const [books, setBooks] = useState([]); // Initialize as empty array
-    const [search, setSearch] = useState('');
-    const [filteredBooks, setFilteredBooks] = useState([]); // Initialize filtered books
-    const [currentPage, setCurrentPage] = useState(1); // Track current page
-    const [totalPages, setTotalPages] = useState(0); // Total number of pages
-    const [loading, setLoading] = useState(false); // Loading state
+    const [books, setBooks] = useState([]); // Liste complète des livres
+    const [search, setSearch] = useState(''); // Valeur de recherche
+    const [filteredBooks, setFilteredBooks] = useState([]); // Livres filtrés
+    const [currentPage, setCurrentPage] = useState(1); // Page actuelle
+    const [totalPages, setTotalPages] = useState(0); // Nombre total de pages
+    const [loading, setLoading] = useState(false); // État de chargement
 
     useEffect(() => {
-        getBooks(currentPage); // Fetch books on initial load
+        getBooks(currentPage);
     }, [currentPage]);
 
     async function getBooks(page) {
         setLoading(true);
         try {
             const res = await axios.get(`http://102.220.30.73/api/getBook?page=${page}&limit=${PAGE_LIMIT}`);
-            console.log('Full Response:', res); // Log the entire response object
-            console.log('Response Data:', res.data); // Log the data part specifically
-            setBooks(prevBooks => [...prevBooks, ...res.data.books]); // Append new books to existing list
-            setTotalPages(res.data.totalPages); // Set total pages from response
-            setFilteredBooks(prevBooks => [...prevBooks, ...res.data.books]); // Initialize filtered list
+            setBooks(prevBooks => [...prevBooks, ...res.data.books]); // Conserver tous les livres
+            setTotalPages(res.data.totalPages);
         } catch (err) {
             console.log(err);
         } finally {
@@ -58,26 +54,35 @@ export default function Ouvrage() {
         }
     }
 
-    const handleSearch = useCallback(debounce((value) => {
-        if (Array.isArray(books)) { // Ensure books is defined and is an array
-            const lowerCaseSearch = value.toLowerCase();
-            const filtered = books.filter(book => 
-                book.titre.toLowerCase().includes(lowerCaseSearch) ||
-                book.auteur.toLowerCase().includes(lowerCaseSearch)
-            );
-            setFilteredBooks(filtered);
-        }
-    }, 300), [books]); // Adjust debounce time as necessary
-
     useEffect(() => {
-        handleSearch(search); // Call the debounced search function
-    }, [search]); // Re-run search when input changes
+        // Filtrer les livres chaque fois que la recherche change
+        handleSearch(search);
+    }, [search, books]); // Dépendre de books aussi
+
+    const handleSearch = (value) => {
+        setSearch(value); // Mettre à jour la valeur de recherche
+        const normalizedSearch = normalizeText(value).toLowerCase().trim();
+        const filtered = books.filter(book =>
+            normalizeText(book.titre).toLowerCase().trim().includes(normalizedSearch) ||
+            normalizeText(book.auteur).toLowerCase().trim().includes(normalizedSearch) // Filtrer aussi par auteur
+        );
+        setFilteredBooks(filtered);
+    };
 
     const loadMoreBooks = () => {
         if (currentPage < totalPages) {
-            setCurrentPage(currentPage + 1); // Increment page for next fetch
+            setCurrentPage(currentPage + 1);
         }
     };
+
+    function normalizeText(text) {
+        const normalized = text.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        return normalized
+            .replace(/[أإءآ]/g, 'ا')
+            .replace(/[ى]/g, 'ي')
+            .replace(/[ؤ]/g, 'و')
+            .replace(/[ة]/g, 'ه');
+    }
 
     const renderBook = ({ item }) => <BookItem item={item} />;
 
@@ -147,5 +152,5 @@ const styles = StyleSheet.create({
         padding: 16,
         borderRadius: 5,
         width: '96%',
-    },
+    },
 });
