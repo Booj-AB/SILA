@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Loding from '../../Loding/Loding';
 import Header from '../../header';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -7,9 +7,10 @@ import { NativeBaseProvider } from 'native-base';
 import { colors, icons } from '../../constants';
 import { Dimensions } from 'react-native';
 import axios from 'axios';
+import { debounce } from 'lodash';
 
 const { width } = Dimensions.get('window');
-const PAGE_LIMIT = 50;
+const PAGE_LIMIT = 50000; // Limiter le nombre de livres chargés par page
 
 const BookItem = React.memo(({ item }) => {
     const { isbn, titre, auteur, prixDA } = item;
@@ -30,12 +31,11 @@ const BookItem = React.memo(({ item }) => {
 });
 
 export default function Ouvrage() {
-    const [books, setBooks] = useState([]); // Liste complète des livres
-    const [search, setSearch] = useState(''); // Valeur de recherche
-    const [filteredBooks, setFilteredBooks] = useState([]); // Livres filtrés
-    const [currentPage, setCurrentPage] = useState(1); // Page actuelle
-    const [totalPages, setTotalPages] = useState(0); // Nombre total de pages
-    const [loading, setLoading] = useState(false); // État de chargement
+    const [books, setBooks] = useState([]);
+    const [search, setSearch] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(0);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         getBooks(currentPage);
@@ -45,7 +45,7 @@ export default function Ouvrage() {
         setLoading(true);
         try {
             const res = await axios.get(`http://102.220.30.73/api/getBook?page=${page}&limit=${PAGE_LIMIT}`);
-            setBooks(prevBooks => [...prevBooks, ...res.data.books]); // Conserver tous les livres
+            setBooks(prevBooks => [...prevBooks, ...res.data.books]);
             setTotalPages(res.data.totalPages);
         } catch (err) {
             console.log(err);
@@ -54,20 +54,18 @@ export default function Ouvrage() {
         }
     }
 
-    useEffect(() => {
-        // Filtrer les livres chaque fois que la recherche change
-        handleSearch(search);
-    }, [search, books]); // Dépendre de books aussi
+    const handleSearch = debounce((value) => {
+        setSearch(value);
+    }, 300);
 
-    const handleSearch = (value) => {
-        setSearch(value); // Mettre à jour la valeur de recherche
-        const normalizedSearch = normalizeText(value).toLowerCase().trim();
-        const filtered = books.filter(book =>
-            normalizeText(book.titre).toLowerCase().trim().includes(normalizedSearch) ||
-            normalizeText(book.auteur).toLowerCase().trim().includes(normalizedSearch) // Filtrer aussi par auteur
+    const filteredBooks = useMemo(() => {
+        if (!search) return books;
+        const normalizedSearch = normalizeText(search).toLowerCase().trim();
+        return books.filter(book =>
+            normalizeText(book.titre).toLowerCase().includes(normalizedSearch) ||
+            normalizeText(book.auteur).toLowerCase().includes(normalizedSearch)
         );
-        setFilteredBooks(filtered);
-    };
+    }, [search, books]);
 
     const loadMoreBooks = () => {
         if (currentPage < totalPages) {
@@ -116,6 +114,7 @@ export default function Ouvrage() {
                                 { length: 80, offset: 80 * index, index } // Adjust based on your item height
                             )}
                         />
+                        <View style={{marginBottom:100}}></View>
                     </View>
                 </NativeBaseProvider>
             </View>
