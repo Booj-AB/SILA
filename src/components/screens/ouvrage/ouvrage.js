@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import Loding from '../../Loding/Loding';
 import Header from '../../header';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -9,26 +9,61 @@ import { Dimensions } from 'react-native';
 import axios from 'axios';
 import { debounce } from 'lodash';
 
+
 const { width } = Dimensions.get('window');
-const PAGE_LIMIT = 50000; // Limiter le nombre de livres chargés par page
+const PAGE_LIMIT = 100000;
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+// Function to fetch all books and save to AsyncStorage
+const saveBooksLocally = async () => {
+    try {
+        const response = await axios.get(`http://102.220.30.73/api/getBook?page=1&limit=${PAGE_LIMIT}`);
+        const books = response.data.books;
+
+        // Save books to AsyncStorage
+        await AsyncStorage.setItem('books', JSON.stringify(books));
+        console.log('Books saved locally');
+    } catch (error) {
+        console.error('Failed to save books locally:', error);
+    }
+};
 
 const BookItem = React.memo(({ item }) => {
-    const { isbn, titre, auteur, prixDA } = item;
+    const { isbn, titre, auteur, prixDA, masion, genre } = item;
     return (
         <View key={item._id} style={styles.listItem2}>
             <View>
-                <Text style={{ marginRight: 10, textAlign: 'center', fontWeight: 'bold' }}>
-                    {isNaN(parseInt(titre)) ? titre : ''}
-                </Text>
+                <Text style={{ marginRight: 10, textAlign: 'center', fontWeight: 'bold' }}>{isNaN(parseInt(titre)) ? titre : ''}</Text>
                 <Text style={{ marginRight: 10, textAlign: 'center', fontWeight: 'bold' }}>{auteur}</Text>
             </View>
             <View style={{ flexDirection: 'row', alignSelf: 'center', fontWeight: 'bold' }}>
                 <Text style={{ marginRight: 30, fontWeight: 'bold' }}>Prix du livre: {prixDA} DA</Text>
                 {isbn !== '' && <Text>ISBN: {isbn}</Text>}
             </View>
+            {item.genre != "" && (
+                <View>
+                    <Text style={{ marginBottom: 10, marginRight: 10, textAlign: 'center' }}>{genre}</Text>
+                </View>
+            )}
+            <View>
+                <Text style={{ marginBottom: 10, fontSize: 14, marginRight: 10, textAlign: 'center', marginTop: 5 }}>{masion}</Text>
+            </View>
         </View>
     );
 });
+const loadBooksFromLocal = async () => {
+    try {
+        const booksString = await AsyncStorage.getItem('books');
+        if (booksString) {
+            const localBooks = JSON.parse(booksString);
+            setBooks(localBooks); // Set the local books to state
+            console.log('Books loaded from local storage');
+        }
+    } catch (error) {
+        console.error('Failed to load books from local storage:', error);
+    }
+};
 
 export default function Ouvrage() {
     const [books, setBooks] = useState([]);
@@ -36,12 +71,15 @@ export default function Ouvrage() {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
     const [loading, setLoading] = useState(false);
-
+    useEffect(() => {
+        loadBooksFromLocal(); // Load books from local storage on component mount
+    }, []);
     useEffect(() => {
         getBooks(currentPage);
+        saveBooksLocally(); // Save books to local storage whenever the component mounts
     }, [currentPage]);
 
-    async function getBooks(page) {
+    const getBooks = async (page) => {
         setLoading(true);
         try {
             const res = await axios.get(`http://102.220.30.73/api/getBook?page=${page}&limit=${PAGE_LIMIT}`);
@@ -52,11 +90,12 @@ export default function Ouvrage() {
         } finally {
             setLoading(false);
         }
-    }
+    };
 
-    const handleSearch = debounce((value) => {
+    const handleSearch = useCallback(debounce((value) => {
         setSearch(value);
-    }, 300);
+        setCurrentPage(1); // Reset to first page on new search
+    }, 300), []);
 
     const filteredBooks = useMemo(() => {
         if (!search) return books;
@@ -72,6 +111,7 @@ export default function Ouvrage() {
             setCurrentPage(currentPage + 1);
         }
     };
+
 
     function normalizeText(text) {
         const normalized = text.normalize('NFD').replace(/[\u0300-\u036f]/g, '');

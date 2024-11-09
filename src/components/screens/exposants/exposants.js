@@ -198,7 +198,7 @@ export default function Exposants() {
                       borderBottomColor: 'black',
                       borderBottomStyle: 'solid' }}
                         onPress={() =>
-                          Linking.openURL(pdf,
+                          Linking.openURL(pdf
                           )
                         }>
                         <Image

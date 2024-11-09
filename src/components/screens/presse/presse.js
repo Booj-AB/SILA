@@ -82,7 +82,7 @@ export default function Presse() {
                   <Text style={{ fontWeight: 'bold', color: colors.white }}>Tout</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => setSel('Po')}>
+                <TouchableOpacity onPress={() => setSel('po')}>
                   <Text style={{ fontWeight: 'bold', color: colors.white }}>Podcast</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => setSel('vd')}>
@@ -129,7 +129,7 @@ export default function Presse() {
                             {type != 'Image' && type != 'podcast' && 
                              <YoutubePlayer
                                   height={300}
-                                  play={true}
+                                  play={false}
                                   videoId={Object}
                               />
                             }
@@ -262,7 +262,7 @@ export default function Presse() {
 
                                  <YoutubePlayer
                                   height={300}
-                                  play={true}
+                                  play={false}
                                   videoId={Object}
                            />
 
@@ -327,7 +327,7 @@ export default function Presse() {
 
                                 <YoutubePlayer
                                   height={300}
-                                  play={true}
+                                  play={false}
                                   videoId={Object}
                            />
 
