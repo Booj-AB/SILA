@@ -15,9 +15,14 @@ const scale = width / 420;
 const PAGE_LIMIT = 50; // Number of books per page
 
 const BookItem = React.memo(({ item }) => {
-    const { isbn, titre, auteur, prixDA } = item;
+    const { isbn, titre, auteur, prixDA  , masion} = item;
     return (
         <View key={item._id} style={styles.listItem2}>
+   
+             <View>
+                 <Text  style={{ marginBottom:10 , fontSize:24,marginRight: 10, textAlign: 'center', fontWeight: 'bold' }}>{masion}</Text>
+             </View>
+
             <View>
                 <Text style={{ marginRight: 10, textAlign: 'center', fontWeight: 'bold' }}>{isNaN(parseInt(titre))?titre:''}</Text>
                 <Text style={{ marginRight: 10, textAlign: 'center', fontWeight: 'bold' }}>{auteur}</Text>
